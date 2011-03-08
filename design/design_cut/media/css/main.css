@@ -1,0 +1,46 @@
+header, aside, section, nav,
+h1, h2, h3, h4, h5, h6, p {
+	display:		block;
+	margin:			0;
+	padding:		0;
+}
+
+
+strong { font-weight:bold; }
+em { font-style: italic; }
+
+html, body {
+	background:		#2b474a;
+	text-align:		center;
+}
+
+/** Header **/
+header {
+	margin:			0 auto;
+	padding:		20px;
+	text-align:		left;
+	width:			910px;
+}
+
+header h1 a {
+	background:		transparent url(../images/logo.png) no-repeat;
+	display:		block;
+	height:			57px;
+	width:			191px;
+	text-indent:	-5000em;
+}
+
+/** Content **/
+#main {
+	background:		#1f1f1f;
+	color:			#fff;
+	margin:			0 auto;
+	padding:		20px;
+	text-align:		left;
+	width:			910px;
+	
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	border-radius: 8px;
+
+}
