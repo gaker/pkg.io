@@ -16,10 +16,17 @@ html, body {
 
 /** Header **/
 header {
+	height:			50px;
 	margin:			0 auto;
 	padding:		20px;
+	position:		relative;
 	text-align:		left;
 	width:			910px;
+}
+
+header h1 {
+	width:			200px;
+	float:			left;
 }
 
 header h1 a {
@@ -30,9 +37,46 @@ header h1 a {
 	text-indent:	-5000em;
 }
 
+#login {
+	width:			400px;
+	position:		absolute;
+	right:			20px;
+}
+
+#login li {
+	float:			right;
+	list-style-type: none;
+	padding-left:	15px;
+}
+
+#login a {
+	display:		block;
+	height:			48px;
+	width:			50px;
+	text-indent:	-5000em;
+}
+
+#twitter {
+	background:		transparent url(../images/social_icons.png) no-repeat top right;
+		text-indent:	-10px;
+}
+
+#twitter:hover {
+	background-position: bottom right;
+}
+
+#facebook {
+	background:		transparent url(../images/social_icons.png) no-repeat top left;
+}
+
+#facebook:hover {
+	background-position: bottom left;
+}
+
 /** Content **/
 #main {
 	background:		#1f1f1f;
+	clear: 			both;
 	color:			#fff;
 	margin:			0 auto;
 	padding:		20px;
