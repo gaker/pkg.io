@@ -4,12 +4,14 @@
 	<meta charset="utf-8">
 	
 	<title>Pkg.io | {% block title %}{% end %}</title>
-		
+	
+	<link rel="stylesheet" href="{{ static_url('css/main.css') }}" type="text/css" media="screen" charset="utf-8">
 </head>
 <body>
 
 {% block content %}{% end %}
 
+<script type="text/javascript" src="{{ static_url('js/jquery.js') }}"></script>
 {% block footer_js %}{% end %}
 </body>
 </html>
