@@ -107,7 +107,20 @@
 
 	<fieldset id="module" style="display:none">
 		<legend>Module</legend>
-
+		<table>
+			<tr>
+				<td><label for="module_has_control_panel">Has Control Panel Page?</label></td>
+				<td><select name="module_has_control_panel">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</select>
+				</td>			
+			</tr>
+			<tr>
+				<td><label for="module_description">Module Description</label></td>
+				<td><input type="text" name="module_description"></td>
+			</tr>
+		</table>
 	</fieldset>
 
 	<fieldset id="extension" style="display:none">
@@ -119,6 +132,7 @@
 					<option value="0">No</option>
 					<option value="1">Yes</option>
 				</select>
+				</td>
 			</tr>
 		</table>
 	</fieldset>
