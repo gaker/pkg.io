@@ -58,7 +58,39 @@
 				</select>
 			</tr>
 		</table>
-		
+		<table id="accessory_1">
+			<tr>
+				<td><label for="accessory_1_title">Section Title</label></td>
+				<td><input type="text" name="accessory_1_title"></td>
+			</tr>
+			<tr>
+				<td><label for="accessory_1_content">Content</label><br>
+					<em>Insert any HTML or Javascript for this section</em></td>
+				<td><textarea name="accessory_1_content"></textarea></td>
+			</tr>
+		</table>
+		<table id="accessory_2" style="display:none">
+			<tr>
+				<td><label for="accessory_2_title">Section Title</label></td>
+				<td><input type="text" name="accessory_2_title"></td>
+			</tr>
+			<tr>
+				<td><label for="accessory_2_content">Content</label><br>
+					<em>Insert any HTML or Javascript for this section</em></td>
+				<td><textarea name="accessory_2_content"></textarea></td>
+			</tr>
+		</table>
+		<table id="accessory_3" style="display:none">
+			<tr>
+				<td><label for="accessory_3_title">Section Title</label></td>
+				<td><input type="text" name="accessory_3_title"></td>
+			</tr>
+			<tr>
+				<td><label for="accessory_3_content">Content</label><br>
+					<em>Insert any HTML or Javascript for this section</em></td>
+				<td><textarea name="accessory_3_content"></textarea></td>
+			</tr>
+		</table>
 		
 	</fieldset>
 
@@ -70,7 +102,6 @@
 				<td><label for="plugin_instructions">Plugin Documentation</label></td>
 				<td><textarea name="plugin_instructions"></textarea></td>
 			</tr>
-			
 		</table>
 	</fieldset>
 
@@ -103,7 +134,22 @@ $(document).ready(function () {
 	});
 	
 	$('#accessory_sections_num').change(function () {
-		console.log('hi');
+		var num = $(this).val();
+
+		// This is really ugly.  Sorry.
+		switch (num) {
+			case '3':
+				$('#accessory_2').show();
+				$('#accessory_3').show();
+				break;
+			case '2':
+				$('#accessory_2').show();
+				$('#accessory_3').hide();
+				break;
+			default:
+				$('#accessory_2').hide();
+				$('#accessory_3').hide();			
+		}
 	});
 	
 	
