@@ -18,31 +18,37 @@ class Accessory(Parser):
     def render(self, template, data):
         # Grab the template file
         self.data = data
-        print self.data
+        # print self.data
         out = None
         
+        tag_re = re.compile('(\{\{(.+?)\}\})');
+
+
         for line in open(template):
             # Parse {{ vars }}
-            out = self._parse_var(line.rstrip())
-    
-    def _parse_var(self, line):
-        if '{{' in line:
-            
-            
-            
-            match = re.match('r({{.*)', line)
-            print match
+            match = tag_re.search(line)
+            if match is not None:
+                out = self._parse_var(line, match.groups())
+                print out
+            # out = self._parse_var(line.rstrip())
+        # print out
+    def _parse_var(self, line, var):
+        old_var = var[0].strip()
+        new_var = self.data.get(var[1].strip())
+
+        return line.replace(old_var, new_var)
         
 args = {
     'accessory_name': 'My Accessory',
     'accessory_short_name': 'my_accessory',
     'author': 'Greg Aker',
-    'version': '1.0',
+    'accessory_version': '1.0',
+    'accessory_description': 'test',
     'sections': {
         'title': 'Section 1',
         'contents': 'hi!'
-    }
-}    
+    } 
+}
 
 p = Parser()
 p.set_package_type('accessory')

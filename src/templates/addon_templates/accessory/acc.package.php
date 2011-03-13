@@ -1,6 +1,3 @@
-
-
-
 <?php
 
 class %(package_name)s_acc {
@@ -27,9 +24,7 @@ class %(package_name)s_acc {
 	 */
 	public function set_sections()
 	{
-		{% for section in sections %}
-		$this->sections['{{ section['accessory_name'] }}'] = $this->_{{ section['accessory_short_name'] }};
-		{% end %}
+
 	}
 	
 	// ----------------------------------------------------------------
@@ -37,7 +32,6 @@ class %(package_name)s_acc {
 	{% for section in sections %}
 	
 	/**
-	 * {% section['title'] %}
 	 *
 	 *
 	 */
