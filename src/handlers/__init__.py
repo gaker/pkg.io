@@ -33,7 +33,7 @@ class BaseHandler(tornado.web.RequestHandler):
             'message': httplib.responses[status_code]
         }
 
-        return self.render_string('error.html', context)
+        return self.render_string('error.html', **context)
 
     def get_current_user(self):
         ''' Overrides Tornado's default get_current_user method '''
