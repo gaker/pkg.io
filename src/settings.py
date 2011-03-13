@@ -1,0 +1,6 @@
+
+
+# Twitter OAuth fun.
+TWITTER_CONSUMER = ''
+TWITTER_SECRET = ''
+TWITTER_OAUTH_CALLBACK = ''
