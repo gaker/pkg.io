@@ -8,49 +8,58 @@
 	
 	<fieldset id="">
 		<legend>Package Configuration</legend>
-		<div>
-			<table>
-				<tr>
-					<td><label for="package_name"><span>* </span>Package Name:</label></td>
-					<td><input type="text" name="package_name" value=""></td>
-				</tr>
-				<tr>
-					<td><label for="package_short_name"><span>* </span>Package Short Name: (alpha-numeric and underscores.  No Spaces)</label></td>
-					<td><input type="text" name="package_short_name" value=""></td>
-				</tr>
-				<tr>
-					<td><label for="version"><span>* </span>Version Number</label></td>
-					<td><input type="text" name="version" value=""></td>
-				</tr>
-				<tr>
-					<td><label for="author"><span>* </span>Author Name:</label></td>
-					<td><input type="text" name="author" value=""></td>
-				</tr>
-				<tr>
-					<td><label for="author_url">Author URL</label></td>
-					<td><input type="url" name="author_url"></td>
-				</tr>
-				<tr>
-					<td><label for="docs_url">Documentation URL</label></td>
-					<td><input type="url" name="docs_url"></td>
-				</tr>
-				<tr>
-					<td><label for="package_type">Package Type</label></td>
-					<td>
-						<label for="pkg_accessory">Accessory</label> <input type="checkbox" name="pkg_accessory">
-						<label for="pkg_plugin">Plugin</label> <input type="checkbox" name="pkg_plugin">
-						<label for="pkg_module">Module</label> <input type="checkbox" name="pkg_module">
-						<label for="pkg_extension">Extension</label> <input type="checkbox" name="pkg_extension">
-					</td>
-				</tr>
-			</table>
-		</div>
+		<table>
+			<tr>
+				<td><label for="package_name"><span>* </span>Package Name:</label></td>
+				<td><input type="text" name="package_name" value=""></td>
+			</tr>
+			<tr>
+				<td><label for="package_short_name"><span>* </span>Package Short Name: (alpha-numeric and underscores.  No Spaces)</label></td>
+				<td><input type="text" name="package_short_name" value=""></td>
+			</tr>
+			<tr>
+				<td><label for="version"><span>* </span>Version Number</label></td>
+				<td><input type="text" name="version" value=""></td>
+			</tr>
+			<tr>
+				<td><label for="author"><span>* </span>Author Name:</label></td>
+				<td><input type="text" name="author" value=""></td>
+			</tr>
+			<tr>
+				<td><label for="author_url">Author URL</label></td>
+				<td><input type="url" name="author_url"></td>
+			</tr>
+			<tr>
+				<td><label for="docs_url">Documentation URL</label></td>
+				<td><input type="url" name="docs_url"></td>
+			</tr>
+			<tr>
+				<td><label for="package_type">Package Type</label></td>
+				<td>
+					<label for="pkg_accessory">Accessory</label> <input type="checkbox" name="pkg_accessory">
+					<label for="pkg_plugin">Plugin</label> <input type="checkbox" name="pkg_plugin">
+					<label for="pkg_module">Module</label> <input type="checkbox" name="pkg_module">
+					<label for="pkg_extension">Extension</label> <input type="checkbox" name="pkg_extension">
+				</td>
+			</tr>
+		</table>
 	</fieldset>
 	
 	<fieldset id="accessory" style="display:none">
 		<legend>Accessory</legend>
 		
-		
+		<div id="sections">
+			<table>
+				<tr>
+					<td><label for="accessory_sections_num">Number of accessory sections</label></td>
+					<td><select name="accessory_sections_num" id="accessory_sections_num" size="1">
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>						
+					</select>
+				</tr>
+			</table>
+		</div>
 		
 		
 	</fieldset>
@@ -78,7 +87,7 @@
 	</fieldset>
 	
 
-
+	<div><input type="submit" value="Submit"></div>
 	<div style="display:none">{{ xsrf_form_html() }}</div>
 </form>
 {% end %}
