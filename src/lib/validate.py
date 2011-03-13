@@ -9,16 +9,24 @@ class FormValidator(object):
         self._validation_rules = False
         self._request_cls = cls
     
-    def add_field(self, field_name, rule, default=''):
+    def add_field(self, field_name, rule='', default=''):
         rules = rule.split('|')
         
         # populate
         self.fields[field_name] = self._request_cls.get_argument(field_name, default)
         
+        if not rule:
+            return
+        
         for r in rule.split('|'):
             self.field_rules.append([field_name, r])
     
-    def get_field(self, field_name):
+    def get_field(self, field_name, in_type='text'):
+        if in_type is 'check':
+            if self.fields[field_name]:
+                return 'checked="checked"'
+            return ''
+        
         return self.fields[field_name]
     
         

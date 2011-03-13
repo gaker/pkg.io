@@ -19,12 +19,26 @@ class HomeHandler(BaseHandler):
         
         form = FormValidator(self)
         
-        form.add_field('author', 'required|plain_string');
-        form.add_field('author_url', 'url');
-        form.add_field('docs_url', 'url');
-        form.add_field('package_name', 'required|plain_string');
-        form.add_field('package_short_name', 'required|segment');
-        form.add_field('version', 'float', '1.0');
+        # Basic Settings
+        form.add_field('author', 'required|plain_string')
+        form.add_field('author_url', 'url')
+        form.add_field('docs_url', 'url')
+        form.add_field('package_name', 'required|plain_string')
+        form.add_field('package_short_name', 'required|segment')
+        form.add_field('version', 'float', '1.0')
+        
+        
+        # Components
+        form.add_field('pkg_accessory')
+        form.add_field('pkg_plugin')
+        form.add_field('pkg_module')
+        form.add_field('pkg_extension')
+        
+        
+        if form.get_field('pkg_plugin'):
+            form.add_field('plugin_instructions')
+        
+        
         
         errors = form.validate()
         
@@ -34,25 +48,7 @@ class HomeHandler(BaseHandler):
             return
         
         print form.fields()
-        
-        
-        # params = {
-        #     'author': None,
-        #     'author_url': '',
-        #     'docs_url': '',
-        #     'package_name': None,
-        #     'package_short_name': None,
-        #     'version': '1.0',
-        # }
-        # 
-        # settings = dict((x, self.get_argument(x, deft)) for x, deft in params.iteritems())
-        # 
-        # builder = PackageBuilder(settings)
-        # 
-        # if not builder.validate_settings():
-        #     print builder.get_errors()
-        #     return
-        
+                
         # grab components
         # add to package builder
         # validate
