@@ -1,0 +1,66 @@
+import re
+
+class FormValidator(object):
+        
+    fields = {}
+    field_rules = []
+    
+    def __init__(self, cls):
+        self._validation_rules = False
+        self._request_cls = cls
+    
+    def add_field(self, field_name, rule, default=''):
+        rules = rule.split('|')
+        
+        # populate
+        self.fields[field_name] = self._request_cls.get_argument(field_name, default)
+        
+        for r in rule.split('|'):
+            self.field_rules.append([field_name, r])
+    
+    def get_field(self, field_name):
+        return self.fields[field_name]
+    
+        
+    def validate(self):
+        
+        errors = {}
+        
+        for ruleset in self.field_rules:
+            name = ruleset[0]
+            rule = ruleset[1]
+            value = self.fields[name]
+            
+            if name in errors:
+                continue
+            
+            if self.get_validator(rule).match(value) == None:
+                errors[name] = self.get_human_error(rule)
+        
+        if len(errors):
+            return errors
+        
+        return True
+    
+    def get_validator(self, rule):
+        if not self._validation_rules:
+            self._validation_rules = {
+                'required': re.compile('.+'),
+                'float': re.compile('\d+(\.\d+)?'),
+                'plain_string': re.compile('[a-zA-Z0-9 _-]'),   # @todo unicode chars?
+                'segment': re.compile('[a-z0-9_]+'),            # shortname needs to be a valid url segment, feel free to rename this
+                'url': re.compile('\(?http://[-A-Za-z0-9+&@#/%?=~_()|!:,.;]*[-A-Za-z0-9+&@#/%=~_()|]') # hate urls - hate them - no guarantees (source: http://www.codinghorror.com/blog/2008/10/the-problem-with-urls.html)
+            }
+            
+        return self._validation_rules[rule]
+    
+    def get_human_error(self, rule):
+        errors = {
+            'required': 'Required Field',
+            'float': 'Must be a version string',
+            'plain_string': 'Must be plain text',
+            'segment': 'Can only contain lowercase alphanumeric characters and underscores',
+            'url': 'Must be a valid url'
+        }
+        
+        return errors[rule]

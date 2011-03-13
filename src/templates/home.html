@@ -11,27 +11,33 @@
 		<table>
 			<tr>
 				<td><label for="package_name"><span>* </span>Package Name:</label></td>
-				<td><input type="text" name="package_name" value=""></td>
+				<td>
+					<input type="text" name="package_name" value="{{ set_value('package_name') }}">
+					{{ form_error('package_name', '<p>{error}</p>') }}
+				</td>
 			</tr>
 			<tr>
 				<td><label for="package_short_name"><span>* </span>Package Short Name: (alpha-numeric and underscores.  No Spaces)</label></td>
-				<td><input type="text" name="package_short_name" value=""></td>
+				<td>
+					<input type="text" name="package_short_name" value="{{ set_value('package_short_name') }}">
+					{{ form_error('package_short_name', '<p>{error}</p>') }}
+				</td>
 			</tr>
 			<tr>
 				<td><label for="version"><span>* </span>Version Number</label></td>
-				<td><input type="text" name="version" value=""></td>
+				<td><input type="text" name="version" value="{{ set_value('version') }}"></td>
 			</tr>
 			<tr>
 				<td><label for="author"><span>* </span>Author Name:</label></td>
-				<td><input type="text" name="author" value=""></td>
+				<td><input type="text" name="author" value="{{ set_value('author') }}"></td>
 			</tr>
 			<tr>
 				<td><label for="author_url">Author URL</label></td>
-				<td><input type="url" name="author_url"></td>
+				<td><input type="url" name="author_url" value="{{ set_value('author_url') }}"></td>
 			</tr>
 			<tr>
 				<td><label for="docs_url">Documentation URL</label></td>
-				<td><input type="url" name="docs_url"></td>
+				<td><input type="url" name="docs_url" value="{{ set_value('docs_url') }}"></td>
 			</tr>
 			<tr>
 				<td><label for="package_type">Package Type</label></td>
@@ -156,22 +162,10 @@ $(document).ready(function () {
 	});
 	
 	$('#accessory_sections_num').change(function () {
-		var num = $(this).val();
-
-		// This is really ugly.  Sorry.
-		switch (num) {
-			case '3':
-				$('#accessory_2').show();
-				$('#accessory_3').show();
-				break;
-			case '2':
-				$('#accessory_2').show();
-				$('#accessory_3').hide();
-				break;
-			default:
-				$('#accessory_2').hide();
-				$('#accessory_3').hide();			
-		}
+		var num = this.value;
+		
+		$('#accessory_2').toggle(num > 1);
+		$('#accessory_3').toggle(num > 2);
 	});
 });
 </script>
