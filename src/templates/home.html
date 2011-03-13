@@ -28,11 +28,11 @@
 				</tr>
 				<tr>
 					<td><label for="author_url">Author URL</label></td>
-					<td><input type="url" name="author_url"></label></td>
+					<td><input type="url" name="author_url"></td>
 				</tr>
 				<tr>
 					<td><label for="docs_url">Documentation URL</label></td>
-					<td><input type="url" name="docs_url"></label></td>
+					<td><input type="url" name="docs_url"></td>
 				</tr>
 				<tr>
 					<td><label for="package_type">Package Type</label></td>
@@ -49,12 +49,22 @@
 	
 	<fieldset id="accessory" style="display:none">
 		<legend>Accessory</legend>
-
+		
+		
+		
+		
 	</fieldset>
 
 	<fieldset id="plugin" style="display:none">
 		<legend>Plugin</legend>
 
+		<table>
+			<tr>
+				<td><label for="plugin_instructions">Plugin Documentation</label></td>
+				<td><textarea name="plugin_instructions"></textarea></td>
+			</tr>
+			
+		</table>
 	</fieldset>
 
 	<fieldset id="module" style="display:none">
@@ -74,9 +84,17 @@
 {% end %}
 
 {% block footer_js %}
+<script type="text/javascript">
 $(document).ready(function () {
 	
-	//$(form)
-	
+	$('form input[type=checkbox]').click(function () {
+		// @todo Disable inputs if module or plugin is checked.
+		
+		var section = this.name.substring(4);
+		
+		$('#'+section).toggle();
+
+	});
 });
+</script>
 {% end %}
