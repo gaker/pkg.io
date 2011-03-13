@@ -34,10 +34,39 @@
 					<td><label for="docs_url">Documentation URL</label></td>
 					<td><input type="url" name="docs_url"></label></td>
 				</tr>
+				<tr>
+					<td><label for="package_type">Package Type</label></td>
+					<td>
+						<label for="pkg_accessory">Accessory</label> <input type="checkbox" name="pkg_accessory">
+						<label for="pkg_plugin">Plugin</label> <input type="checkbox" name="pkg_plugin">
+						<label for="pkg_module">Module</label> <input type="checkbox" name="pkg_module">
+						<label for="pkg_extension">Extension</label> <input type="checkbox" name="pkg_extension">
+					</td>
+				</tr>
 			</table>
 		</div>
 	</fieldset>
+	
+	<fieldset id="accessory" style="display:none">
+		<legend>Accessory</legend>
 
+	</fieldset>
+
+	<fieldset id="plugin" style="display:none">
+		<legend>Plugin</legend>
+
+	</fieldset>
+
+	<fieldset id="module" style="display:none">
+		<legend>Module</legend>
+
+	</fieldset>
+
+	<fieldset id="extension" style="display:none">
+		<legend>Extension</legend>
+
+	</fieldset>
+	
 
 
 	<div style="display:none">{{ xsrf_form_html() }}</div>
@@ -45,8 +74,9 @@
 {% end %}
 
 {% block footer_js %}
-
-
-
-
+$(document).ready(function () {
+	
+	//$(form)
+	
+});
 {% end %}
