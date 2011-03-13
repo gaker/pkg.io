@@ -58,9 +58,9 @@
 			<tr>
 				<td><label for="accessory_sections_num">Number of accessory sections</label></td>
 				<td><select name="accessory_sections_num" id="accessory_sections_num" size="1">
-					<option value="1">1</option>
-					<option value="2">2</option>
-					<option value="3">3</option>						
+					<option value="1" {{ set_value('accessory_sections_num', 'select', '1') }}>1</option>
+					<option value="2" {{ set_value('accessory_sections_num', 'select', '2') }}>2</option>
+					<option value="3" {{ set_value('accessory_sections_num', 'select', '3') }}>3</option>						
 				</select>
 			</tr>
 		</table>
@@ -117,14 +117,17 @@
 			<tr>
 				<td><label for="module_has_control_panel">Has Control Panel Page?</label></td>
 				<td><select name="module_has_control_panel">
-					<option value="0">No</option>
-					<option value="1">Yes</option>
+					<option value="0" {{ set_value('module_has_control_panel', 'select', '0') }}>No</option>
+					<option value="1" {{ set_value('module_has_control_panel', 'select', '1') }}>Yes</option>
 				</select>
 				</td>			
 			</tr>
 			<tr>
 				<td><label for="module_description">Module Description</label></td>
-				<td><input type="text" name="module_description"></td>
+				<td>
+					<input type="text" name="module_description" value={{ set_value('module_description') }}>
+					{{ form_error('module_description', '<p>{error}</p>') }}
+				</td>
 			</tr>
 		</table>
 	</fieldset>
@@ -135,8 +138,8 @@
 			<tr>
 				<td><label for="extension_has_settings">Has Control Panel Settings?</label></td>
 				<td><select name="extension_has_settings">
-					<option value="0">No</option>
-					<option value="1">Yes</option>
+					<option value="0" {{ set_value('extension_has_settings', 'select', '0') }}>No</option>
+					<option value="1" {{ set_value('extension_has_settings', 'select', '1') }}>Yes</option>
 				</select>
 				</td>
 			</tr>
@@ -168,7 +171,8 @@
 		
 		$('#accessory_2').toggle(num > 1);
 		$('#accessory_3').toggle(num > 2);
-	});
+	})
+	.triggerHandler('change')
 	
 })(jQuery);
 

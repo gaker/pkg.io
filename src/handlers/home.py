@@ -35,10 +35,24 @@ class HomeHandler(BaseHandler):
         form.add_field('pkg_extension')
         
         
+        if form.get_field('pkg_accessory'):
+            form.add_field('accessory_sections_num')
+            value = form.get_field('accessory_sections_num')
+            
+            if value.isdigit() and 0 < int(value) < 4:
+                for k in xrange(1, int(value) + 1):
+                    form.add_field('accessory_%d_title' % k)
+                    form.add_field('accessory_%d_content' % k)
+        
         if form.get_field('pkg_plugin'):
             form.add_field('plugin_instructions')
         
+        if form.get_field('pkg_module'):
+            form.add_field('module_has_control_panel', '', '0')
+            form.add_field('module_description', 'required')
         
+        if form.get_field('pkg_extension'):
+            form.add_field('extension_has_settings', '', 0)
         
         errors = form.validate()
         
@@ -47,6 +61,7 @@ class HomeHandler(BaseHandler):
                                      set_value=form.get_field)
             return
         
+        # WOOT building time
         print form.fields()
                 
         # grab components
