@@ -112,7 +112,15 @@
 
 	<fieldset id="extension" style="display:none">
 		<legend>Extension</legend>
-
+		<table>
+			<tr>
+				<td><label for="extension_has_settings">Has Control Panel Settings?</label></td>
+				<td><select name="extension_has_settings">
+					<option value="0">No</option>
+					<option value="1">Yes</option>
+				</select>
+			</tr>
+		</table>
 	</fieldset>
 	
 
@@ -151,8 +159,6 @@ $(document).ready(function () {
 				$('#accessory_3').hide();			
 		}
 	});
-	
-	
 });
 </script>
 {% end %}
