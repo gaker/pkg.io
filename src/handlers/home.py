@@ -4,4 +4,6 @@ from handlers import BaseHandler
 
 class HomeHandler(BaseHandler):
     
-    pass
+    def get(self):
+        
+        self.render('home.html')
