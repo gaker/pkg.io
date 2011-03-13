@@ -48,18 +48,16 @@
 	<fieldset id="accessory" style="display:none">
 		<legend>Accessory</legend>
 		
-		<div id="sections">
-			<table>
-				<tr>
-					<td><label for="accessory_sections_num">Number of accessory sections</label></td>
-					<td><select name="accessory_sections_num" id="accessory_sections_num" size="1">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>						
-					</select>
-				</tr>
-			</table>
-		</div>
+		<table>
+			<tr>
+				<td><label for="accessory_sections_num">Number of accessory sections</label></td>
+				<td><select name="accessory_sections_num" id="accessory_sections_num" size="1">
+					<option value="1">1</option>
+					<option value="2">2</option>
+					<option value="3">3</option>						
+				</select>
+			</tr>
+		</table>
 		
 		
 	</fieldset>
@@ -102,8 +100,13 @@ $(document).ready(function () {
 		var section = this.name.substring(4);
 		
 		$('#'+section).toggle();
-
 	});
+	
+	$('#accessory_sections_num').change(function () {
+		console.log('hi');
+	});
+	
+	
 });
 </script>
 {% end %}
