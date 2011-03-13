@@ -3,12 +3,50 @@
 {% block title %}Home{% end %}
 
 {% block content %}
+<h1>Accessory Generator</h1>
+<form action="{{ request.path }}" method="post">
+	
+	<fieldset id="">
+		<legend>Package Configuration</legend>
+		<div>
+			<table>
+				<tr>
+					<td><label for="package_name"><span>* </span>Package Name:</label></td>
+					<td><input type="text" name="package_name" value=""></td>
+				</tr>
+				<tr>
+					<td><label for="package_short_name"><span>* </span>Package Short Name: (alpha-numeric and underscores.  No Spaces)</label></td>
+					<td><input type="text" name="package_short_name" value=""></td>
+				</tr>
+				<tr>
+					<td><label for="version"><span>* </span>Version Number</label></td>
+					<td><input type="text" name="version" value=""></td>
+				</tr>
+				<tr>
+					<td><label for="author"><span>* </span>Author Name:</label></td>
+					<td><input type="text" name="author" value=""></td>
+				</tr>
+				<tr>
+					<td><label for="author_url">Author URL</label></td>
+					<td><input type="url" name="author_url"></label></td>
+				</tr>
+				<tr>
+					<td><label for="docs_url">Documentation URL</label></td>
+					<td><input type="url" name="docs_url"></label></td>
+				</tr>
+			</table>
+		</div>
+	</fieldset>
 
 
 
+	<div style="display:none">{{ xsrf_form_html() }}</div>
+</form>
 {% end %}
 
 {% block footer_js %}
+
+
 
 
 {% end %}
