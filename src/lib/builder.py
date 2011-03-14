@@ -5,9 +5,7 @@ import unicodedata
 from tornado import template
 
 class PackageBuilder:
-    
-    _phr = re.compile(".*?\{.+?\}.*?")
-    
+        
     def __init__(self, short_name):
         self._files = []
         self.short_name = short_name
