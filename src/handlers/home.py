@@ -83,7 +83,8 @@ class HomeHandler(BaseHandler):
             'package_short_name': form.get_field('package_short_name'),
             'version': form.get_field('version'),
             
-            'ucfirst': unicode.capitalize
+            'ucfirst': unicode.capitalize,
+            'dequote': lambda s: s.replace("'", "\\'")
         }
         
         

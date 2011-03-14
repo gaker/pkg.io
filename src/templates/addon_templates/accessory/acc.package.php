@@ -29,7 +29,7 @@ class {{ ucfirst(package_short_name) }}_acc {
 	public $name			= '{{ package_name }}';
 	public $id				= '{{ package_short_name }}';
 	public $version			= '{{ version }}';
-	public $description		= '{{ escape(description) }}';
+	public $description		= '{{ dequote(description) }}';
 	public $sections		= array();
 	
 	/**
@@ -40,7 +40,7 @@ class {{ ucfirst(package_short_name) }}_acc {
 		$EE =& get_instance();
 		
 		{% for section in sections %}
-		$this->sections['{{ section['title'] }}'] = $EE->load->view('accessory_{{ section['short_title'] }}');
+		$this->sections['{{ dequote(section['title']) }}'] = $EE->load->view('accessory_{{ section['short_title'] }}');
 		{% end %}
 	}
 	

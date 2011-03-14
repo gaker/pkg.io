@@ -29,7 +29,7 @@ $plugin_info = array(
 	'pi_version'	=> '{{ version }}',
 	'pi_author'		=> '{{ author }}',
 	'pi_author_url'	=> '{{ author_url }}',
-	'pi_description'=> '{{ description }}',
+	'pi_description'=> '{{ dequote(description) }}',
 	'pi_usage'		=> {{ ucfirst(package_short_name) }}::usage()
 );
 
