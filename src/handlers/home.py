@@ -3,8 +3,8 @@ import tornado
 import uuid
 
 from handlers import BaseHandler
-from lib.parser import Parser
 from lib.validate import FormValidator
+from tornado import template
 from zipfile import ZipFile, ZipInfo
 
 class HomeHandler(BaseHandler):
@@ -23,6 +23,7 @@ class HomeHandler(BaseHandler):
         
         form = FormValidator(self)
         
+        
         # Basic Settings
         form.add_field('author', 'required|plain_string')
         form.add_field('author_url', 'url')
@@ -39,11 +40,15 @@ class HomeHandler(BaseHandler):
         form.add_field('pkg_extension')
         
         
+        accessory_sections = 0
+        
         if form.get_field('pkg_accessory'):
             form.add_field('accessory_sections_num')
             value = form.get_field('accessory_sections_num')
             
             if value.isdigit() and 0 < int(value) < 4:
+                accessory_sections = int(value)
+                
                 for k in xrange(1, int(value) + 1):
                     form.add_field('accessory_%d_title' % k)
                     form.add_field('accessory_%d_content' % k)
@@ -72,11 +77,8 @@ class HomeHandler(BaseHandler):
         files = []
         short_name = form.get_field('package_short_name')
         
-        p = Parser()
-        
-        
-        parser_templates = os.path.join(self.get_template_path(), 'addon_templates/')
-        parser_defaults = {
+        template_path = os.path.join(self.get_template_path(), 'addon_templates/')
+        template_defaults = {
             'author': form.get_field('author'),
             'author_url': form.get_field('author_url'),
             'docs_url': form.get_field('docs_url'),
@@ -85,16 +87,33 @@ class HomeHandler(BaseHandler):
             'version': form.get_field('version')
         }
         
-        if form.get_field('pkg_accessory'):        
-            args = parser_defaults
+        
+        
+        # Using theirs until Greg gets his working ... lalala :P
+        loader = _Loader(template_path)
+        
+        # Build accessory
+        if form.get_field('pkg_accessory'):     
+            args = template_defaults
+            
+            sections = []
+            for k in xrange(1, int(value) + 1):
+                sections.append({
+                    'title': form.get_field('accessory_%d_title' % k),
+                    'content': form.get_field('accessory_%d_content' % k)
+                });
+            
             args.update({
-                'accessory_description': "I be describing",
-                'sections': []
+                'description': "I be describing",
+                'sections': sections,
+                'ucfirst': _capitalize
             })
             
-            p.set_package_type('accessory')
-            p.set_template(os.path.join(parser_templates, 'accessory/acc.package.php'))
-            files.append( ['acc.'+short_name+'.php', p.parse(args)] )
+            t = loader.load('accessory/acc.package.php')
+            files.append( ['acc.'+short_name+'.php', t.generate(**args)] )
+        
+        
+        # Build whateverelse
         
                 
         # All files must have that first subdirectory in their path
@@ -129,3 +148,23 @@ class HomeHandler(BaseHandler):
                 return template.format(error=errors[fieldname])
             return ''
         return show_error
+
+
+# @todo move these
+
+def _capitalize(value):
+    return value.capitalize()
+
+class _Loader(template.Loader):
+    ''' Basically a verbatim copy of the tornado
+    laoder except for the compress_whitespace flag'''
+    
+    def load(self, name, parent_path=None):
+        name = self.resolve_path(name, parent_path=parent_path)
+        if name not in self.templates:
+            path = os.path.join(self.root, name)
+            f = open(path, "r")
+            self.templates[name] = template.Template(f.read(), name=name, loader=self,
+                                                     compress_whitespace=False)
+            f.close()
+        return self.templates[name]
