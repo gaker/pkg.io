@@ -5,6 +5,27 @@ import unicodedata
 from tornado import template
 
 class PackageBuilder:
+    """Manage the contents of a package.
+    
+    Our template files are named after the file they will create,
+    such as `acc.package.php` for the accessory template. This way we
+    already adherte to the required naming conventions. When we use
+    the file we simply need to get rid of package and drop in the short name.
+    
+    To make this a little more flexible the class is seeded with a
+    dict that holds the templates with the placholder name ("package"
+    in the above example) wrapped in braces: `acc.{package}.php`
+    
+    In other words:
+    1. Ignore braces themselves: acc.package.php
+    2. Grab that file as the template to use
+    3. Replace the brace contents with what is required. In this case
+       we need the shortname: acc.shortname.php
+    4. Parse the template
+    5. Save the parsed template acc.shortname.php (*)
+    
+    * This class does no actual writing or saving (@see get_files()).
+    """
         
     def __init__(self, short_name):
         self._files = []
