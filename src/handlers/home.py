@@ -135,7 +135,22 @@ class HomeHandler(BaseHandler):
             })
             
             t = loader.load('plugin/pi.package.php')
-            files.append( ['pi.'+short_name+'.php', t.generate(**args)] )
+            files.append( ['pi.{0}.php'.format(short_name), t.generate(**args)] )
+        
+        if form.get_field('pkg_module'):
+            args = template_defaults
+            
+            has_cp = 'n'
+            
+            if form.get_field('module_has_control_panel') == '1':
+                has_cp = 'y'
+            
+            args.update({
+                'has_cp': has_cp,
+                'module_description': form.get_field('module_description') 
+            })
+            
+            print args
         
         # All files must have that first subdirectory in their path
         # so that the archive extracts cleanly with that name
