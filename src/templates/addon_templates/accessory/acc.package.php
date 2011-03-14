@@ -1,6 +1,6 @@
-<?php
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class {{ ucfirst(package_short_name) }}s_acc {
+class {{ ucfirst(package_short_name) }}_acc {
 	
 	public $name			= '{{ package_name }}';
 	public $id				= '{{ package_short_name }}';
@@ -9,7 +9,7 @@ class {{ ucfirst(package_short_name) }}s_acc {
 	public $sections		= array();
 	
 	/**
-	 * Construct
+	 * Constructor
 	 */
 	public function __construct()
 	{
@@ -20,7 +20,6 @@ class {{ ucfirst(package_short_name) }}s_acc {
 	
 	/**
 	 * Set Sections
-	 *
 	 */
 	public function set_sections()
 	{
@@ -32,3 +31,6 @@ class {{ ucfirst(package_short_name) }}s_acc {
 	// ----------------------------------------------------------------
 	
 }
+
+/* End of file acc.{{ package_short_name }}.php */
+/* Location: /system/expressionengine/third_party/{{ package_short_name }}/acc.{{ package_short_name }}.php */

@@ -10,16 +10,11 @@ from zipfile import ZipFile, ZipInfo
 class HomeHandler(BaseHandler):
     
     def get(self):
-        
-        
-        
-        
         self.render('home.html', form_error=self.blank_callback,
                                  set_value=self.blank_callback)
     
     def post(self):
-        ''' Pascal hath been here '''
-        
+        ''' This is a productive method.'''
         
         form = FormValidator(self)
         
@@ -84,7 +79,9 @@ class HomeHandler(BaseHandler):
             'docs_url': form.get_field('docs_url'),
             'package_name': form.get_field('package_name'),
             'package_short_name': form.get_field('package_short_name'),
-            'version': form.get_field('version')
+            'version': form.get_field('version'),
+            
+            'ucfirst': unicode.capitalize
         }
         
         
@@ -104,18 +101,25 @@ class HomeHandler(BaseHandler):
                 });
             
             args.update({
-                'description': "I be describing",
-                'sections': sections,
-                'ucfirst': _capitalize
+                'description': "I be describin'",
+                'sections': sections
             })
             
             t = loader.load('accessory/acc.package.php')
             files.append( ['acc.'+short_name+'.php', t.generate(**args)] )
         
         
-        # Build whateverelse
+        if form.get_field('pkg_plugin'):     
+            args = template_defaults
+            
+            args.update({
+                'description': "I be describin",
+                'instructions': form.get_field('plugin_instructions')
+            })
+            
+            t = loader.load('plugin/pi.package.php')
+            files.append( ['pi.'+short_name+'.php', t.generate(**args)] )
         
-                
         # All files must have that first subdirectory in their path
         # so that the archive extracts cleanly with that name
         
@@ -129,15 +133,7 @@ class HomeHandler(BaseHandler):
             download.writestr(short_name+'/'+i[0], i[1])
         
         download.close()
-                
-        # grab components
-        # add to package builder
-        # validate
-        
-        # build, build, build!
-        
-        
-        pass
+        return
     
     def blank_callback(*args, **kwargs):
         return ''
@@ -150,11 +146,7 @@ class HomeHandler(BaseHandler):
         return show_error
 
 
-# @todo move these
-
-def _capitalize(value):
-    return value.capitalize()
-
+# @todo move this
 class _Loader(template.Loader):
     ''' Basically a verbatim copy of the tornado
     laoder except for the compress_whitespace flag'''
