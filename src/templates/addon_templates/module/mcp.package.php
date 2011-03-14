@@ -15,7 +15,7 @@
 // ------------------------------------------------------------------------
 
 /**
- * {{ package_name }} Module Front End File
+ * {{ package_name }} Module Control Panel File
  *
  * @package		ExpressionEngine
  * @subpackage	Addons
