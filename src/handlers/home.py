@@ -110,7 +110,7 @@ class HomeHandler(BaseHandler):
                 });
             
             args.update({
-                'description': "I be describin'",
+                'description': "TODO: Ask for a description.",
                 'sections': sections
             })
             
@@ -130,7 +130,7 @@ class HomeHandler(BaseHandler):
             args = template_defaults
             
             args.update({
-                'description': "I be describin",
+                'description': "TODO: Ask for a description.",
                 'instructions': form.get_field('plugin_instructions')
             })
             
