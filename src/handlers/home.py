@@ -94,7 +94,7 @@ class HomeHandler(BaseHandler):
             args = template_defaults
             
             sections = []
-            for k in xrange(1, int(value) + 1):
+            for k in xrange(1, accessory_sections + 1):
                 sections.append({
                     'title': form.get_field('accessory_%d_title' % k),
                     'content': form.get_field('accessory_%d_content' % k)
