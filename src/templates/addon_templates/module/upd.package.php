@@ -108,5 +108,3 @@ class {{ ucfirst(package_short_name) }}_upd {
 }
 /* End of file upd.{{ package_short_name }}.php */
 /* Location: /system/expressionengine/third_party/{{ package_short_name }}/upd.{{ package_short_name }}.php */
-
-
