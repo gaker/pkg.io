@@ -18,7 +18,6 @@ class HomeHandler(BaseHandler):
         
         form = FormValidator(self)
         
-        
         # Basic Settings
         form.add_field('author', 'required|plain_string')
         form.add_field('author_url', 'url')
@@ -26,7 +25,6 @@ class HomeHandler(BaseHandler):
         form.add_field('package_name', 'required|plain_string')
         form.add_field('package_short_name', 'required|segment')
         form.add_field('version', 'float', '1.0')
-        
         
         # Components
         form.add_field('pkg_accessory')
@@ -113,12 +111,14 @@ class HomeHandler(BaseHandler):
                 'sections': sections
             })
 
+        # Build plugin
         if form.get_field('pkg_plugin'):
             build.add_plugin({
                 'description': "TODO: Ask for a description.",
                 'instructions': form.get_field('plugin_instructions')
             })
         
+        # Build module
         if form.get_field('pkg_module'):
             select_cp = ['n', 'y']
             has_cp = int(form.get_field('module_has_control_panel'))
@@ -128,8 +128,9 @@ class HomeHandler(BaseHandler):
                 'module_description': form.get_field('module_description') 
             })
         
+        
         # All files must have that first subdirectory in their path
-        # so that the archive extracts cleanly with that name
+        # so that the archive extracts cleanly with that folder name
         
         zippath = os.path.join(os.path.dirname(__file__), "../../zips/"+str(uuid.uuid4())+".zip")
         zippath = os.path.normpath(zippath)
@@ -142,6 +143,9 @@ class HomeHandler(BaseHandler):
         
         download.close()
         return
+    
+    
+    # Utility functions
     
     def blank_callback(*args, **kwargs):
         return ''
