@@ -1,12 +1,10 @@
 import os.path
 import tornado
-import unicodedata
 import uuid
-import re
 
 from handlers import BaseHandler
+from lib.builder import PackageBuilder
 from lib.validate import FormValidator
-from tornado import template
 from zipfile import ZipFile, ZipInfo
 
 class HomeHandler(BaseHandler):
@@ -87,71 +85,48 @@ class HomeHandler(BaseHandler):
             'dequote': lambda s: s.replace("'", "\\'")
         }
         
+        templates = {
+            'accessory': 'accessory/acc.{package}.php',
+            'plugin': 'plugin/pi.{package}.php',
+            'mcp': 'module/mcp.{package}.php',
+            'mod': 'module/mod.{package}.php',
+            'upd': 'module/upd.{package}.php',
+            'view': 'views/{view}.php'
+        }
         
-        
-        # Using theirs until Greg gets his working ... lalala :P
-        loader = _Loader(template_path)
+        build = PackageBuilder(short_name)
+        build.seed_loader(template_path, templates)
+        build.seed_namespace(template_defaults)
         
         # Build accessory
-        if form.get_field('pkg_accessory'):     
-            args = template_defaults
+        if form.get_field('pkg_accessory'):
             
             sections = []
             for k in xrange(1, accessory_sections + 1):
-                
-                title = form.get_field('accessory_%d_title' % k)
-                short_title = unicodedata.normalize('NFKD', title).encode('ascii', 'ignore')
-                short_title = unicode(re.sub('[^\w\s-]', '', short_title).strip().lower())
-                short_title = re.sub('[-\s]+', '_', short_title)
-                
                 sections.append({
-                    'title': title,
-                    'content': form.get_field('accessory_%d_content' % k),
-                    'short_title': short_title
-                });
+                    'title':  form.get_field('accessory_%d_title' % k),
+                    'content': form.get_field('accessory_%d_content' % k)
+                })
             
-            args.update({
+            build.add_accessory({
                 'description': "TODO: Ask for a description.",
                 'sections': sections
             })
-            
-            t = loader.load('accessory/acc.package.php')
-            files.append( ['acc.{0}.php'.format(short_name), t.generate(**args)] )
-        
-            # Add View Files for each section
-            for section in sections:
-                
-                a = {'content': section['content']}
-                
-                t = loader.load('views/view.php')
-                files.append( ['views/accessory_{0}.php'.format(section['short_title']),
-                            t.generate(**a) ] )
 
-        if form.get_field('pkg_plugin'):     
-            args = template_defaults
-            
-            args.update({
+        if form.get_field('pkg_plugin'):
+            build.add_plugin({
                 'description': "TODO: Ask for a description.",
                 'instructions': form.get_field('plugin_instructions')
             })
-            
-            t = loader.load('plugin/pi.package.php')
-            files.append( ['pi.{0}.php'.format(short_name), t.generate(**args)] )
         
         if form.get_field('pkg_module'):
-            args = template_defaults
+            select_cp = ['n', 'y']
+            has_cp = int(form.get_field('module_has_control_panel'))
             
-            has_cp = 'n'
-            
-            if form.get_field('module_has_control_panel') == '1':
-                has_cp = 'y'
-            
-            args.update({
-                'has_cp': has_cp,
+            build.add_module({
+                'has_cp': select_cp[has_cp],
                 'module_description': form.get_field('module_description') 
             })
-            
-            print args
         
         # All files must have that first subdirectory in their path
         # so that the archive extracts cleanly with that name
@@ -162,7 +137,7 @@ class HomeHandler(BaseHandler):
         # Zip 'er up!
         download = ZipFile(zippath, 'w')
         
-        for i in files:
+        for i in build.get_files():
             download.writestr(short_name+'/'+i[0], i[1])
         
         download.close()
@@ -177,19 +152,3 @@ class HomeHandler(BaseHandler):
                 return template.format(error=errors[fieldname])
             return ''
         return show_error
-
-
-# @todo move this
-class _Loader(template.Loader):
-    ''' Basically a verbatim copy of the tornado
-    laoder except for the compress_whitespace flag'''
-    
-    def load(self, name, parent_path=None):
-        name = self.resolve_path(name, parent_path=parent_path)
-        if name not in self.templates:
-            path = os.path.join(self.root, name)
-            f = open(path, "r")
-            self.templates[name] = template.Template(f.read(), name=name, loader=self,
-                                                     compress_whitespace=False)
-            f.close()
-        return self.templates[name]
