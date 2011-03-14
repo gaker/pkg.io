@@ -1,7 +1,11 @@
+import os.path
 import tornado
+import uuid
 
 from handlers import BaseHandler
+from lib.parser import Parser
 from lib.validate import FormValidator
+from zipfile import ZipFile, ZipInfo
 
 class HomeHandler(BaseHandler):
     
@@ -57,12 +61,55 @@ class HomeHandler(BaseHandler):
         errors = form.validate()
         
         if errors is not True:
+            print errors
             self.render('home.html', form_error=self.error_function(errors),
                                      set_value=form.get_field)
             return
         
-        # WOOT building time
-        print form.fields()
+        
+        # WOOT start building
+        
+        files = []
+        short_name = form.get_field('package_short_name')
+        
+        p = Parser()
+        
+        
+        parser_templates = os.path.join(self.get_template_path(), 'addon_templates/')
+        parser_defaults = {
+            'author': form.get_field('author'),
+            'author_url': form.get_field('author_url'),
+            'docs_url': form.get_field('docs_url'),
+            'package_name': form.get_field('package_name'),
+            'package_short_name': form.get_field('package_short_name'),
+            'version': form.get_field('version')
+        }
+        
+        if form.get_field('pkg_accessory'):        
+            args = parser_defaults
+            args.update({
+                'accessory_description': "I be describing",
+                'sections': []
+            })
+            
+            p.set_package_type('accessory')
+            p.set_template(os.path.join(parser_templates, 'accessory/acc.package.php'))
+            files.append( ['acc.'+short_name+'.php', p.parse(args)] )
+        
+                
+        # All files must have that first subdirectory in their path
+        # so that the archive extracts cleanly with that name
+        
+        zippath = os.path.join(os.path.dirname(__file__), "../../zips/"+str(uuid.uuid4())+".zip")
+        zippath = os.path.normpath(zippath)
+        
+        # Zip 'er up!
+        download = ZipFile(zippath, 'w')
+        
+        for i in files:
+            download.writestr(short_name+'/'+i[0], i[1])
+        
+        download.close()
                 
         # grab components
         # add to package builder

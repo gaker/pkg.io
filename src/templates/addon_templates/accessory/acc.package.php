@@ -2,9 +2,9 @@
 
 class %(package_name)s_acc {
 	
-	public $name			= '{{ accessory_name }}';
-	public $id				= '{{ accessory_short_name }}';
-	public $version			= '{{ accessory_version }}';
+	public $name			= '{{ package_name }}';
+	public $id				= '{{ package_short_name }}';
+	public $version			= '{{ version }}';
 	public $description		= '{{ accessory_description }}';
 	public $sections		= array();
 	
