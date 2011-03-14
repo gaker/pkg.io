@@ -1,4 +1,28 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php  if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+
+/**
+ * ExpressionEngine - by EllisLab
+ *
+ * @package		ExpressionEngine
+ * @author		ExpressionEngine Dev Team
+ * @copyright	Copyright (c) 2003 - 2011, EllisLab, Inc.
+ * @license		http://expressionengine.com/user_guide/license.html
+ * @link		http://expressionengine.com
+ * @since		Version 2.0
+ * @filesource
+ */
+ 
+// ------------------------------------------------------------------------
+
+/**
+ * {{ package_name }} Plugin
+ *
+ * @package		ExpressionEngine
+ * @subpackage	Addons
+ * @category	Plugin
+ * @author		{{ author }}
+ * @link		{{ author_url }}
+ */
 
 $plugin_info = array(
 	'pi_name'		=> '{{ package_name }}',
@@ -12,14 +36,14 @@ $plugin_info = array(
 
 class {{ ucfirst(package_short_name) }} {
 
-	var $return_data;
+	public $return_data;
     
 	/**
 	 * Constructor
 	 */
-	function __construct()
+	public function __construct()
 	{
-		
+		$this->EE =& get_instance();
 	}
 	
 	// ----------------------------------------------------------------
@@ -31,7 +55,9 @@ class {{ ucfirst(package_short_name) }} {
 	{
 		ob_start();
 ?>
+
 {{ instructions }}
+
 <?php
 		$buffer = ob_get_contents();
 		ob_end_clean();
