@@ -1,6 +1,8 @@
 import os.path
 import tornado
+import unicodedata
 import uuid
+import re
 
 from handlers import BaseHandler
 from lib.validate import FormValidator
@@ -95,9 +97,16 @@ class HomeHandler(BaseHandler):
             
             sections = []
             for k in xrange(1, accessory_sections + 1):
+                
+                title = form.get_field('accessory_%d_title' % k)
+                short_title = unicodedata.normalize('NFKD', title).encode('ascii', 'ignore')
+                short_title = unicode(re.sub('[^\w\s-]', '', short_title).strip().lower())
+                short_title = re.sub('[-\s]+', '_', short_title)
+                
                 sections.append({
-                    'title': form.get_field('accessory_%d_title' % k),
-                    'content': form.get_field('accessory_%d_content' % k)
+                    'title': title,
+                    'content': form.get_field('accessory_%d_content' % k),
+                    'short_title': short_title
                 });
             
             args.update({
@@ -106,9 +115,17 @@ class HomeHandler(BaseHandler):
             })
             
             t = loader.load('accessory/acc.package.php')
-            files.append( ['acc.'+short_name+'.php', t.generate(**args)] )
+            files.append( ['acc.{0}.php'.format(short_name), t.generate(**args)] )
         
-        
+            # Add View Files for each section
+            for section in sections:
+                
+                a = {'content': section['content']}
+                
+                t = loader.load('views/view.php')
+                files.append( ['views/accessory_{0}.php'.format(section['short_title']),
+                            t.generate(**a) ] )
+
         if form.get_field('pkg_plugin'):     
             args = template_defaults
             

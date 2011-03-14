@@ -37,8 +37,10 @@ class {{ ucfirst(package_short_name) }}_acc {
 	 */
 	public function set_sections()
 	{
+		$EE =& get_instance();
+		
 		{% for section in sections %}
-		$this->sections['{{ section['title'] }}'] = '{{ section['content'] }}';
+		$this->sections['{{ section['title'] }}'] = $EE->load->view('accessory_{{ section['short_title'] }}');
 		{% end %}
 	}
 	
