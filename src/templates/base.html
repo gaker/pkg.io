@@ -5,13 +5,41 @@
 	
 	<title>Pkg.io | {% block title %}{% end %}</title>
 	
-	<link rel="stylesheet" href="{{ static_url('css/main.css') }}" type="text/css" media="screen" charset="utf-8">
+	<link rel="stylesheet" href="{{ static_url('css/960.css') }}" type="text/css">
+	<link rel="stylesheet" href="{{ static_url('css/main.css') }}" type="text/css">
+	<link rel="stylesheet" href="{{ static_url('packages/uniform/css/uniform.default.css') }}" type="text/css">
+
+	<!--[if lt IE 9]><script src="{{ static_url('js/html5.js') }}"></script><![endif]-->	
 </head>
 <body>
-
-{% block content %}{% end %}
-
+	<div class="container_16" id="pkgrulz">
+		<div id="header" class="grid_6">
+			<h1><a href="http://pkg.io" title="PKG.io">PKG.io</a></h1>
+			<h2>Package Builder for ExpressionEngine</h2>
+		</div>
+		<div class="grid_10" id="login">
+			<ul>
+				<li><a href="#" title="Login with Twitter" id="twitter">Login with Twitter</a></li>
+				<li><a href="#" title="Login with Facebook" id="facebook">Login with Facebook</a></li>
+			</ul>
+		</div>
+		<div class="clear"></div>
+		<div id="maintop">
+			<div id="mainbottom">
+				<div id="main">
+					{% block content %}{% end %}
+				</div>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</div>
 <script type="text/javascript" src="{{ static_url('js/jquery.js') }}"></script>
+<script type="text/javascript" src="{{ static_url('packages/uniform/js/uniform.js') }}"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+	$("input, textarea, select, button").uniform();
+});
+</script>
 {% block footer_js %}{% end %}
 </body>
 </html>
