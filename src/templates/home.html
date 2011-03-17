@@ -18,13 +18,14 @@
 			<dt><label for="version"><span>* </span>Version Number</label></dt>
 			<dd><input type="text" name="version" value="{{ set_value('version') }}"></dd>
 			<dt><label for="author"><span>* </span>Author Name:</label></dt>
-			<dd><input type="text" name="author" value="{{ set_value('author') }}"></dd>
+			<dd><input type="text" name="author" value="{{ set_value('author') }}">
+				{{ form_error('author', '<p>{error}</p>') }}</dd>
 			<dt><label for="author_url">Author URL</label></dt>
 			<dd><input type="text" name="author_url" value="{{ set_value('author_url') }}"></dd>
 			<dt><label for="docs_url">Documentation URL</label></dt>
 			<dd><input type="text" name="docs_url" value="{{ set_value('docs_url') }}"></dd>
 			<dt><label>Package Type</label></dt>
-			<dd>
+			<dd id="choose_ur_pkg">
 				<label for="pkg_accessory">Accessory</label> <input type="checkbox" name="pkg_accessory" id="pkg_accessory" {{ set_value('pkg_accessory', 'check') }}>
 				<label for="pkg_plugin">Plugin</label> <input type="checkbox" name="pkg_plugin" id="pkg_plugin" {{ set_value('pkg_plugin', 'check') }}>
 				<label for="pkg_module">Module</label> <input type="checkbox" name="pkg_module" id="pkg_module" {{ set_value('pkg_module', 'check') }}>
@@ -33,9 +34,75 @@
         </dl>
 	</fieldset>
 	
-	
+	<fieldset id="accessory" style="display:none">
+		<legend>Accessory</legend>
+		
+		<dl>
+			<dt><label for="accessory_sections_num">Number of accessory sections</label></dt>
+			<dd><select name="accessory_sections_num" id="accessory_sections_num" size="1">
+				<option value="1" {{ set_value('accessory_sections_num', 'select', '1') }}>1</option>
+				<option value="2" {{ set_value('accessory_sections_num', 'select', '2') }}>2</option>
+				<option value="3" {{ set_value('accessory_sections_num', 'select', '3') }}>3</option>						
+			</select></dd>
+		</dl>
+		<dl id="accessory_1">
+			<dt><label for="accessory_1_title">Section Title</label></dt>
+			<dd><input type="text" name="accessory_1_title"></dd>
+			<dt><label for="accessory_1_content">Content</label><br>
+				<em>Insert any HTML or Javascript for this section</em></dt>
+			<dd><textarea name="accessory_1_content" rows="8" cols="80"></textarea></dd>
+		</dl>
+		<dl id="accessory_2">
+			<dt><label for="accessory_2_title">Section Title</label></dt>
+			<dd><input type="text" name="accessory_2_title"></dd>
+			<dt><label for="accessory_2_content">Content</label><br>
+				<em>Insert any HTML or Javascript for this section</em></dt>
+			<dd><textarea name="accessory_2_content" rows="8" cols="80"></textarea></dd>
+		</dl>
+		<dl id="accessory_3">
+			<dt><label for="accessory_3_title">Section Title</label></dt>
+			<dd><input type="text" name="accessory_3_title"></dd>
+			<dt><label for="accessory_3_content">Content</label><br>
+				<em>Insert any HTML or Javascript for this section</em></dt>
+			<dd><textarea name="accessory_3_content" rows="8" cols="80"></textarea></dd>
+		</dl>
+	</fieldset>
 
-	<div><input type="submit" /></div>
+	<fieldset id="plugin" style="display:none">
+		<legend>Plugin</legend>
+		<dl>
+			<dt><label for="plugin_instructions">Plugin Documentation</label></dt>
+			<dd><textarea name="plugin_instructions" rows="8" cols="80"></textarea></dd>
+		</dl>
+	</fieldset>
+
+	<fieldset id="module" style="display:none">
+		<legend>Module</legend>
+		
+		<dl>
+			<dt><label for="module_has_control_panel">Has Control Panel Page?</label></dt>
+			<dd><select name="module_has_control_panel">
+				<option value="0" {{ set_value('module_has_control_panel', 'select', '0') }}>No</option>
+				<option value="1" {{ set_value('module_has_control_panel', 'select', '1') }}>Yes</option>
+			</select></dd>
+			<dt><label for="module_description">Module Description</label></dt>
+			<dd><input type="text" name="module_description" value={{ set_value('module_description') }}>
+			{{ form_error('module_description', '<p>{error}</p>') }}</dd>
+		</dl>
+	</fieldset>
+
+	<fieldset id="extension" style="display:none">
+		<legend>Extension</legend>
+		<dl>
+			<dt><label for="extension_has_settings">Has Control Panel Settings?</label></dt>
+			<dd><select name="extension_has_settings">
+				<option value="0" {{ set_value('extension_has_settings', 'select', '0') }}>No</option>
+				<option value="1" {{ set_value('extension_has_settings', 'select', '1') }}>Yes</option>
+			</select></dd>
+		</dl>
+	</fieldset>
+
+	<fieldset><input type="submit"></fieldset>
 	<div style="display:none">{{ xsrf_form_html() }}</div>
 </form>
 {% end %}
@@ -46,7 +113,7 @@
 
 (function($) {
 	
-	$('form input[type=checkbox]').click(function () {
+	$('#choose_ur_pkg input[type=checkbox]').click(function () {
 		// @todo Disable inputs if module or plugin is checked.
 		
 		var section = this.name.substring(4);
