@@ -294,21 +294,24 @@ ul.main li ul li a {
 	background-position: bottom left;
 }
 /** Content **/
-#maintop {
-	background:		url(../images/container_top.jpg) no-repeat 0 0;
-	width:			960px;
-	padding: 75px 0;
-
-}
-#mainbottom {
-	background:		url(../images/container_bottom.jpg) no-repeat 0 bottom;
-	width:			960px;
-}
 #main {
 	background: url(../images/container_bg.jpg) repeat-y 0 0;
 	width:			960px;
-	margin-bottom: -7px;
-	color:#fff;
+	color: #fff;
+	padding: 40px 0 0 0;
+	
+	-moz-box-shadow: 0 5px 15px 0 #191005 inset,
+						0 1px 1px 0 #385D62;
+	-webkit-box-shadow: 0 5px 15px 0 #191005 inset,
+						0 1px 1px 0 #385D62;
+	box-shadow: 0 5px 15px 0 #191005 inset,
+				0 1px 1px 0 #385D62;
+				
+	-webkit-border-radius: 10px;
+	-moz-border-radius: 10px;
+	border-radius: 10px;
+	
+	border-bottom:;
 }
 
 #pkgform{
@@ -329,7 +332,7 @@ legend { color:#fff; font:17px/21px Helvetica, Arial, sans-serif; padding:0 10px
 label {font-size:11px; font-weight:bold;}
 label.opt {font-weight:normal;}
 dl {clear:both;}
-dt {float:left; text-align:right; width:200px; line-height:25px; margin:0 10px 10px 0;}
+dt {float:left; text-align:right; width:170px; line-height:25px; margin:0 10px 10px 0;}
 dd {float:left; width:300px; line-height:25px; margin:0 0 10px 0;}
 #footer {font-size:11px;}
 
