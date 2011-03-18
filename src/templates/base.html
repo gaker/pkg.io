@@ -16,22 +16,21 @@
 </head>
 <body>
 	<div class="container_16" id="pkgrulz">
-		<div id="header" class="grid_6">
+		<header class="grid_6">
 			<h1><a href="http://pkg.io" title="PKG.io">PKG.io</a></h1>
 			<h2>Package Builder for ExpressionEngine</h2>
-		</div>
-		<div class="grid_10" id="login">
-			<ul>
-				<li><a href="#" title="Login with Twitter" id="twitter">Login with Twitter</a></li>
-				<li><a href="#" title="Login with Facebook" id="facebook">Login with Facebook</a></li>
-			</ul>
-		</div>
+		</header>
+		{% include _shared/login_logout.html %}
 		<div class="clear"></div>
 		<div id="main">
 			{% block content %}{% end %}
 		</div>
 		<div class="clear"></div>
 	</div>
+	<footer>
+	
+	
+	</footer>
 <script type="text/javascript" src="{{ static_url('js/jquery.js') }}"></script>
 <script type="text/javascript" src="{{ static_url('packages/uniform/js/uniform.js') }}"></script>
 <script type="text/javascript">
