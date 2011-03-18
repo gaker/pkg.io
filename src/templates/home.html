@@ -2,6 +2,25 @@
 
 {% block title %}Home{% end %}
 
+{% block extra_head %}
+
+<style type="text/css" media="screen">
+	body {
+		overflow-y: scroll;
+	}
+
+	input[type="text"], textarea {
+		color: #555;
+	}
+	
+	input[type="text"] {
+		min-width: 185px;
+	}
+</style>
+
+
+{% end %}
+
 {% block content %}
 
 <form action="{{ request.path }}" method="post">
@@ -10,25 +29,25 @@
 		<legend>Package Configuration</legend>
 		<dl>
         	<dt><label for="package_name"><span>* </span>Package Name:</label></dt>
-            <dd><input type="text" class="text" name="package_name" value="{{ set_value('package_name') }}" autofocus>
+            <dd><input type="text" class="text" id="package_name" name="package_name" value="{{ set_value('package_name') }}" autofocus>
 			{{ form_error('package_name', '<p>{error}</p>') }}</dd>
 			<dt><label for="package_short_name"><span>* </span>Package Short Name: <br>{% comment <em>(alpha-numeric and underscores.  No Spaces)</em> %}</label></dt>
-			<dd><input type="text" name="package_short_name" value="{{ set_value('package_short_name') }}">
+			<dd><input type="text" id="package_short_name" name="package_short_name" value="{{ set_value('package_short_name') }}">
 			{{ form_error('package_short_name', '<p>{error}</p>') }}</dd>
 			<dt><label for="author"><span>* </span>Author Name:</label></dt>
-			<dd><input type="text" name="author" value="{{ set_value('author') }}">
+			<dd><input type="text" name="author" id="author" value="{{ set_value('author') }}">
 				{{ form_error('author', '<p>{error}</p>') }}</dd>
 			<dt><label for="author_url">Author URL:</label></dt>
-			<dd><input type="text" name="author_url" value="{{ set_value('author_url') }}"></dd>
+			<dd><input type="text" name="author_url" id="author_url" value="{{ set_value('author_url') }}"></dd>
 			<dt><label for="version">Version Number:</label></dt>
-			<dd><input type="text" name="version" placeholder="1.0" value="{{ set_value('version') }}"></dd>
+			<dd><input type="text" name="version" id="version" placeholder="1.0" value="{{ set_value('version') }}"></dd>
 			<dt><label for="docs_url">Documentation URL:</label></dt>
-			<dd><input type="text" name="docs_url" value="{{ set_value('docs_url') }}"></dd>
+			<dd><input type="text" name="docs_url" id="docs_url" value="{{ set_value('docs_url') }}"></dd>
 			<dt><label>Package Contents:</label></dt>
 			<dd id="choose_ur_pkg">
 				<input type="checkbox" name="pkg_accessory" id="pkg_accessory" {{ set_value('pkg_accessory', 'check') }}>
 				<label for="pkg_accessory">Accessory</label>
-				<br />
+				<br>
 				<input type="checkbox" name="pkg_extension" id="pkg_extension" {{ set_value('pkg_extension', 'check') }}>
 				<label for="pkg_extension">Extension</label>
 				<br>
@@ -54,21 +73,21 @@
 		</dl>
 		<dl id="accessory_1">
 			<dt><label for="accessory_1_title">Section Title:</label></dt>
-			<dd><input type="text" name="accessory_1_title"></dd>
+			<dd><input type="text" name="accessory_1_title" id="accessory_1_title"></dd>
 			<dt><label for="accessory_1_content">Content:</label></dt>
-			<dd><textarea name="accessory_1_content" rows="8" cols="80" placeholder="Insert any HTML or Javascript for this section"></textarea></dd>
+			<dd><textarea name="accessory_1_content" id="accessory_1_content" rows="8" cols="80" placeholder="Insert any HTML or Javascript for this section"></textarea></dd>
 		</dl>
 		<dl id="accessory_2">
 			<dt><label for="accessory_2_title">Section Title:</label></dt>
-			<dd><input type="text" name="accessory_2_title"></dd>
+			<dd><input type="text" name="accessory_2_title" id="accessory_2_title"></dd>
 			<dt><label for="accessory_2_content">Content:</label></dt>
-			<dd><textarea name="accessory_2_content" rows="8" cols="80" placeholder="Insert any HTML or Javascript for this section"></textarea></dd>
+			<dd><textarea name="accessory_2_content" id="accessory_2_content" rows="8" cols="80" placeholder="Insert any HTML or Javascript for this section"></textarea></dd>
 		</dl>
 		<dl id="accessory_3">
 			<dt><label for="accessory_3_title">Section Title:</label></dt>
-			<dd><input type="text" name="accessory_3_title"></dd>
+			<dd><input type="text" name="accessory_3_title" id="accessory_3_title"></dd>
 			<dt><label for="accessory_3_content">Content:</label></dt>
-			<dd><textarea name="accessory_3_content" rows="8" cols="80" placeholder="Insert any HTML or Javascript for this section"></textarea></dd>
+			<dd><textarea name="accessory_3_content" id="accessory_3_content" rows="8" cols="80" placeholder="Insert any HTML or Javascript for this section"></textarea></dd>
 		</dl>
 	</fieldset>
 
@@ -76,7 +95,7 @@
 		<legend>Plugin</legend>
 		<dl>
 			<dt><label for="plugin_instructions">Plugin Documentation:</label></dt>
-			<dd><textarea name="plugin_instructions" rows="8" cols="80"></textarea></dd>
+			<dd><textarea name="plugin_instructions" id="plugin_instructions" rows="8" cols="80"></textarea></dd>
 		</dl>
 	</fieldset>
 
@@ -85,12 +104,12 @@
 		
 		<dl>
 			<dt><label for="module_has_control_panel">Has Control Panel Page?</label></dt>
-			<dd><select name="module_has_control_panel">
+			<dd><select name="module_has_control_panel" id="module_has_control_panel">
 				<option value="0" {{ set_value('module_has_control_panel', 'select', '0') }}>No</option>
 				<option value="1" {{ set_value('module_has_control_panel', 'select', '1') }}>Yes</option>
 			</select></dd>
 			<dt><label for="module_description">Module Description</label></dt>
-			<dd><input type="text" name="module_description" value={{ set_value('module_description') }}>
+			<dd><input type="text" name="module_description" id="module_description" value="{{ set_value('module_description') }}">
 			{{ form_error('module_description', '<p>{error}</p>') }}</dd>
 		</dl>
 	</fieldset>
@@ -99,7 +118,7 @@
 		<legend>Extension</legend>
 		<dl>
 			<dt><label for="extension_has_settings">Has Control Panel Settings?</label></dt>
-			<dd><select name="extension_has_settings">
+			<dd><select name="extension_has_settings" id="extension_has_settings">
 				<option value="0" {{ set_value('extension_has_settings', 'select', '0') }}>No</option>
 				<option value="1" {{ set_value('extension_has_settings', 'select', '1') }}>Yes</option>
 			</select></dd>
@@ -112,21 +131,6 @@
 {% end %}
 
 {% block footer_js %}
-
-<style type="text/css" media="screen">
-	body {
-		overflow-y: scroll;
-	}
-
-	input[type="text"], textarea {
-		color: #555;
-	}
-	
-	input[type="text"] {
-		min-width: 185px;
-	}
-</style>
-
 <script>
 
 (function($) {

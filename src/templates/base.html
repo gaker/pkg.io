@@ -11,7 +11,8 @@
 	<link rel="stylesheet" href="{{ static_url('css/main.css') }}" type="text/css">
 	<link rel="stylesheet" href="{{ static_url('packages/uniform/css/uniform.default.css') }}" type="text/css">
 
-	<!--[if lt IE 9]><script src="{{ static_url('js/html5.js') }}"></script><![endif]-->	
+	<!--[if lt IE 9]><script src="{{ static_url('js/html5.js') }}"></script><![endif]-->
+	{% block extra_head %}{% end %}
 </head>
 <body>
 	<div class="container_16" id="pkgrulz">
