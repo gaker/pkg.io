@@ -18,8 +18,8 @@
 	var shortname = $('input[name=package_short_name]').get(0);
 	
 	$('input[name=package_name]').blur(function() {
-		var val = this.value.replace(/\s+/sgi, '_');
-		val = val.replace(/[^a-z0-9_]/sgi, '');
+		var val = this.value.replace(/\s+/gi, '_');
+		val = val.replace(/[^a-z0-9_]/gi, '');
 		shortname.value = val.toLowerCase();
 	});
 	
