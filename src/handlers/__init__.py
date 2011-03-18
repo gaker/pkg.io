@@ -10,6 +10,10 @@ except ImportError:
 
 class BaseHandler(tornado.web.RequestHandler):
     
+    def head(self):
+        ''' Why not allow HEAD requests '''
+        return self.get()
+    
     def get_error_html(self, status_code, **kwargs):
         ''' Overrides the parent get_error_html method, which doesn't do too
             much.
