@@ -26,7 +26,7 @@ class PackageBuilder:
     
     * This class does no actual writing or saving (@see get_files()).
     """
-        
+    
     def __init__(self, short_name):
         self._files = []
         self.short_name = short_name

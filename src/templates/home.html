@@ -10,26 +10,33 @@
 		<legend>Package Configuration</legend>
 		<dl>
         	<dt><label for="package_name"><span>* </span>Package Name:</label></dt>
-            <dd><input type="text" class="text" name="package_name" value="{{ set_value('package_name') }}">
+            <dd><input type="text" class="text" name="package_name" value="{{ set_value('package_name') }}" autofocus>
 			{{ form_error('package_name', '<p>{error}</p>') }}</dd>
 			<dt><label for="package_short_name"><span>* </span>Package Short Name: <br>{% comment <em>(alpha-numeric and underscores.  No Spaces)</em> %}</label></dt>
 			<dd><input type="text" name="package_short_name" value="{{ set_value('package_short_name') }}">
 			{{ form_error('package_short_name', '<p>{error}</p>') }}</dd>
-			<dt><label for="version"><span>* </span>Version Number</label></dt>
-			<dd><input type="text" name="version" value="{{ set_value('version') }}"></dd>
 			<dt><label for="author"><span>* </span>Author Name:</label></dt>
 			<dd><input type="text" name="author" value="{{ set_value('author') }}">
 				{{ form_error('author', '<p>{error}</p>') }}</dd>
-			<dt><label for="author_url">Author URL</label></dt>
+			<dt><label for="author_url">Author URL:</label></dt>
 			<dd><input type="text" name="author_url" value="{{ set_value('author_url') }}"></dd>
-			<dt><label for="docs_url">Documentation URL</label></dt>
+			<dt><label for="version">Version Number:</label></dt>
+			<dd><input type="text" name="version" placeholder="1.0" value="{{ set_value('version') }}"></dd>
+			<dt><label for="docs_url">Documentation URL:</label></dt>
 			<dd><input type="text" name="docs_url" value="{{ set_value('docs_url') }}"></dd>
-			<dt><label>Package Type</label></dt>
+			<dt><label>Package Contents:</label></dt>
 			<dd id="choose_ur_pkg">
-				<label for="pkg_accessory">Accessory</label> <input type="checkbox" name="pkg_accessory" id="pkg_accessory" {{ set_value('pkg_accessory', 'check') }}>
-				<label for="pkg_plugin">Plugin</label> <input type="checkbox" name="pkg_plugin" id="pkg_plugin" {{ set_value('pkg_plugin', 'check') }}>
-				<label for="pkg_module">Module</label> <input type="checkbox" name="pkg_module" id="pkg_module" {{ set_value('pkg_module', 'check') }}>
-				<label for="pkg_extension">Extension</label> <input type="checkbox" name="pkg_extension" id="pkg_extension" {{ set_value('pkg_extension', 'check') }}>
+				<input type="checkbox" name="pkg_accessory" id="pkg_accessory" {{ set_value('pkg_accessory', 'check') }}>
+				<label for="pkg_accessory">Accessory</label>
+				<br />
+				<input type="checkbox" name="pkg_extension" id="pkg_extension" {{ set_value('pkg_extension', 'check') }}>
+				<label for="pkg_extension">Extension</label>
+				<br>
+				<input type="checkbox" name="pkg_module" id="pkg_module" {{ set_value('pkg_module', 'check') }}>
+				<label for="pkg_module">Module</label>
+				<br>
+				<input type="checkbox" name="pkg_plugin" id="pkg_plugin" {{ set_value('pkg_plugin', 'check') }}>
+				<label for="pkg_plugin">Plugin</label>
 			</dd>
         </dl>
 	</fieldset>
@@ -38,7 +45,7 @@
 		<legend>Accessory</legend>
 		
 		<dl>
-			<dt><label for="accessory_sections_num">Number of accessory sections</label></dt>
+			<dt><label for="accessory_sections_num">Accessory Sections:</label></dt>
 			<dd><select name="accessory_sections_num" id="accessory_sections_num" size="1">
 				<option value="1" {{ set_value('accessory_sections_num', 'select', '1') }}>1</option>
 				<option value="2" {{ set_value('accessory_sections_num', 'select', '2') }}>2</option>
@@ -46,32 +53,29 @@
 			</select></dd>
 		</dl>
 		<dl id="accessory_1">
-			<dt><label for="accessory_1_title">Section Title</label></dt>
+			<dt><label for="accessory_1_title">Section Title:</label></dt>
 			<dd><input type="text" name="accessory_1_title"></dd>
-			<dt><label for="accessory_1_content">Content</label><br>
-				<em>Insert any HTML or Javascript for this section</em></dt>
-			<dd><textarea name="accessory_1_content" rows="8" cols="80"></textarea></dd>
+			<dt><label for="accessory_1_content">Content:</label></dt>
+			<dd><textarea name="accessory_1_content" rows="8" cols="80" placeholder="Insert any HTML or Javascript for this section"></textarea></dd>
 		</dl>
 		<dl id="accessory_2">
-			<dt><label for="accessory_2_title">Section Title</label></dt>
+			<dt><label for="accessory_2_title">Section Title:</label></dt>
 			<dd><input type="text" name="accessory_2_title"></dd>
-			<dt><label for="accessory_2_content">Content</label><br>
-				<em>Insert any HTML or Javascript for this section</em></dt>
-			<dd><textarea name="accessory_2_content" rows="8" cols="80"></textarea></dd>
+			<dt><label for="accessory_2_content">Content:</label></dt>
+			<dd><textarea name="accessory_2_content" rows="8" cols="80" placeholder="Insert any HTML or Javascript for this section"></textarea></dd>
 		</dl>
 		<dl id="accessory_3">
-			<dt><label for="accessory_3_title">Section Title</label></dt>
+			<dt><label for="accessory_3_title">Section Title:</label></dt>
 			<dd><input type="text" name="accessory_3_title"></dd>
-			<dt><label for="accessory_3_content">Content</label><br>
-				<em>Insert any HTML or Javascript for this section</em></dt>
-			<dd><textarea name="accessory_3_content" rows="8" cols="80"></textarea></dd>
+			<dt><label for="accessory_3_content">Content:</label></dt>
+			<dd><textarea name="accessory_3_content" rows="8" cols="80" placeholder="Insert any HTML or Javascript for this section"></textarea></dd>
 		</dl>
 	</fieldset>
 
 	<fieldset id="plugin" style="display:none">
 		<legend>Plugin</legend>
 		<dl>
-			<dt><label for="plugin_instructions">Plugin Documentation</label></dt>
+			<dt><label for="plugin_instructions">Plugin Documentation:</label></dt>
 			<dd><textarea name="plugin_instructions" rows="8" cols="80"></textarea></dd>
 		</dl>
 	</fieldset>
@@ -109,6 +113,20 @@
 
 {% block footer_js %}
 
+<style type="text/css" media="screen">
+	body {
+		overflow-y: scroll;
+	}
+
+	input[type="text"], textarea {
+		color: #555;
+	}
+	
+	input[type="text"] {
+		min-width: 185px;
+	}
+</style>
+
 <script>
 
 (function($) {
@@ -127,7 +145,23 @@
 		$('#accessory_2').toggle(num > 1);
 		$('#accessory_3').toggle(num > 2);
 	})
-	.triggerHandler('change')
+	.triggerHandler('change');
+	
+	
+	var shortname = $('input[name=package_short_name]').get(0);
+	
+	$('input[name=package_name]').blur(function() {
+		var val = this.value.replace(/\s+/sgi, '_');
+		val = val.replace(/[^a-z0-9_]/sgi, '');
+		shortname.value = val.toLowerCase();
+	});
+	
+	$('input, textarea').bind('click focus', function() {
+		if (this.placeholder && ! this.value) {
+			this.value = this.placeholder;
+			setTimeout($.proxy(this, 'select'), 0);
+		}
+	});
 	
 })(jQuery);
 

@@ -26,14 +26,10 @@
 			</ul>
 		</div>
 		<div class="clear"></div>
-		<div id="maintop">
-			<div id="mainbottom">
-				<div id="main">
-					{% block content %}{% end %}
-				</div>
-				<div class="clear"></div>
-			</div>
+		<div id="main">
+			{% block content %}{% end %}
 		</div>
+		<div class="clear"></div>
 	</div>
 <script type="text/javascript" src="{{ static_url('js/jquery.js') }}"></script>
 <script type="text/javascript" src="{{ static_url('packages/uniform/js/uniform.js') }}"></script>
