@@ -342,7 +342,11 @@ fieldset {
 	padding:			10px; 
 	width:				600px; 
 }
-	
+
+fieldset#submit {
+	margin-bottom:		0;
+	padding-bottom:		25px;
+}
 	
 input, textarea, select {
 	background-color:	#fff; 
