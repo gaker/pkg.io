@@ -119,16 +119,21 @@ blockquote p {
 
 /* @group Navigation */
 
-ul.nav, 
-ul.nav * { margin:0;padding:0;}
+nav ul, 
+nav ul * { margin:0;padding:0; }
 
-ul.nav {
+nav a {
+	color: 				#fff;
+	text-shadow: 		#191005 1px 1px 0px;
+}
+
+nav ul {
 	height:				2.5em;
 	max-width:			100%;
 	z-index: 			50;
 }
 
-ul.nav li {
+nav ul li {
 	cursor:				pointer;
 	float:				left;
 	font-weight:		normal;
@@ -136,7 +141,7 @@ ul.nav li {
 	text-align:			center;
 }
 
-ul.nav li ul {
+nav ul li ul {
 	background-position:0 0;
 	cursor:				default;
 	height:				auto;
@@ -147,23 +152,24 @@ ul.nav li ul {
 	width:				100%;
 }
 
-ul.nav li ul li {
+nav ul li ul li {
 	border:				none;
 	max-width:			none;
 	padding:			0;
 	width:				auto;
 	z-index: 			30;
 }
-ul.nav li a {
+
+nav ul li a {
 	display:			block;
 	float:				left;
-	font-weight:		bold;
+/*	font-weight:		bold;*/
 	text-decoration:	none;
 	padding:			0 1em;
 	z-index: 			30;
 }
 
-ul.nav li ul li a {
+nav ul li ul li a {
 	background-position:0 50%;
 	cursor:				pointer;
 	font-weight:		normal;
@@ -174,12 +180,12 @@ ul.nav li ul li a {
 	z-index: 			50;
 }
 
-ul.nav li:hover ul { left:0;z-index:50 }
-ul.nav li.current a { cursor:default; font-weight:bold; }
-ul.nav li.current ul { left:0;z-index:50 }
-ul.nav li.current ul li a { font-weight:normal; }
+nav ul li:hover ul { left:0;z-index:50 }
+nav ul li.current a { cursor:default; font-weight:bold; }
+nav ul li.current ul { left:0;z-index:50 }
+nav ul li.current ul li a { font-weight:normal; }
 
-ul.nav {
+nav ul {
   	height: 			40px;
   	margin: 			0 0 10px 0;
   	z-index: 			50;
@@ -222,10 +228,6 @@ ul.main li ul li a {
 }
 
 #pkgrulz { padding-top: 20px; }
-
-/** Header **/
-#header {
-}
 
 header h1 {
 	width:				400px;
@@ -307,8 +309,23 @@ header h2 {
 	-webkit-border-radius: 	10px;
 	-moz-border-radius: 	10px;
 	border-radius: 			10px;
-	
-	border-bottom:;
+}
+
+#main p {
+	text-shadow:		#000 1px 0px 0px;;
+}
+
+#main a {
+	color:				#7D7D7D;
+	font-size:			15px;
+	text-decoration:	none;
+	text-shadow: 		#191005 1px 0px 0px;;
+}
+
+#main a:hover {
+	border-bottom:		#7D7D7D 1px dashed;
+	color:				#7D7D7D;
+	text-decoration:	#000;
 }
 
 div.button {
@@ -367,6 +384,78 @@ dd {
 	width:				300px; 
 }
 
-#footer { font-size:11px; }
+footer { 
+	color:				#191005;
+	font-size:			11px; 
+	font-weight:		normal;
+	padding-top:		10px;
+}
 
+footer p {
+	text-shadow: 		#385D62 1px 0px 0px;;
+}
 
+footer p.credits {
+	float:				left;
+	margin:				5px;
+}
+
+footer p.thanks_nevin {
+	float:				right;
+	line-height:		25px;
+	height:				25px;
+	
+}
+
+footer p.thanks_nevin img {
+	vertical-align: middle;
+}
+
+footer p.thanks_nevin a:hover {
+	border-bottom:		none;
+}
+
+footer a {
+	color:				#7D7D7D;
+	text-decoration:	none;
+	text-shadow: 		#191005 0px 0px 0px;
+}
+
+footer a:hover {
+	border-bottom:		#7D7D7D 1px dashed;
+	color:				#7D7D7D;
+	text-decoration:	none;
+}
+
+/* Posts */
+section.posts {
+	padding:			0 20px 20px 20px;	
+}
+
+section.posts p {
+	font-size:			13px;
+	line-height: 		150%;
+}
+
+section.main article {
+	float:				left;
+	width:				500px;
+}
+
+section.main aside {
+	float:				right;
+	width:				300px;
+}
+
+section.main aside h1 {
+	font-size:			18px;
+	margin-bottom:		0;
+}
+
+section.main aside ul {
+	margin-top:			5px;
+}
+
+section.main aside ul li {
+	margin-left:		14px;
+}
