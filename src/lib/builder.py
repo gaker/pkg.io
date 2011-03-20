@@ -59,10 +59,6 @@ class PackageBuilder:
         
         self._add('accessory', args);
         
-
-    def add_extension():
-        return
-        
     def add_plugin(self, settings):
         args = self.settings
         args.update(settings)
@@ -76,6 +72,13 @@ class PackageBuilder:
         self._add('mcp', args)
         self._add('mod', args)
         self._add('upd', args)
+    
+    def add_extension(self, settings):
+        args = self.settings
+        args.update(settings)
+        
+        self._add('ext', args)
+    
     
     def _add(self, tmpl, args, format='{0}'):
         path = self._templates[tmpl]

@@ -102,6 +102,10 @@
 				<option value="0" {{ set_value('extension_has_settings', 'select', '0') }}>{{ _('No') }}</option>
 				<option value="1" {{ set_value('extension_has_settings', 'select', '1') }}>{{ _('Yes') }}</option>
 			</select></dd>
+			<dt><span>* </span><label for="extension_description">{{ _('Extension Description') }}:</label></dt>
+			<dd>
+				<input type="text" name="extension_description" id="extension_description">
+			</dd>
 			<dt><label for="extension_hooks">{{ _('Extension Hooks') }}:</label></dt>
 			<dd>
 				<select name="extension_hooks" id="extension_hooks" multiple size="1">
@@ -200,8 +204,8 @@
 		<div class="clear"></div>
 		<div id="extension_hook_options" style="display:none">
 			<fieldset>
-			<legend>{{ _('Hooks to Extension Method Mapping') }}</legend>
-			<div></div>
+				<legend>{{ _('Hooks to Extension Method Mapping') }}</legend>
+				<div></div>
 			</fieldset>
 		</div>
 		

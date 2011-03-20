@@ -32,7 +32,6 @@ class HomeHandler(BaseHandler):
         form.add_field('pkg_module')
         form.add_field('pkg_extension')
         
-        
         accessory_sections = 0
         
         if form.get_field('pkg_accessory'):
@@ -94,6 +93,7 @@ class HomeHandler(BaseHandler):
         templates = {
             'accessory': 'acc.{package}.php',
             'plugin': 'pi.{package}.php',
+            'ext': 'ext.{package}.php',
             'mcp': 'mcp.{package}.php',
             'mod': 'mod.{package}.php',
             'upd': 'upd.{package}.php',
@@ -146,6 +146,7 @@ class HomeHandler(BaseHandler):
             
             build.add_extension({
                 'has_cp': select_cp[has_cp],
+                'ext_description': form.get_field('extension_description'),
                 'hooks': final_hooks
             })
             

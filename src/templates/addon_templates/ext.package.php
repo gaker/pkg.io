@@ -27,10 +27,10 @@
 class {{ ucfirst(package_short_name) }}_ext {
 	
 	public $settings 		= array();
-	public $description		= '{{ dequote(description) }}';
+	public $description		= '{{ dequote(ext_description) }}';
 	public $docs_url		= '{{ docs_url }}';
 	public $name			= '{{ package_name }}';
-	public $settings_exist	= '{{ settings_exist }}';
+	public $settings_exist	= '{{ has_cp }}';
 	public $version			= '{{ version }}';
 	
 	private $EE;
@@ -59,21 +59,57 @@ class {{ ucfirst(package_short_name) }}_ext {
 	 */
 	public function activate_extension()
 	{
+		// Setup custom settings in this array.
 		$this->settings = array();
-		
+
+		{% if hooks.__len__() == 1 %}
 		$data = array(
 			'class'		=> __CLASS__,
-			'method'	=> '', // Add your method name here.
-			'hook'		=> '',
+			'method'	=> {{ hooks[0][1] }},
+			'hook'		=> {{ hooks[0][0] }},
 			'settings'	=> serialize($this->settings),
 			'version'	=> $this->version,
 			'enabled'	=> 'y'
 		);
+
+		$this->EE->db->insert('extensions', $data);			
+		{% elif hooks.__len__() > 1 %}
+		$hooks = array({% for hook in hooks.items() %}
+			'{{ hook[0] }}'	=> '{{ hook[1] }}',{% end %}
+		);
 		
-		$this->EE->db->insert('extensions', $data);		
-	}
+		foreach ($hooks as $hook => $method)
+		{
+			$data = array(
+				'class'		=> __CLASS__,
+				'method'	=> $method,
+				'hook'		=> $hook,
+				'settings'	=> serialize($this->settings),
+				'version'	=> $this->version,
+				'enabled'	=> 'y'
+			);
+
+			$this->EE->db->insert('extensions', $data);			
+		}
+		{% else %}
+		// No hooks selected, add in your own hooks installation code here.
+		{% end %}		
+	}	
+
+	// ----------------------------------------------------------------------{% for hook in hooks.items() %}
 	
-	// ----------------------------------------------------------------------
+	/**
+	 * {{ hook[1] }}
+	 *
+	 * @param 
+	 * @return 
+	 */
+	public function {{ hook[1] }}()
+	{
+		// Add Code for the {{ hook[0] }} hook here.  
+	}
+
+	// ----------------------------------------------------------------------{% end %}
 
 	/**
 	 * Disable Extension
@@ -111,4 +147,3 @@ class {{ ucfirst(package_short_name) }}_ext {
 
 /* End of file ext.{{ package_short_name }}.php */
 /* Location: /system/expressionengine/third_party/{{ package_short_name }}/ext.{{ package_short_name }}.php */
-
