@@ -69,25 +69,25 @@
 				<option value="2" {{ set_value('accessory_sections_num', 'select', '2') }}>2</option>
 				<option value="3" {{ set_value('accessory_sections_num', 'select', '3') }}>3</option>						
 			</select></dd>
-			<dt><label for="accessory_description">{{ _('Accessory Description') }}:</label></dt>
+			<dt><span>* </span><label for="accessory_description">{{ _('Accessory Description') }}:</label></dt>
 			<dd>
 				<input type="text" name="accessory_description" id="accessory_description">
 			</dd>
 		</dl>
 		<dl id="accessory_1">
-			<dt><label for="accessory_1_title">{{ _('Section Title') }}:</label></dt>
+			<dt><span>* </span><label for="accessory_1_title">{{ _('Section Title') }}:</label></dt>
 			<dd><input type="text" name="accessory_1_title" id="accessory_1_title"></dd>
 			<dt><label for="accessory_1_content">{{ _('Content') }}:</label></dt>
 			<dd><textarea name="accessory_1_content" id="accessory_1_content" rows="8" cols="80" placeholder="Insert any HTML or Javascript for this section"></textarea></dd>
 		</dl>
 		<dl id="accessory_2">
-			<dt><label for="accessory_2_title">{{ _('Section Title') }}:</label></dt>
+			<dt><span>* </span><label for="accessory_2_title">{{ _('Section Title') }}:</label></dt>
 			<dd><input type="text" name="accessory_2_title" id="accessory_2_title"></dd>
 			<dt><label for="accessory_2_content">{{ _('Content') }}:</label></dt>
 			<dd><textarea name="accessory_2_content" id="accessory_2_content" rows="8" cols="80" placeholder="Insert any HTML or Javascript for this section"></textarea></dd>
 		</dl>
 		<dl id="accessory_3">
-			<dt><label for="accessory_3_title">{{ _('Section Title') }}:</label></dt>
+			<dt><span>* </span><label for="accessory_3_title">{{ _('Section Title') }}:</label></dt>
 			<dd><input type="text" name="accessory_3_title" id="accessory_3_title"></dd>
 			<dt><label for="accessory_3_content">{{ _('Content') }}:</label></dt>
 			<dd><textarea name="accessory_3_content" id="accessory_3_content" rows="8" cols="80" placeholder="Insert any HTML or Javascript for this section"></textarea></dd>
@@ -114,7 +114,7 @@
 				<option value="0" {{ set_value('module_has_control_panel', 'select', '0') }}>{{ _('No') }}</option>
 				<option value="1" {{ set_value('module_has_control_panel', 'select', '1') }}>{{ _('Yes') }}</option>
 			</select></dd>
-			<dt><label for="module_description">{{ _('Module Description') }}</label></dt>
+			<dt><span>* </span><label for="module_description">{{ _('Module Description') }}</label></dt>
 			<dd><input type="text" name="module_description" id="module_description" value="{{ set_value('module_description') }}">
 			{{ form_error('module_description', '<p>{error}</p>') }}</dd>
 		</dl>
@@ -123,7 +123,7 @@
 	<fieldset id="plugin" style="display:none">
 		<legend>{{ _('Plugin') }}</legend>
 		<dl>
-			<dt><label for="plugin_description">{{ _('Plugin Description') }}:</label></dt>
+			<dt><span>* </span><label for="plugin_description">{{ _('Plugin Description') }}:</label></dt>
 			<dd>
 				<input type="text" name="plugin_description" id="plugin_description">
 			</dd>
