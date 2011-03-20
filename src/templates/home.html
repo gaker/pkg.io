@@ -25,104 +25,113 @@
 <form action="{{ request.path }}" method="post">
 	
 	<fieldset>
-		<legend>Package Configuration</legend>
+		<legend>{{ _('Package Configuration') }}</legend>
 		<dl>
-        	<dt><label for="package_name"><span>* </span>Package Name:</label></dt>
+        	<dt><label for="package_name"><span>* </span>{{ _('Package Name') }}:</label></dt>
             <dd><input type="text" class="text" id="package_name" name="package_name" value="{{ set_value('package_name') }}" autofocus>
 			{{ form_error('package_name', '<p>{error}</p>') }}</dd>
-			<dt><label for="package_short_name"><span>* </span>Package Short Name: <br>{% comment <em>(alpha-numeric and underscores.  No Spaces)</em> %}</label></dt>
+			<dt><label for="package_short_name"><span>* </span>{{ _('Package Short Name') }}: <br>{% comment <em>({{ _('alpha-numeric and underscores.  No Spaces') }})</em> %}</label></dt>
 			<dd><input type="text" id="package_short_name" name="package_short_name" value="{{ set_value('package_short_name') }}">
 			{{ form_error('package_short_name', '<p>{error}</p>') }}</dd>
-			<dt><label for="author"><span>* </span>Author Name:</label></dt>
+			<dt><label for="author"><span>* </span>{{ _('Author Name') }}:</label></dt>
 			<dd><input type="text" name="author" id="author" value="{{ set_value('author') }}">
 				{{ form_error('author', '<p>{error}</p>') }}</dd>
-			<dt><label for="author_url">Author URL:</label></dt>
+			<dt><label for="author_url">{{ _('Author URL') }}:</label></dt>
 			<dd><input type="text" name="author_url" id="author_url" value="{{ set_value('author_url') }}"></dd>
-			<dt><label for="version">Version Number:</label></dt>
+			<dt><label for="version">{{ _('Version Number') }}:</label></dt>
 			<dd><input type="text" name="version" id="version" placeholder="1.0" value="{{ set_value('version') }}"></dd>
-			<dt><label for="docs_url">Documentation URL:</label></dt>
+			<dt><label for="docs_url">{{ _('Documentation URL') }}:</label></dt>
 			<dd><input type="text" name="docs_url" id="docs_url" value="{{ set_value('docs_url') }}"></dd>
-			<dt><label>Package Contents:</label></dt>
+			<dt><label>{{ _('Package Contents') }}:</label></dt>
 			<dd id="choose_ur_pkg">
 				<input type="checkbox" name="pkg_accessory" id="pkg_accessory" {{ set_value('pkg_accessory', 'check') }}>
-				<label for="pkg_accessory">Accessory</label>
+				<label for="pkg_accessory">{{ _('Accessory') }}</label>
 				<br>
 				<input type="checkbox" name="pkg_extension" id="pkg_extension" {{ set_value('pkg_extension', 'check') }}>
-				<label for="pkg_extension">Extension</label>
+				<label for="pkg_extension">{{ _('Extension') }}</label>
 				<br>
 				<input type="checkbox" name="pkg_module" id="pkg_module" {{ set_value('pkg_module', 'check') }}>
-				<label for="pkg_module">Module</label>
+				<label for="pkg_module">{{ _('Module') }}</label>
 				<br>
 				<input type="checkbox" name="pkg_plugin" id="pkg_plugin" {{ set_value('pkg_plugin', 'check') }}>
-				<label for="pkg_plugin">Plugin</label>
+				<label for="pkg_plugin">{{ _('Plugin') }}</label>
 			</dd>
         </dl>
 	</fieldset>
 	
 	<fieldset id="accessory" style="display:none">
-		<legend>Accessory</legend>
+		<legend>{{ _('Accessory') }}</legend>
 		
 		<dl>
-			<dt><label for="accessory_sections_num">Accessory Sections:</label></dt>
+			<dt><label for="accessory_sections_num">{{ _('Accessory Sections') }}:</label></dt>
 			<dd><select name="accessory_sections_num" id="accessory_sections_num" size="1">
 				<option value="1" {{ set_value('accessory_sections_num', 'select', '1') }}>1</option>
 				<option value="2" {{ set_value('accessory_sections_num', 'select', '2') }}>2</option>
 				<option value="3" {{ set_value('accessory_sections_num', 'select', '3') }}>3</option>						
 			</select></dd>
+			<dt><label for="accessory_description">{{ _('Accessory Description') }}:</label></dt>
+			<dd>
+				<input type="text" name="accessory_description" id="accessory_description">
+			</dd>
 		</dl>
 		<dl id="accessory_1">
-			<dt><label for="accessory_1_title">Section Title:</label></dt>
+			<dt><label for="accessory_1_title">{{ _('Section Title') }}:</label></dt>
 			<dd><input type="text" name="accessory_1_title" id="accessory_1_title"></dd>
-			<dt><label for="accessory_1_content">Content:</label></dt>
+			<dt><label for="accessory_1_content">{{ _('Content') }}:</label></dt>
 			<dd><textarea name="accessory_1_content" id="accessory_1_content" rows="8" cols="80" placeholder="Insert any HTML or Javascript for this section"></textarea></dd>
 		</dl>
 		<dl id="accessory_2">
-			<dt><label for="accessory_2_title">Section Title:</label></dt>
+			<dt><label for="accessory_2_title">{{ _('Section Title') }}:</label></dt>
 			<dd><input type="text" name="accessory_2_title" id="accessory_2_title"></dd>
-			<dt><label for="accessory_2_content">Content:</label></dt>
+			<dt><label for="accessory_2_content">{{ _('Content') }}:</label></dt>
 			<dd><textarea name="accessory_2_content" id="accessory_2_content" rows="8" cols="80" placeholder="Insert any HTML or Javascript for this section"></textarea></dd>
 		</dl>
 		<dl id="accessory_3">
-			<dt><label for="accessory_3_title">Section Title:</label></dt>
+			<dt><label for="accessory_3_title">{{ _('Section Title') }}:</label></dt>
 			<dd><input type="text" name="accessory_3_title" id="accessory_3_title"></dd>
-			<dt><label for="accessory_3_content">Content:</label></dt>
+			<dt><label for="accessory_3_content">{{ _('Content') }}:</label></dt>
 			<dd><textarea name="accessory_3_content" id="accessory_3_content" rows="8" cols="80" placeholder="Insert any HTML or Javascript for this section"></textarea></dd>
 		</dl>
 	</fieldset>
 
-	<fieldset id="plugin" style="display:none">
-		<legend>Plugin</legend>
+	<fieldset id="extension" style="display:none">
+		<legend>{{ _('Extension') }}</legend>
 		<dl>
-			<dt><label for="plugin_instructions">Plugin Documentation:</label></dt>
-			<dd><textarea name="plugin_instructions" id="plugin_instructions" rows="8" cols="80"></textarea></dd>
+			<dt><label for="extension_has_settings">{{ _('Has Control Panel Settings?') }}</label></dt>
+			<dd><select name="extension_has_settings" id="extension_has_settings">
+				<option value="0" {{ set_value('extension_has_settings', 'select', '0') }}>{{ _('No') }}</option>
+				<option value="1" {{ set_value('extension_has_settings', 'select', '1') }}>{{ _('Yes') }}</option>
+			</select></dd>
 		</dl>
 	</fieldset>
 
 	<fieldset id="module" style="display:none">
-		<legend>Module</legend>
+		<legend>{{ _('Module') }}</legend>
 		
 		<dl>
-			<dt><label for="module_has_control_panel">Has Control Panel Page?</label></dt>
+			<dt><label for="module_has_control_panel">{{ _('Has Control Panel Page?') }}</label></dt>
 			<dd><select name="module_has_control_panel" id="module_has_control_panel">
-				<option value="0" {{ set_value('module_has_control_panel', 'select', '0') }}>No</option>
-				<option value="1" {{ set_value('module_has_control_panel', 'select', '1') }}>Yes</option>
+				<option value="0" {{ set_value('module_has_control_panel', 'select', '0') }}>{{ _('No') }}</option>
+				<option value="1" {{ set_value('module_has_control_panel', 'select', '1') }}>{{ _('Yes') }}</option>
 			</select></dd>
-			<dt><label for="module_description">Module Description</label></dt>
+			<dt><label for="module_description">{{ _('Module Description') }}</label></dt>
 			<dd><input type="text" name="module_description" id="module_description" value="{{ set_value('module_description') }}">
 			{{ form_error('module_description', '<p>{error}</p>') }}</dd>
 		</dl>
 	</fieldset>
 
-	<fieldset id="extension" style="display:none">
-		<legend>Extension</legend>
+	<fieldset id="plugin" style="display:none">
+		<legend>{{ _('Plugin') }}</legend>
 		<dl>
-			<dt><label for="extension_has_settings">Has Control Panel Settings?</label></dt>
-			<dd><select name="extension_has_settings" id="extension_has_settings">
-				<option value="0" {{ set_value('extension_has_settings', 'select', '0') }}>No</option>
-				<option value="1" {{ set_value('extension_has_settings', 'select', '1') }}>Yes</option>
-			</select></dd>
+			<dt><label for="plugin_description">{{ _('Plugin Description') }}:</label></dt>
+			<dd>
+				<input type="text" name="plugin_description" id="plugin_description">
+			</dd>
+			<dt><label for="plugin_instructions">{{ _('Plugin Documentation') }}:</label></dt>
+			<dd><textarea name="plugin_instructions" id="plugin_instructions" rows="8" cols="80"></textarea></dd>
 		</dl>
 	</fieldset>
+
 
 	<fieldset id="submit"><input type="submit"></fieldset>
 	<div style="display:none">{{ xsrf_form_html() }}</div>

@@ -96,7 +96,8 @@ class _Loader(template.Loader):
         if name not in self.templates:
             path = os.path.join(self.root, name)
             f = open(path, "r")
-            self.templates[name] = template.Template(f.read(), name=name, loader=self,
+            self.templates[name] = template.Template(f.read(), 
+                                                     name=name, loader=self,
                                                      compress_whitespace=False)
             f.close()
         return self.templates[name]

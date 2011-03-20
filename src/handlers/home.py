@@ -36,6 +36,7 @@ class HomeHandler(BaseHandler):
         accessory_sections = 0
         
         if form.get_field('pkg_accessory'):
+            form.add_field('accessory_description', 'required')
             form.add_field('accessory_sections_num')
             value = form.get_field('accessory_sections_num')
             
@@ -47,7 +48,8 @@ class HomeHandler(BaseHandler):
                     form.add_field('accessory_%d_content' % k)
         
         if form.get_field('pkg_plugin'):
-            form.add_field('plugin_instructions')
+            form.add_field('plugin_description', 'required')
+            form.add_field('plugin_instructions', 'required')
         
         if form.get_field('pkg_module'):
             form.add_field('module_has_control_panel', '', '0')
@@ -84,11 +86,11 @@ class HomeHandler(BaseHandler):
         }
         
         templates = {
-            'accessory': 'accessory/acc.{package}.php',
-            'plugin': 'plugin/pi.{package}.php',
-            'mcp': 'module/mcp.{package}.php',
-            'mod': 'module/mod.{package}.php',
-            'upd': 'module/upd.{package}.php',
+            'accessory': 'acc.{package}.php',
+            'plugin': 'pi.{package}.php',
+            'mcp': 'mcp.{package}.php',
+            'mod': 'mod.{package}.php',
+            'upd': 'upd.{package}.php',
             'view': 'views/{view}.php'
         }
         
@@ -107,14 +109,14 @@ class HomeHandler(BaseHandler):
                 })
             
             build.add_accessory({
-                'description': "TODO: Ask for a description.",
+                'description': form.get_field('accessory_description'),
                 'sections': sections
             })
 
         # Build plugin
         if form.get_field('pkg_plugin'):
             build.add_plugin({
-                'description': "TODO: Ask for a description.",
+                'description': form.get_field('plugin_description'),
                 'instructions': form.get_field('plugin_instructions')
             })
         
