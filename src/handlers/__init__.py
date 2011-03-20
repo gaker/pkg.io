@@ -8,11 +8,63 @@ try:
 except ImportError:
     import pickle
 
+    def delist_arguments(args):
+        """
+        Takes a dictionary, 'args' and de-lists any single-item lists then
+        returns the resulting dictionary.
+
+        In other words, {'foo': ['bar']} would become {'foo': 'bar'}
+
+        http://code.activestate.com/recipes/576958-method-based-url-dispatcher-for-the-tornado-web-se/
+        """
+        for arg, value in args.items():
+            if len(value) == 1:
+                args[xhtml_escape(arg)] = xhtml_escape(value[0])
+        return args
+
 class BaseHandler(tornado.web.RequestHandler):
     
+    def _map(self):
+        """This function maps """
+        args = None
+        # Sanitize argument lists:
+        if self.request.arguments:
+            args = delist_arguments(self.request.arguments)
+        
+        # ditch the query string as it's in args now
+        path = self.request.uri.split('?')[0].split('/')
+        path.pop()
+        path.pop(0)
+
+        # segment_2 of the URI is the method to call
+        try:
+            method = path[1]
+        except IndexError:
+            method = 'index'
+
+        if method.startswith('_'):
+            raise tornado.web.HTTPError(404)
+        
+        func = getattr(self, '%s_action' % method, None)
+
+        if func:
+            if args:
+                return func(**args)
+            else:
+                return func()
+        else:
+            raise tornado.web.HTTPError(404)
+        
     def head(self):
         ''' Why not allow HEAD requests '''
-        return self.get()
+        return self._map()
+    
+    @tornado.web.addslash
+    def get(self):
+        return self._map()
+    
+    def head(self):
+        return self._map()
     
     def get_error_html(self, status_code, **kwargs):
         ''' Overrides the parent get_error_html method, which doesn't do too

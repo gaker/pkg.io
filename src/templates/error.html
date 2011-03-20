@@ -1,7 +1,13 @@
 {% extends base.html %}
 
-{% block content %}
+{% block title %}
+{{ code }}
+{% end %}
 
+{% block content %}
+<section class="posts">
+	{% comment these should really be more interesting... %}
 	<p>{{ code }}</p>
 	<p>{{ message }}</p>
+</section>
 {% end %}
