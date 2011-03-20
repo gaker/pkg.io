@@ -61,7 +61,6 @@ class {{ ucfirst(package_short_name) }}_ext {
 	{
 		// Setup custom settings in this array.
 		$this->settings = array();
-
 		{% if hooks.__len__() == 1 %}
 		$data = array(
 			'class'		=> __CLASS__,
@@ -92,8 +91,7 @@ class {{ ucfirst(package_short_name) }}_ext {
 			$this->EE->db->insert('extensions', $data);			
 		}
 		{% else %}
-		// No hooks selected, add in your own hooks installation code here.
-		{% end %}		
+		// No hooks selected, add in your own hooks installation code here.{% end %}		
 	}	
 
 	// ----------------------------------------------------------------------{% for hook in hooks.items() %}
