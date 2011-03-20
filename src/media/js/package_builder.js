@@ -30,4 +30,31 @@
 		}
 	});
 	
+	$('#extension_hooks').change(function () {
+		
+		var container = $('#extension_hook_options'),
+			values = $(this).val(),
+			s = ''; // @todo, language keys
+		
+		if (values === null) { 
+			container.hide();
+			return false;
+		}
+		
+		container.show();
+		
+		values.forEach(function (item) {
+			if (container.find('dl#hook_'+item).length === 0) {
+				s += '<dl>';
+				s += '<dt><label for="extension_hook_'+item+'">'+item+'</label></dt>';
+				s += '<dd>';
+				s += '<input class="text" type="text" name="extension_hook_'+item+'" id="extension_hook_'+item+'">';
+				s += '</dd></dl>';
+			}
+		});
+		
+		$('#extension_hook_options div').html(s);
+		
+	});
+	
 })(jQuery);

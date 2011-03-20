@@ -102,7 +102,109 @@
 				<option value="0" {{ set_value('extension_has_settings', 'select', '0') }}>{{ _('No') }}</option>
 				<option value="1" {{ set_value('extension_has_settings', 'select', '1') }}>{{ _('Yes') }}</option>
 			</select></dd>
+			<dt><label for="extension_hooks">{{ _('Extension Hooks') }}:</label></dt>
+			<dd>
+				<select name="extension_hooks" id="extension_hooks" multiple size="1">
+					<option value="channel_entries_query_result">channel_entries_query_result</option>
+					<option value="channel_entries_tagdata">channel_entries_tagdata</option>
+					<option value="channel_entries_row">channel_entries_row</option>
+					<option value="channel_entries_tagdata_end">channel_entries_tagdata_end</option>
+					<option value="channel_module_calendar_start">channel_module_calendar_start</option>
+					<option value="channel_module_categories_start">channel_module_categories_start</option>
+					<option value="channel_module_category_heading_start">channel_module_category_heading_start</option>
+					<option value="channel_module_create_pagination">channel_module_create_pagination</option>
+					<option value="channel_module_fetch_pagination_data">channel_module_fetch_pagination_data</option>
+					<option value="comment_entries_comment_format">comment_entries_comment_format</option>
+					<option value="comment_entries_tagdata">comment_entries_tagdata</option>
+					<option value="comment_form_end">comment_form_end</option>
+					<option value="comment_form_hidden_fields">comment_form_hidden_fields</option>
+					<option value="comment_form_tagdata">comment_form_tagdata</option>
+					<option value="comment_preview_comment_format">comment_preview_comment_format</option>
+					<option value="comment_preview_tagdata">comment_preview_tagdata</option>
+					<option value="cp_css_end">cp_css_end</option>
+					<option value="cp_js_end">cp_js_end</option>
+					<option value="cp_member_login">cp_member_login</option>
+					<option value="cp_member_logout">cp_member_logout</option>
+					<option value="cp_members_member_create">cp_members_member_create</option>
+					<option value="cp_members_member_create_start">cp_members_member_create_start</option>
+					<option value="cp_members_member_delete_end">cp_members_member_delete_end</option>
+					<option value="cp_members_validate_members">cp_members_validate_members</option>
+					<option value="create_captcha_start">create_captcha_start</option>
+					<option value="delete_comment_additional">delete_comment_additional</option>
+					<option value="delete_entries_loop">delete_entries_loop</option>
+					<option value="delete_entries_start">delete_entries_start</option>
+					<option value="entry_submission_end">entry_submission_end</option>
+					<option value="entry_submission_ready">entry_submission_ready</option>
+					<option value="entry_submission_start">entry_submission_start</option>
+					<option value="edit_template_start">edit_template_start</option>
+					<option value="edit_wiki_article_end">edit_wiki_article_end</option>
+					<option value="edit_wiki_article_form_end">edit_wiki_article_form_end</option>
+					<option value="edit_wiki_article_form_start">edit_wiki_article_form_start</option>
+					<option value="email_module_send_email_end">email_module_send_email_end</option>
+					<option value="email_module_tellafriend_override">email_module_tellafriend_override</option>
+					<option value="entry_submission_absolute_end">entry_submission_absolute_end</option>
+					<option value="entry_submission_redirect">entry_submission_redirect</option>
+					<option value="foreign_character_conversion_array">foreign_character_conversion_array</option>
+					<option value="form_declaration_modify_data">form_declaration_modify_data</option>
+					<option value="form_declaration_return">form_declaration_return</option>
+					<option value="forum_submission_form_start">forum_submission_form_start</option>
+					<option value="forum_submission_form_end">forum_submission_form_end</option>
+					<option value="forum_submission_page">forum_submission_page</option>
+					<option value="forum_submit_post_start">forum_submit_post_start</option>
+					<option value="forum_submit_post_end">forum_submit_post_end</option>
+					<option value="forum_threads_template">forum_threads_template</option>
+					<option value="forum_thread_rows_absolute_end">forum_thread_rows_absolute_end</option>
+					<option value="forum_thread_rows_loop_start">forum_thread_rows_loop_start</option>
+					<option value="forum_thread_rows_loop_end">forum_thread_rows_loop_end</option>
+					<option value="forum_thread_rows_start">forum_thread_rows_start</option>
+					<option value="forum_topics_absolute_end">forum_topics_absolute_end</option>
+					<option value="forum_topics_loop_start">forum_topics_loop_start</option>
+					<option value="forum_topics_loop_end">forum_topics_loop_end</option>
+					<option value="forum_topics_start">forum_topics_start</option>
+					<option value="insert_comment_end">insert_comment_end</option>
+					<option value="insert_comment_insert_array">insert_comment_insert_array</option>
+					<option value="insert_comment_preferences_sql">insert_comment_preferences_sql</option>
+					<option value="insert_comment_start">insert_comment_start</option>
+					<option value="login_authenticate_start">login_authenticate_start</option>
+					<option value="main_forum_table_rows_template">main_forum_table_rows_template</option>
+					<option value="member_edit_preferences">member_edit_preferences</option>
+					<option value="member_manager">member_manager</option>
+					<option value="member_member_login_multi">member_member_login_multi</option>
+					<option value="member_member_login_single">member_member_login_single</option>
+					<option value="member_member_login_start">member_member_login_start</option>
+					<option value="member_member_logout">member_member_logout</option>
+					<option value="member_member_register">member_member_register</option>
+					<option value="member_member_register_start">member_member_register_start</option>
+					<option value="member_register_validate_members">member_register_validate_members</option>
+					<option value="member_update_preferences">member_update_preferences</option>
+					<option value="simple_commerce_evaluate_ipn_response">simple_commerce_evaluate_ipn_response</option>
+					<option value="simple_commerce_perform_actions_end">simple_commerce_perform_actions_end</option>
+					<option value="simple_commerce_perform_actions_start">simple_commerce_perform_actions_start</option>
+					<option value="sessions_end">sessions_end</option>
+					<option value="sessions_start">sessions_start</option>
+					<option value="publish_form_channel_preferences">publish_form_channel_preferences</option>
+					<option value="publish_form_entry_data">publish_form_entry_data</option>
+					<option value="typography_parse_type_end">typography_parse_type_end</option>
+					<option value="typography_parse_type_start">typography_parse_type_start</option>
+					<option value="update_comment_additional">update_comment_additional</option>
+					<option value="update_multi_entries_loop">update_multi_entries_loop</option>
+					<option value="update_multi_entries_start">update_multi_entries_start</option>
+					<option value="update_template_end">update_template_end</option>
+					<option value="wiki_article_end">wiki_article_end</option>
+					<option value="wiki_article_start">wiki_article_start</option>
+					<option value="wiki_special_page">wiki_special_page</option>
+					<option value="wiki_start">wiki_start</option>
+				</select>
+			</dd>
 		</dl>
+		<div class="clear"></div>
+		<div id="extension_hook_options" style="display:none">
+			<fieldset>
+			<legend>{{ _('Hooks to Extension Method Mapping') }}</legend>
+			<div></div>
+			</fieldset>
+		</div>
+		
 	</fieldset>
 
 	<fieldset id="module" style="display:none">
