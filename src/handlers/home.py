@@ -57,6 +57,12 @@ class HomeHandler(BaseHandler):
         
         if form.get_field('pkg_extension'):
             form.add_field('extension_has_settings', '', 0)
+            form.add_field('extension_hooks', '', 0)
+            
+            hooks = self.get_arguments('extension_hooks')
+            
+            for hook in hooks:
+                form.add_field('extension_hook_{0}'.format(hook))
         
         errors = form.validate()
         
@@ -130,6 +136,19 @@ class HomeHandler(BaseHandler):
                 'module_description': form.get_field('module_description') 
             })
         
+        if form.get_field('pkg_extension'):
+            select_cp = ['n', 'y']
+            has_cp = int(form.get_field('extension_has_settings'))
+            final_hooks = {}
+            
+            for hook in hooks:
+                final_hooks[hook] = form.get_field('extension_hook_{0}'.format(hook))
+            
+            build.add_extension({
+                'has_cp': select_cp[has_cp],
+                'hooks': final_hooks
+            })
+            
         
         # All files must have that first subdirectory in their path
         # so that the archive extracts cleanly with that folder name

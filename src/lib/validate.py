@@ -27,7 +27,7 @@ class FormValidator(object):
     def get_field(self, field_name, in_type='text', val=''):
         if not field_name in self.fields:
             return ''
-        
+
         if in_type is 'text':
             return self.fields[field_name]
         elif in_type is 'check':
@@ -72,11 +72,11 @@ class FormValidator(object):
     
     def get_human_error(self, rule):
         errors = {
-            'required': 'Required Field',
-            'float': 'Must be a version string',
-            'plain_string': 'Must be plain text',
-            'segment': 'Can only contain lowercase alphanumeric characters and underscores',
-            'url': 'Must be a valid url'
+            'required': u'Required Field',
+            'float': u'Must be a version string',
+            'plain_string': u'Must be plain text',
+            'segment': u'Can only contain lowercase alphanumeric characters and underscores',
+            'url': u'Must be a valid url'
         }
         
         return errors[rule]
