@@ -89,8 +89,7 @@ class {{ ucfirst(package_short_name) }}_ext {
 			);
 
 			$this->EE->db->insert('extensions', $data);			
-		}
-		{% else %}
+		}{% else %}
 		// No hooks selected, add in your own hooks installation code here.{% end %}		
 	}	
 

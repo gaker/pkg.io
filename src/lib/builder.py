@@ -76,7 +76,7 @@ class PackageBuilder:
     def add_extension(self, settings):
         args = self.settings
         args.update(settings)
-        
+        print args
         self._add('ext', args)
     
     

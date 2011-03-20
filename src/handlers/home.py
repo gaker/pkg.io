@@ -56,6 +56,7 @@ class HomeHandler(BaseHandler):
         
         if form.get_field('pkg_extension'):
             form.add_field('extension_has_settings', '', 0)
+            form.add_field('extension_description', 'required')
             form.add_field('extension_hooks', '', 0)
             
             hooks = self.get_arguments('extension_hooks')
@@ -97,7 +98,8 @@ class HomeHandler(BaseHandler):
             'mcp': 'mcp.{package}.php',
             'mod': 'mod.{package}.php',
             'upd': 'upd.{package}.php',
-            'view': 'views/{view}.php'
+            'view': 'views/{view}.php',
+            'lang': 'language/english/lang.{package}.php'
         }
         
         build = PackageBuilder(short_name)
@@ -149,7 +151,6 @@ class HomeHandler(BaseHandler):
                 'ext_description': form.get_field('extension_description'),
                 'hooks': final_hooks
             })
-            
         
         # All files must have that first subdirectory in their path
         # so that the archive extracts cleanly with that folder name
