@@ -7,10 +7,10 @@ from lib.builder import PackageBuilder
 from lib.validate import FormValidator
 from zipfile import ZipFile, ZipInfo
 
-class HomeHandler(BaseHandler):
+class PackageHandler(BaseHandler):
     
     def get(self):
-        self.render('home.html', form_error=self.blank_callback,
+        self.render('package_form.html', form_error=self.blank_callback,
                                  set_value=self.blank_callback)
     
     def post(self):
@@ -195,3 +195,15 @@ class HomeHandler(BaseHandler):
                 return template.format(error=errors[fieldname])
             return ''
         return show_error
+
+## --------------------------------------------------------------------
+
+class GetPackageHandler(BaseHandler):
+    
+    def get(self):
+        pass
+    
+    
+    
+
+

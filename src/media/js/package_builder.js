@@ -54,7 +54,5 @@
 		});
 		
 		$('#extension_hook_options div').html(s);
-		
 	});
-	
 })(jQuery);
