@@ -28,6 +28,10 @@ class Application(tornado.web.Application):
             cookie_secret="$@(*YFDKHjdsaf afslkajhsdfghkasjdgtais)/Vo=",
             login_url="/auth/login",
         )
+        
+        if options.debug is not True:
+            settings['static_url_prefix'] = 'http://static.pkg.io/'
+        
         tornado.web.Application.__init__(self, urls.url_list, **settings)
 
 def main():
