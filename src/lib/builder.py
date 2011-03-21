@@ -76,8 +76,14 @@ class PackageBuilder:
     def add_extension(self, settings):
         args = self.settings
         args.update(settings)
-        print args
+
         self._add('ext', args)
+
+    def add_lang_file(self, settings):
+        args = self.settings
+        args.update(settings)
+
+        self._add('lang', args)
     
     
     def _add(self, tmpl, args, format='{0}'):

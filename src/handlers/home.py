@@ -16,6 +16,9 @@ class HomeHandler(BaseHandler):
     def post(self):
         ''' This is a productive method.'''
         
+        self.need_lang_file = False
+        self.lang_type = []
+        
         form = FormValidator(self)
         
         # Basic Settings
@@ -133,6 +136,9 @@ class HomeHandler(BaseHandler):
             select_cp = ['n', 'y']
             has_cp = int(form.get_field('module_has_control_panel'))
             
+            self.need_lang_file = True
+            self.lang_type.append('module')
+            
             build.add_module({
                 'has_cp': select_cp[has_cp],
                 'module_description': form.get_field('module_description') 
@@ -143,6 +149,10 @@ class HomeHandler(BaseHandler):
             has_cp = int(form.get_field('extension_has_settings'))
             final_hooks = {}
             
+            if has_cp == 1:
+                self.need_lang_file = True
+                self.lang_type.append('extension')
+            
             for hook in hooks:
                 final_hooks[hook] = form.get_field('extension_hook_{0}'.format(hook))
             
@@ -151,6 +161,12 @@ class HomeHandler(BaseHandler):
                 'ext_description': form.get_field('extension_description'),
                 'hooks': final_hooks
             })
+        
+        if self.need_lang_file is True:
+            build.add_lang_file({
+                'types': self.lang_type
+            })
+        
         
         # All files must have that first subdirectory in their path
         # so that the archive extracts cleanly with that folder name
