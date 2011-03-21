@@ -24,7 +24,7 @@ class Application(tornado.web.Application):
             xsrf_cookie=True,
             debug=options.debug,
             template_path=os.path.join(BASEPATH, 'templates'),
-            static_path=os.path.join(BASEPATH, 'media'),
+            static_path=os.path.join(BASEPATH, 'static'),
             cookie_secret="$@(*YFDKHjdsaf afslkajhsdfghkasjdgtais)/Vo=",
             login_url="/auth/login",
         )
