@@ -1,5 +1,5 @@
 import re
-from tornado.locale import translate as _
+from tornado import locale
 
 class FormValidator(object):
         
@@ -72,6 +72,9 @@ class FormValidator(object):
         return self._validation_rules[rule]
     
     def get_human_error(self, rule):
+        
+        _ = locale.translate
+        
         errors = {
             'required': _(u'Required Field'),
             'float': _(u'Must be a version string'),

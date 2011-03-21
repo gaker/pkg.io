@@ -8,12 +8,12 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-20 22:14-0500\n"
+"POT-Creation-Date: 2011-03-20 22:31-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
 #: templates/base.html:21
@@ -21,6 +21,11 @@ msgid "Package Builder for ExpressionEngine"
 msgstr ""
 
 #: templates/base.html:31
+#, python-format
+msgid "Development by %(pascal)s and %(greg)s.  Design by %(marcus)s"
+msgstr ""
+
+#: templates/base.html:35
 msgid "Application Hosting and CDN provided by EngineHosting"
 msgstr ""
 
@@ -136,22 +141,22 @@ msgstr ""
 msgid "Plugin Documentation"
 msgstr ""
 
-#: lib/validate.py:76
+#: lib/validate.py:79
 msgid "Required Field"
 msgstr ""
 
-#: lib/validate.py:77
+#: lib/validate.py:80
 msgid "Must be a version string"
 msgstr ""
 
-#: lib/validate.py:78
+#: lib/validate.py:81
 msgid "Must be plain text"
 msgstr ""
 
-#: lib/validate.py:79
+#: lib/validate.py:82
 msgid "Can only contain lowercase alphanumeric characters and underscores"
 msgstr ""
 
-#: lib/validate.py:80
+#: lib/validate.py:83
 msgid "Must be a valid url"
 msgstr ""
