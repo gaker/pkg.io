@@ -1,4 +1,5 @@
 import re
+from tornado.locale import translate as _
 
 class FormValidator(object):
         
@@ -72,11 +73,11 @@ class FormValidator(object):
     
     def get_human_error(self, rule):
         errors = {
-            'required': u'Required Field',
-            'float': u'Must be a version string',
-            'plain_string': u'Must be plain text',
-            'segment': u'Can only contain lowercase alphanumeric characters and underscores',
-            'url': u'Must be a valid url'
+            'required': _(u'Required Field'),
+            'float': _(u'Must be a version string'),
+            'plain_string': _(u'Must be plain text'),
+            'segment': _(u'Can only contain lowercase alphanumeric characters and underscores'),
+            'url': _(u'Must be a valid url')
         }
         
         return errors[rule]

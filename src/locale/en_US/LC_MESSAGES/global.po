@@ -1,0 +1,157 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-03-20 22:14-0500\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=CHARSET\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/base.html:21
+msgid "Package Builder for ExpressionEngine"
+msgstr ""
+
+#: templates/base.html:31
+msgid "Application Hosting and CDN provided by EngineHosting"
+msgstr ""
+
+#: templates/home.html:3
+msgid "Home"
+msgstr ""
+
+#: templates/home.html:28
+msgid "Package Configuration"
+msgstr ""
+
+#: templates/home.html:30
+msgid "Package Name"
+msgstr ""
+
+#: templates/home.html:33
+msgid "Package Short Name"
+msgstr ""
+
+#: templates/home.html:33
+msgid "alpha-numeric and underscores.  No Spaces"
+msgstr ""
+
+#: templates/home.html:36
+msgid "Author Name"
+msgstr ""
+
+#: templates/home.html:39
+msgid "Author URL"
+msgstr ""
+
+#: templates/home.html:41
+msgid "Version Number"
+msgstr ""
+
+#: templates/home.html:43
+msgid "Documentation URL"
+msgstr ""
+
+#: templates/home.html:45
+msgid "Package Contents"
+msgstr ""
+
+#: templates/home.html:48 templates/home.html:63
+msgid "Accessory"
+msgstr ""
+
+#: templates/home.html:51 templates/home.html:98
+msgid "Extension"
+msgstr ""
+
+#: templates/home.html:54 templates/home.html:215
+msgid "Module"
+msgstr ""
+
+#: templates/home.html:57 templates/home.html:230
+msgid "Plugin"
+msgstr ""
+
+#: templates/home.html:66
+msgid "Accessory Sections"
+msgstr ""
+
+#: templates/home.html:72
+msgid "Accessory Description"
+msgstr ""
+
+#: templates/home.html:78 templates/home.html:84 templates/home.html:90
+msgid "Section Title"
+msgstr ""
+
+#: templates/home.html:80 templates/home.html:86 templates/home.html:92
+msgid "Content"
+msgstr ""
+
+#: templates/home.html:100
+msgid "Has Control Panel Settings?"
+msgstr ""
+
+#: templates/home.html:102 templates/home.html:220
+msgid "No"
+msgstr ""
+
+#: templates/home.html:103 templates/home.html:221
+msgid "Yes"
+msgstr ""
+
+#: templates/home.html:105
+msgid "Extension Description"
+msgstr ""
+
+#: templates/home.html:109
+msgid "Extension Hooks"
+msgstr ""
+
+#: templates/home.html:207
+msgid "Hooks to Extension Method Mapping"
+msgstr ""
+
+#: templates/home.html:218
+msgid "Has Control Panel Page?"
+msgstr ""
+
+#: templates/home.html:223
+msgid "Module Description"
+msgstr ""
+
+#: templates/home.html:232
+msgid "Plugin Description"
+msgstr ""
+
+#: templates/home.html:236
+msgid "Plugin Documentation"
+msgstr ""
+
+#: lib/validate.py:76
+msgid "Required Field"
+msgstr ""
+
+#: lib/validate.py:77
+msgid "Must be a version string"
+msgstr ""
+
+#: lib/validate.py:78
+msgid "Must be plain text"
+msgstr ""
+
+#: lib/validate.py:79
+msgid "Can only contain lowercase alphanumeric characters and underscores"
+msgstr ""
+
+#: lib/validate.py:80
+msgid "Must be a valid url"
+msgstr ""
