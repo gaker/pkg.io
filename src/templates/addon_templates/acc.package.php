@@ -26,8 +26,8 @@
  
 class {{ ucfirst(package_short_name) }}_acc {
 	
-	public $name			= '{{ package_name }}';
-	public $id				= '{{ package_short_name }}';
+	public $name			= '{{ dequote(package_name) }}';
+	public $id				= '{{ dequote(package_short_name) }}';
 	public $version			= '{{ version }}';
 	public $description		= '{{ dequote(description) }}';
 	public $sections		= array();

@@ -25,10 +25,10 @@
  */
 
 $plugin_info = array(
-	'pi_name'		=> '{{ package_name }}',
-	'pi_version'	=> '{{ version }}',
-	'pi_author'		=> '{{ author }}',
-	'pi_author_url'	=> '{{ author_url }}',
+	'pi_name'		=> '{{ dequote(package_name) }}',
+	'pi_version'	=> '{{ dequote(version) }}',
+	'pi_author'		=> '{{ dequote(author) }}',
+	'pi_author_url'	=> '{{ dequote(author_url) }}',
 	'pi_description'=> '{{ dequote(description) }}',
 	'pi_usage'		=> {{ ucfirst(package_short_name) }}::usage()
 );

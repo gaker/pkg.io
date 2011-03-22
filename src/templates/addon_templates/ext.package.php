@@ -28,10 +28,10 @@ class {{ ucfirst(package_short_name) }}_ext {
 	
 	public $settings 		= array();
 	public $description		= '{{ dequote(ext_description) }}';
-	public $docs_url		= '{{ docs_url }}';
-	public $name			= '{{ package_name }}';
+	public $docs_url		= '{{ dequote(docs_url) }}';
+	public $name			= '{{ dequote(package_name) }}';
 	public $settings_exist	= '{{ has_cp }}';
-	public $version			= '{{ version }}';
+	public $version			= '{{ dequote(version) }}';
 	
 	private $EE;
 	
