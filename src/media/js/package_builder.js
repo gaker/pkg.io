@@ -105,4 +105,27 @@
 			Hooks.add(this);
 		}
 	});
+	
+	
+	var reload = false,
+		form = $('form');
+		
+	form.submit(function() {
+		if (reload) return true;
+		
+		$.post(this.action, $(this).serialize(), function(result) {
+			
+			if (result.indexOf('<') !== -1) {
+				// darn, something went wrong @todo better solution than running it again
+				reload = true;
+				form.trigger('submit');
+				return;
+			}
+			
+			
+		});
+		
+		return false;
+		
+	});
 })(jQuery);

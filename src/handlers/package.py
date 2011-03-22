@@ -1,4 +1,5 @@
 import os.path
+import re
 import tornado
 import uuid
 
@@ -172,7 +173,9 @@ class PackageHandler(BaseHandler):
         # All files must have that first subdirectory in their path
         # so that the archive extracts cleanly with that folder name
         
-        zippath = os.path.join(os.path.dirname(__file__), "../../zips/"+str(uuid.uuid4())+".zip")
+        filename = str(uuid.uuid4())
+        
+        zippath = os.path.join(os.path.dirname(__file__), "../../zips/"+filename+".zip")
         zippath = os.path.normpath(zippath)
         
         # Zip 'er up!
@@ -182,8 +185,11 @@ class PackageHandler(BaseHandler):
             download.writestr(short_name+'/'+i[0], i[1])
         
         download.close()
+        
+        self.set_header("Content-Type", "text/plain")
+        self.write(filename)
+        
         return
-    
     
     # Utility functions
     
@@ -201,8 +207,23 @@ class PackageHandler(BaseHandler):
 
 class GetPackageHandler(BaseHandler):
     
-    def get(self):
-        pass
+    def get(self, file_id=None):
+        print file_id
+        
+        if re.match('[A-Za-z0-9-]+', file_id) == None:
+            raise tornado.web.HTTPError(404)
+        
+        zippath = os.path.join(os.path.dirname(__file__), "../../zips/"+file_id+".zip")
+        if not os.path.exists(zippath):
+            raise tornado.web.HTTPError(404)
+        
+        with open(zippath, 'rb') as f:
+            content = f.read()
+                
+        self.set_header("Content-Type", "application/octet-stream")
+        self.set_header("Content-Length", os.path.getsize(zippath))
+        self.set_header("Content-Disposition", "attachment; filename="+file_id+".zip")
+        self.write(content)
     
     
     

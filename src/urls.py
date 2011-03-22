@@ -6,6 +6,6 @@ from handlers import BaseHandler
 
 url_list = [
     (r'/', PackageHandler),
-    (r'/get_package/', GetPackageHandler),
+    (r'/get_package/([a-zA-Z0-9-]+)/?', GetPackageHandler),
     (r'/.*/?', BaseHandler)
 ]
