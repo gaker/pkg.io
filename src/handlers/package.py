@@ -214,6 +214,7 @@ class GetPackageHandler(BaseHandler):
             raise tornado.web.HTTPError(404)
         
         zippath = os.path.join(os.path.dirname(__file__), "../../zips/"+file_id+".zip")
+        
         if not os.path.exists(zippath):
             raise tornado.web.HTTPError(404)
         
@@ -224,8 +225,4 @@ class GetPackageHandler(BaseHandler):
         self.set_header("Content-Length", os.path.getsize(zippath))
         self.set_header("Content-Disposition", "attachment; filename="+file_id+".zip")
         self.write(content)
-    
-    
-    
-
-
+        
