@@ -179,7 +179,7 @@ class PackageHandler(BaseHandler):
         filename = str(uuid.uuid4())
 
         # Zip 'er up!
-        zippath = os.path.join(options.zips_dir, '%s.zip' % str(uuid.uuid4()))
+        zippath = os.path.join(options.zips_dir, '%s.zip' % str(filename))
         download = ZipFile(zippath, 'w')
         
         for i in build.get_files():
