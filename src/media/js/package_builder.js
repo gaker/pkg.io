@@ -122,7 +122,7 @@
 				return;
 			}
 			
-			
+			window.location = '/get_package/'+result;
 		});
 		
 		return false;
