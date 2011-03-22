@@ -190,6 +190,10 @@ label.chk_lbl {
 	vertical-align: middle;
 }
 
+/* Stretch elements to textarea width */
+.wide {
+	min-width:				400px;
+}
 
 /* Welcome to the Abyss */
 /* Pascal will take your coat. And burn it muahahah!

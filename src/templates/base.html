@@ -7,41 +7,38 @@
 	
 	<link rel="apple-touch-icon" href="{{ static_url('apple-touch-icon.png') }}"> 
 	
-	<link rel="stylesheet" href="{{ static_url('css/960.css') }}" type="text/css">
 	<link rel="stylesheet" href="{{ static_url('css/main.css') }}" type="text/css">
 	<link rel="stylesheet" href="{{ static_url('packages/uniform/css/uniform.default.css') }}" type="text/css">
 
 	<!--[if lt IE 9]><script src="{{ static_url('js/html5.js') }}"></script><![endif]-->
 	{% block extra_head %}{% end %}
 </head>
+
 <body>
-	<div class="container_16" id="pkgrulz">
-		<header class="grid_6">
-			<h1><a href="http://pkg.io" title="PKG.io">PKG.io</a></h1>
-			<h2>{{ _('Package Builder for ExpressionEngine') }}</h2>
-		</header>
-		{% include _shared/login_logout.html %}
-		<div class="clear"></div>
-		<div id="main">
-			{% block content %}{% end %}
-		</div>
-		<div class="clear"></div>
-		<footer>
-			<p class="credits">
-				{{ _('Development by %(pascal)s and %(greg)s.  Design by %(marcus)s') % { 'pascal': '<a href="http://pascalkriete.com" title="Pascal Kriete">Pascal Kriete</a>', 'greg': '<a href="http://www.gregaker.net" title="Greg Aker">Greg Aker</a>', 'marcus': '<a href="http://marcusneto.com" title="Marcus Neto">Marcus Neto</a>' } }}</p>
-				
-				
-				
-			<p class="thanks_nevin">{{ _('Application Hosting and CDN provided by EngineHosting') }} <a href="http://www.enginehosting.com" title="EngineHosting"><img src="{{ static_url('images/enginehosting_logo.png') }}" alt="EngineHosting Logo" width="32" height="25"></a></p>
-		</footer>
+	
+	<header>
+		<h1><a href="/">PKG.IO</a></h1>
+		<h2>{{ _('Package Builder for ExpressionEngine') }}</h2>
+	</header>
+	
+	<div id="abyss">
+		{% block content %}{% end %}
 	</div>
+	
+	<footer>
+		<p class="credits">{{ _('Development by %(pascal)s and %(greg)s.  Design by %(marcus)s') % { 'pascal': '<a href="http://pascalkriete.com" title="Pascal Kriete">Pascal Kriete</a>', 'greg': '<a href="http://www.gregaker.net" title="Greg Aker">Greg Aker</a>', 'marcus': '<a href="http://marcusneto.com" title="Marcus Neto">Marcus Neto</a>' } }}</p>
+		<p class="thanks_nevin">{{ _('Application Hosting and CDN provided by EngineHosting') }} <a href="http://www.enginehosting.com" title="EngineHosting"><img src="{{ static_url('images/enginehosting_logo.png') }}" alt="EngineHosting Logo"></a></p>
+	</footer>
+
 <script type="text/javascript" src="{{ static_url('js/jquery.js') }}"></script>
 <script type="text/javascript" src="{{ static_url('packages/uniform/js/uniform.js') }}"></script>
+
 <script type="text/javascript">
-$(document).ready(function () {
-	$("input, textarea, select, button").uniform();
+$(document).ready(function() {
+	$("button, select, :checkbox").uniform();
 });
 </script>
+
 {% block footer_js %}{% end %}
 
 {% if not request.host.startswith('127.0.0.1') %}
