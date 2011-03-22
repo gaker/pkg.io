@@ -51,7 +51,7 @@
 					prev, str = '';
 				
 				str = '<dt><label for="extension_hook_'+value+'">'+value+'</label></dt>' +
-					  '<dd><input class="text" type="text" name="extension_hook_'+value+'" id="extension_hook_'+value+'"></dd>';
+					  '<dd><input type="text" name="extension_hook_'+value+'" id="extension_hook_'+value+'"></dd>';
 				
 				// Add the original index to our hook input array and re-sort.
 				hook_inputs.push(idx);

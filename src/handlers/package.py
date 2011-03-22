@@ -60,9 +60,10 @@ class PackageHandler(BaseHandler):
         if form.get_field('pkg_extension'):
             form.add_field('extension_has_settings', '', 0)
             form.add_field('extension_description', 'required')
-            form.add_field('extension_hooks', '', 0)
+            form.add_field('extension_hooks[]', '', 0)
             
-            hooks = self.get_arguments('extension_hooks')
+            hooks = self.get_arguments('extension_hooks[]')
+            print hooks
             
             for hook in hooks:
                 form.add_field('extension_hook_{0}'.format(hook))
