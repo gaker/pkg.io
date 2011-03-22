@@ -134,6 +134,8 @@ textarea,
 input[type="text"] {
 	background-color:		#fff;
 	background:				#fff -webkit-gradient(linear, 0 0, 0 100%, from(#ddd), to(#fff));
+	background:				#fff -moz-linear-gradient(#ddd, #fff);
+	
 	border:					1px solid #fff;
 	min-width:				185px;
 	padding:				3px;
