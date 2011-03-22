@@ -177,10 +177,7 @@ class PackageHandler(BaseHandler):
         # so that the archive extracts cleanly with that folder name
         
         filename = str(uuid.uuid4())
-        
-        zippath = os.path.join(os.path.dirname(__file__), "../../zips/"+filename+".zip")
-        zippath = os.path.normpath(zippath)
-        
+
         # Zip 'er up!
         zippath = os.path.join(options.zips_dir, '%s.zip' % str(uuid.uuid4()))
         download = ZipFile(zippath, 'w')
