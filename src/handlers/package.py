@@ -1,10 +1,12 @@
 import os.path
 import tornado
+import tornado.options
 import uuid
 
 from handlers import BaseHandler
 from lib.builder import PackageBuilder
 from lib.validate import FormValidator
+from tornado.options import options
 from zipfile import ZipFile, ZipInfo
 
 class PackageHandler(BaseHandler):
@@ -81,7 +83,8 @@ class PackageHandler(BaseHandler):
         files = []
         short_name = form.get_field('package_short_name')
         
-        template_path = os.path.join(self.get_template_path(), 'addon_templates/')
+        template_path = os.path.join(self.get_template_path(),
+                                    'addon_templates/')
         template_defaults = {
             'author': form.get_field('author'),
             'author_url': form.get_field('author_url'),
@@ -171,10 +174,8 @@ class PackageHandler(BaseHandler):
         # All files must have that first subdirectory in their path
         # so that the archive extracts cleanly with that folder name
         
-        zippath = os.path.join(os.path.dirname(__file__), "../../zips/"+str(uuid.uuid4())+".zip")
-        zippath = os.path.normpath(zippath)
-        
         # Zip 'er up!
+        zippath = os.path.join(options.zips_dir, '%s.zip' % str(uuid.uuid4()))
         download = ZipFile(zippath, 'w')
         
         for i in build.get_files():

@@ -12,8 +12,12 @@ import tornado.web
 
 from tornado.options import define, options
 
+base_dir = os.path.dirname(os.path.abspath(__file__))
+debug_zip_dir = os.path.normpath(os.path.join(base_dir, '../zips/'))
+
 define("port", default=8000, help="run on the given port", type=int)
 define("debug", default=True, help="run tornado in debug mode", type=bool)
+define("zips_dir", default=debug_zip_dir, help="zips directory", type=str)
 
 BASEPATH = os.path.abspath(os.path.dirname(__file__))
 
