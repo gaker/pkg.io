@@ -1,0 +1,16 @@
+{% extends ../base.html %}
+
+{% block title %}{{ _('Download Package') }}{% end %}
+
+{% block content %}
+<form action="{{ request.path }}" method="post">
+
+	<fieldset>
+		<p>{{ _("We've bundled up your new package with care. Go get it now, and get on developing!") }}</p>
+	</fieldset>
+
+	<button type="submit">{{ _('Download!') }}</button>
+
+	<div style="display:none">{{ xsrf_form_html() }}</div>
+</form>
+{% end %}

@@ -1,4 +1,4 @@
-{% extends base.html %}
+{% extends ../base.html %}
 
 {% block title %}{{ _('Home') }}{% end %}
 
@@ -228,7 +228,7 @@
 	</fieldset>
 
 
-	<button type="submit">Create Package</button>
+	<button type="submit">{{ _('Create Package') }}</button>
 
 	<div style="display:none">{{ xsrf_form_html() }}</div>
 </form>

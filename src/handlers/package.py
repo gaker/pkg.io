@@ -13,8 +13,9 @@ from zipfile import ZipFile, ZipInfo
 class PackageHandler(BaseHandler):
     
     def get(self):
-        self.render('package_form.html', form_error=self.blank_callback,
-                                 set_value=self.blank_callback)
+        self.render('packages/package_form.html', 
+                    form_error=self.blank_callback,
+                    set_value=self.blank_callback)
     
     def post(self):
         ''' This is a productive method.'''
@@ -66,7 +67,6 @@ class PackageHandler(BaseHandler):
             form.add_field('extension_hooks[]', '', 0)
             
             hooks = self.get_arguments('extension_hooks[]')
-            print hooks
             
             for hook in hooks:
                 form.add_field('extension_hook_{0}'.format(hook))
@@ -74,11 +74,10 @@ class PackageHandler(BaseHandler):
         errors = form.validate()
         
         if errors is not True:
-            print errors
-            self.render('home.html', form_error=self.error_function(errors),
-                                     set_value=form.get_field)
+            self.render('packages/package_form.html', 
+                        form_error=self.error_function(errors),
+                        set_value=form.get_field)
             return
-        
         
         # WOOT start building
         
@@ -87,6 +86,7 @@ class PackageHandler(BaseHandler):
         
         template_path = os.path.join(self.get_template_path(),
                                     'addon_templates/')
+                                    
         template_defaults = {
             'author': form.get_field('author'),
             'author_url': form.get_field('author_url'),
@@ -179,11 +179,11 @@ class PackageHandler(BaseHandler):
         filename = str(uuid.uuid4())
 
         # Zip 'er up!
-        zippath = os.path.join(options.zips_dir, '%s.zip' % str(filename))
+        zippath = os.path.join(options.zips_dir, '%s.zip' % filename)
         download = ZipFile(zippath, 'w')
         
         for i in build.get_files():
-            download.writestr(short_name+'/'+i[0], i[1])
+            download.writestr('%s/%s' % (short_name, i[0]), i[1])
         
         download.close()
         
@@ -208,16 +208,28 @@ class PackageHandler(BaseHandler):
 
 class GetPackageHandler(BaseHandler):
     
-    def get(self, file_id=None):
-        print file_id
-        
+    def _validate_zip(self, file_id=None):
         if re.match('[A-Za-z0-9-]+', file_id) == None:
             raise tornado.web.HTTPError(404)
         
-        zippath = os.path.join(os.path.dirname(__file__), "../../zips/"+file_id+".zip")
+        zippath = os.path.join(options.zips_dir, '%s.zip' % file_id)
         
         if not os.path.exists(zippath):
-            raise tornado.web.HTTPError(404)
+            raise tornado.web.HTTPError(404)   
+        
+        return zippath
+    
+    def get(self, file_id=None):
+        
+        zippath = self._validate_zip(file_id)        
+        
+        self.render('packages/get_package.html')
+        
+        
+           
+    def post(self, file_id=None):
+        
+        zippath = self._validate_zip(file_id)
         
         with open(zippath, 'rb') as f:
             content = f.read()
