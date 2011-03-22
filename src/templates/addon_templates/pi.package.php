@@ -51,7 +51,7 @@ class {{ ucfirst(package_short_name) }} {
 	/**
 	 * Plugin Usage
 	 */
-	static function usage()
+	public static function usage()
 	{
 		ob_start();
 ?>
