@@ -1,441 +1,203 @@
-/* http://meyerweb.com/eric/tools/css/reset/ */
-/* v1.0 | 20080212 */
+/* basic reset
+/* --------------------------------------------------- */
 
-html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:''}:focus{outline:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-spacing:0}
+html, body, div, h1, h2, h3, img, fieldset, legend,
+article, aside, figure, footer, header, nav, section {
+	margin:			0;
+	padding:		0;
+	border:			0;
+}
 
-/* html5 reset */
-section, header, aside, footer {
-	display:			block;
-	margin:				0;
-	padding:			0;
+a, input, textarea {
+	outline:		0;
+}
+
+/* html 5 */
+article, aside, figure, footer, header, nav, section {
+	display:		block;
 }
 
 
-/*  */
-body {
-	padding: 			0 0 40px;
-	font: 				12px Helvetica, Arial, Geneva, sans-serif;
-	background:			#2b474a url(../images/bg.png) repeat 0 0;
+/* outer shell
+/* --------------------------------------------------- */
+
+html {
+	background:		#2B474A url(../images/bg.png);
+	color:			#ededed;
+	font:			11px/25px "Helvetica Neue", Arial, Helvetica, sans-serif;
+	text-align:		center; /* ie */
+	text-rendering:	optimizelegibility;
 }
 
-h1 {
-	font-size:			60px;
-	font-weight:		normal;
-	line-height: 		100%;
-	margin: 			10px 0;
+body {	
+	margin:			0 auto;
+	overflow-y:		scroll; /* force scrollbar to prevent jumpiness */
+	text-align:		left;
+	width:			800px;
 }
 
-h2 {
-	font-size: 			32px;
-	letter-spacing: 	-2px;	
-	margin: 			10px 0;
+
+/* element styles - declared up here to let us override
+/*					them for the header and footer.
+/* --------------------------------------------------- */
+
+h1, h2, h3, h4, legend {
+	font-family:	Arial, Helvetica, sans-serif; /* I like helvetica more, but safari and ff can't agree on a baseline */
 }
 
-h3 {
-	font-size: 			22px;
-	margin: 			10px 0;
-}
-
-h4 {
-	font-size: 			18px;
-	margin: 			10px 0;
-}
-
-p {
-	font-size: 			12px;
-	font-weight: 		normal;
-	line-height: 		165%;
-	margin-bottom: 		10px;
-}
-
-a {
-	text-decoration: 	underline;
-	font-weight: 		normal;
+a, a:visited {
+	text-decoration: none;
 }
 
 a:hover {
-	text-decoration: 	underline;
-}
-
-ol{
-	list-style-type: 	upper-alpha;	
-	margin: 			20px 0;
-}
-
-ol ol {
-	list-style-type: 	lower-alpha;
-	margin: 			0;
-}
-
-ul{
-	list-style-type: 	disc;
-	margin: 			20px 0;
-}
-
-ul ul {
-	list-style-type: 	circle;
-	margin: 			0;
-}
-
-li {
-	font-size: 			12px;
-	line-height: 		145%;
-	margin-left: 		30px;
-}
-
-ul.checklist {
-	margin: 			20px 0px;
-	padding:			0px;
-}
-
-ul.checklist li{
-	background: 		url(../images/check.png) no-repeat top left;
-	line-height: 		175%;
-	list-style-type: 	none;
-	margin:	 			0;
-	padding-left: 		20px;	
-}
-
-blockquote{
-	font-size: 			14px;
-	font-weight: 		normal;
-	font-style: 		normal;
-	letter-spacing: 	normal;
-	margin: 			10px 20px;
-	padding: 			15px;
-	text-align: 		center;
-}
-
-blockquote p {
-	margin: 			0;
-	padding: 			0;
-}
-
-.codeblock {
-	float: 				left;
-	margin-bottom: 		20px;
-	padding: 			25px;
-}
-
-nav ul{ margin: 25px 15px 0 0;padding:0; float: right;}
-
-nav a {
-	color: 				#fff;
-	text-shadow: 		#191005 1px 1px 0px;
-	font-size: 16px;
-}
-
-nav ul {
-	height:				2.5em;
-	max-width:			100%;
-	z-index: 			50;
-}
-
-nav ul li {
-	cursor:				pointer;
-	float:				left;
-	font-weight:		normal;
-	list-style-type:	none;
-	text-align:			center;
-}
-
-nav ul li a {
-	display:			block;
-	float:				left;
-	text-decoration:	none;
-	padding:			10px 15px;
-	z-index: 			30;
-	-moz-border-radius: 5px;
-	border-radius: 5px;
-}
-nav ul li a:hover {
-	text-decoration: none;
-	background: #21190d url(../images/container_bg.jpg) repeat-y 0 0;
-	color: #fff;
-
-	-moz-box-shadow:	0 5px 15px 0 #191005 inset,
-						0 1px 1px 0 #385D62;
-	-webkit-box-shadow: 0 5px 15px 0 #191005 inset,
-						0 1px 1px 0 #385D62;
-	box-shadow: 		0 5px 15px 0 #191005 inset,
-						0 1px 1px 0 #385D62;
-				
-	-webkit-border-radius: 	5px;
-	-moz-border-radius: 	5px;
-	border-radius: 			5px;
 	
 }
 
 
-ul.main li {
-	position:			relative;
-	top:				0;
-	left:				0;
-	margin: 			0;
-	z-index: 			50;
-}
+/* inner shell
+/* --------------------------------------------------- */
 
-ul.main li ul {
-	border-top:			0;  
-	z-index: 			50;
-}
-
-ul.main li ul li {
-	float:				left;  
-	z-index: 			50;
-}
-
-ul.main li a {
-	border:				0;
-	font-size: 			18px;
-	font-weight: 		normal;
-	letter-spacing: 	0px;
-	padding: 			20px 15px 12px;
-	z-index: 			50;
-}
-
-ul.main li ul li a {
-  width:				12em;
-  height:				2em;
-  text-align:			left;  
-  z-index: 				50;
-  font-size: 			12px;
-  padding: 				3px 5px;
-}
-
-#pkgrulz { padding-top: 20px; }
-
-header h1 {
-	width:				400px;
-	float:				left;
-	margin: 			0;
-	padding: 			0;
+/* header */
+header {
+	padding:		20px 0 10px 8px;
 }
 
 header h1 a {
-	background:			transparent url(../images/logo.png) no-repeat;
-	display:			block;
-	height:				57px;
-	width:				191px;
-	text-indent:		-5000em;
+	background:		url(../images/logo.png) no-repeat;
+	display:		block;
+	height:			50px;
+	text-indent:	-9999px;
+	width:			175px;
 }
 
 header h2 {
-	width: 				300px;	
-	font-size: 			12px;
-	color: 				#fff;
-	letter-spacing: 	1px;
-	clear: 				both;
+	font-size:		13px;
 }
 
-#login {
-	float: 				right;
-}
-
-#login ul {
-	float: 				right;
-	margin: 			45px 0 10px 0;
-}
-
-#login li {
-	float:				right;
-	list-style-type:	none;
-	margin-left: 		10px;
-	padding-left:		0px;
-}
-
-#login a {
-	display:			block;
-	height:				32px;
-	width:				35px;
-	text-indent:		-5000em;
-}
-
-#twitter {
-	background:	transparent url(../images/social_icons.png) no-repeat top right;
-	text-indent:		-10px;
-}
-
-#twitter:hover {
-	background-position: bottom right;
-}
-
-#facebook {
-	background:	transparent url(../images/social_icons.png) no-repeat top left;
-}
-
-#facebook:hover {
-	background-position: bottom left;
-}
-
-/** Content **/
-#main {
-	background: 		url(../images/container_bg.jpg) repeat-y 0 0;
-	width:				960px;
-	color: 				#fff;
-	padding: 			40px 0 0 0;
-	
-	-moz-box-shadow:	0 5px 15px 0 #191005 inset,
-						0 1px 1px 0 #385D62;
-	-webkit-box-shadow: 0 5px 15px 0 #191005 inset,
-						0 1px 1px 0 #385D62;
-	box-shadow: 		0 5px 15px 0 #191005 inset,
-						0 1px 1px 0 #385D62;
-				
-	-webkit-border-radius: 	10px;
-	-moz-border-radius: 	10px;
-	border-radius: 			10px;
-}
-
-#main p {
-	text-shadow:		#000 1px 0px 0px;;
-}
-
-#main a {
-	color:				#7D7D7D;
-	font-size:			15px;
-	text-decoration:	none;
-	text-shadow: 		#191005 1px 0px 0px;;
-}
-
-#main a:hover {
-	border-bottom:		#7D7D7D 1px dashed;
-	color:				#7D7D7D;
-	text-decoration:	#000;
-}
-
-div.button {
-	color:				#555;
-}
-
-div.button:hover {
-	color:				#000;
-}
-
-fieldset {
-	border: 			0;
-	margin-bottom:		36px; 
-	padding:			10px; 
-	width:				600px; 
-}
-
-fieldset#submit {
-	margin-bottom:		0;
-	padding-bottom:		25px;
-}
-	
-input, textarea, select {
-	background-color:	#fff; 
-	font:				12px/12px Arial, Helvetica, sans-serif; 
-	padding:			0;
-}
-
-legend { 
-	color:				#fff; 
-	font:				17px/21px Helvetica, Arial, sans-serif; 
-	font-weight:		bold;
-	padding:			0 10px; 
-	margin: 			0; 
-}
-
-label {
-	font-size:			11px; 
-	font-weight:		bold;
-}
-
-label.opt {
-	font-weight:		normal;
-}
-
-dl { clear:both; }
-
-dt {
-	float:				left; 
-	line-height:		25px; 
-	margin:				0 10px 10px 0;
-	text-align:			right;
-	width:				170px;
-}
-
-dd {
-	float:				left; 
-	line-height:		25px; 
-	margin:				0 0 10px 0;
-	width:				300px; 
-}
-
-footer { 
-	color:				#191005;
-	font-size:			11px; 
-	font-weight:		normal;
-	padding-top:		10px;
+/* footer */
+footer {
+	color:			#000;
+	height:			80px;
+	padding:		0 5px;
+	text-shadow:	0 1px 0 rgba(51, 86, 91, 0.8);
 }
 
 footer p {
-	text-shadow: 		#385D62 1px 0px 0px;;
+	width:			45%;
+	float:			left;
+	line-height:	30px;
 }
 
-footer p.credits {
-	float:				left;
-	margin:				5px;
+footer a,
+footer a:visited {
+	color:			#3D666D;
+	text-shadow:	none;
 }
 
-footer p.thanks_nevin {
-	float:				right;
-	line-height:		25px;
-	height:				25px;
+.thanks_nevin {
+	float:			right;
+	text-align:		right;
+}
+
+.thanks_nevin img {
+	margin-bottom:	-7px;
+}
+
+/* dark wrapper */
+#abyss {
+	background:		url(../images/inner_bg.jpg);
+	padding:		10px 20px;
+
+	box-shadow: 			0 5px 15px 0 #191005 inset,
+							0 1px 1px 0 #385D62;
+	-moz-box-shadow:		0 5px 15px 0 #191005 inset,
+							0 1px 1px 0 #385D62;
+	-webkit-box-shadow: 	0 5px 15px 0 #191005 inset,
+							0 1px 1px 0 #385D62;
+
+	border-radius: 			10px;
+	-moz-border-radius: 	10px;
+	-webkit-border-radius: 	10px;
+}
+
+
+
+/* Forms */
+/* Most of this is done by uniform @see uniform.css
+/* --------------------------------------------------- */
+
+.button, button {
+	color: #777;
+}
+
+textarea,
+input[type="text"] {
+	background-color:		#fff;
+	background:				#fff -webkit-gradient(linear, 0 0, 0 100%, from(#ddd), to(#fff));
+	border:					1px solid #fff;
+	min-width:				185px;
+	padding:				3px;
 	
+	border-radius: 			3px;
+	-moz-border-radius: 	3px;
+	-webkit-border-radius: 	3px;
 }
 
-footer p.thanks_nevin img {
+textarea:focus,
+input[type="text"]:focus {
+	background:				#fff;
+}
+
+textarea {
+	min-width:				400px;
+}
+
+fieldset {
+	border:					none;
+}
+
+legend {
+	font-size:				17px;
+	font-weight:			bold;
+	padding:				10px 0;
+}
+
+
+dl {
+	clear:					both;
+}
+
+dt {
+	clear:					left;
+	float:					left; 
+	margin:					0 10px 10px 0;
+	text-align:				right;
+	width:					170px;	
+}
+
+dd {
+	float:					left; 
+	margin:					0 0 10px 0;
+	width:					300px;
+}
+
+label {
+	font-weight:			bold;
+}
+
+/* Center checkbox labels - weird */
+label.chk_lbl {
 	vertical-align: middle;
 }
 
-footer p.thanks_nevin a:hover {
-	border-bottom:		none;
+/* Stretch elements to textarea width */
+.wide {
+	min-width:				400px;
 }
 
-footer a {
-	color:				#7D7D7D;
-	text-decoration:	none;
-	text-shadow: 		#191005 0px 0px 0px;
-}
+/* Welcome to the Abyss */
+/* Pascal will take your coat. And burn it muahahah!
+/* --------------------------------------------------- */
 
-footer a:hover {
-	border-bottom:		#7D7D7D 1px dashed;
-	color:				#7D7D7D;
-	text-decoration:	none;
-}
-
-/* Posts */
-section.posts {
-	padding:			0 20px 20px 20px;	
-}
-
-section.posts p {
-	font-size:			13px;
-	line-height: 		150%;
-}
-
-section.main article {
-	float:				left;
-	width:				500px;
-}
-
-section.main aside {
-	float:				right;
-	width:				300px;
-}
-
-section.main aside h1 {
-	font-size:			18px;
-	margin-bottom:		0;
-}
-
-section.main aside ul {
-	margin-top:			5px;
-}
-
-section.main aside ul li {
-	margin-left:		14px;
-}
+#abyss {}
+	
