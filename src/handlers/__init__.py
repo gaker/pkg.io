@@ -54,15 +54,14 @@ class BaseHandler(tornado.web.RequestHandler):
                 return func()
         else:
             raise tornado.web.HTTPError(404)
-        
-    def head(self):
-        ''' Why not allow HEAD requests '''
-        return self._map()
     
     @tornado.web.addslash
     def get(self):
         return self._map()
     
+    def post(self):
+        return self._map()
+        
     def head(self):
         return self._map()
     
@@ -94,6 +93,11 @@ class BaseHandler(tornado.web.RequestHandler):
     def get_current_user(self):
         ''' Overrides Tornado's default get_current_user method '''
         pass
+    
+    def get_user_locale(self):
+        ''' This needs to be extended for user-configurable
+            locale management '''
+        return None
 
     def set_flashdata(self, cookie_name, message):
         """ Sets a flashdata cookie
