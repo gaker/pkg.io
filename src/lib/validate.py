@@ -1,5 +1,7 @@
 import re
-from tornado import locale
+# import tornado
+# from tornado.locale import Locale
+# from tornado.locale.Locale import translate
 
 class FormValidator(object):
         
@@ -64,8 +66,8 @@ class FormValidator(object):
             self._validation_rules = {
                 'required': re.compile('.+'),
                 'float': re.compile('\d+(\.\d+)?'),
-                'plain_string': re.compile('[a-zA-Z0-9 _-]'),   # @todo unicode chars?
-                'segment': re.compile('[a-z0-9_]+'),            # shortname needs to be a valid url segment, feel free to rename this
+                'plain_string': re.compile('[a-zA-Z0-9 _-]'), # @todo unicode chars?
+                'segment': re.compile('[a-z0-9_]+'), # shortname needs to be a valid url segment, feel free to rename this
                 'url': re.compile('\(?http://[-A-Za-z0-9+&@#/%?=~_()|!:,.;]*[-A-Za-z0-9+&@#/%=~_()|]') # hate urls - hate them - no guarantees (source: http://www.codinghorror.com/blog/2008/10/the-problem-with-urls.html)
             }
             
@@ -73,14 +75,22 @@ class FormValidator(object):
     
     def get_human_error(self, rule):
         
-        _ = locale.translate
+        # _ = tornado.locale.translate
         
+        # errors = {
+        #     'required': _(u'Required Field'),
+        #     'float': _(u'Must be a version string'),
+        #     'plain_string': _(u'Must be plain text'),
+        #     'segment': _(u'Can only contain lowercase alphanumeric characters and underscores'),
+        #     'url': _(u'Must be a valid url')
+        # }
+
         errors = {
-            'required': _(u'Required Field'),
-            'float': _(u'Must be a version string'),
-            'plain_string': _(u'Must be plain text'),
-            'segment': _(u'Can only contain lowercase alphanumeric characters and underscores'),
-            'url': _(u'Must be a valid url')
+            'required': u'Required Field',
+            'float': u'Must be a version string',
+            'plain_string': u'Must be plain text',
+            'segment': u'Can only contain lowercase alphanumeric characters and underscores',
+            'url': u'Must be a valid url'
         }
         
         return errors[rule]
