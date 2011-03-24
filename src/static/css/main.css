@@ -131,18 +131,18 @@ footer a:visited {
 /* --------------------------------------------------- */
 
 .button, button {
-	color: #777;
+	color:					#777;
 }
 
 textarea,
 input[type="text"] {
-	background-color:		#fff;
-	background:				#fff -webkit-gradient(linear, 0 0, 0 100%, from(#ddd), to(#fff));
-	background:				#fff -moz-linear-gradient(#ddd, #fff);
+	background-color:	#fff;
+	background:			#fff -webkit-gradient(linear, 0 0, 0 100%, from(#ddd), to(#fff));
+	background:			#fff -moz-linear-gradient(#ddd, #fff);
 	
-	border:					1px solid #fff;
-	min-width:				185px;
-	padding:				3px;
+	border:				1px solid #fff;
+	min-width:			185px;
+	padding:			3px;
 	
 	border-radius: 			3px;
 	-moz-border-radius: 	3px;
@@ -151,54 +151,54 @@ input[type="text"] {
 
 textarea:focus,
 input[type="text"]:focus {
-	background:				#fff;
+	background:			#fff;
 }
 
 textarea {
-	min-width:				400px;
+	min-width:			400px;
 }
 
 fieldset {
-	border:					none;
+	border:				none;
 }
 
 legend {
-	font-size:				17px;
-	font-weight:			bold;
-	padding:				10px 0;
+	font-size:			17px;
+	font-weight:		bold;
+	padding:			10px 0;
 }
 
 
 dl {
-	clear:					both;
+	clear:				both;
 }
 
 dt {
-	clear:					left;
-	float:					left; 
-	margin:					0 10px 10px 0;
-	text-align:				right;
-	width:					170px;	
+	clear:				left;
+	float:				left; 
+	margin:				0 10px 10px 0;
+	text-align:			right;
+	width:				170px;	
 }
 
 dd {
-	float:					left; 
-	margin:					0 0 10px 0;
-	width:					300px;
+	float:				left; 
+	margin:				0 0 10px 0;
+	width:				300px;
 }
 
 label {
-	font-weight:			bold;
+	font-weight:		bold;
 }
 
 /* Center checkbox labels - weird */
 label.chk_lbl {
-	vertical-align: middle;
+	vertical-align:		middle;
 }
 
 /* Stretch elements to textarea width */
 .wide {
-	min-width:				400px;
+	min-width:			400px;
 }
 
 /* Welcome to the Abyss */
