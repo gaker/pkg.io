@@ -61,22 +61,22 @@ class {{ ucfirst(package_short_name) }}_ext {
 	{
 		// Setup custom settings in this array.
 		$this->settings = array();
-		{% if hooks.__len__() == 1 %}
+		{% if len(hooks) == 1 %}{% for hook in hooks.items() %}
 		$data = array(
 			'class'		=> __CLASS__,
-			'method'	=> {{ hooks[0][1] }},
-			'hook'		=> {{ hooks[0][0] }},
+			'method'	=> {{ hook[1] }},
+			'hook'		=> {{ hook[0] }},
 			'settings'	=> serialize($this->settings),
 			'version'	=> $this->version,
 			'enabled'	=> 'y'
-		);
+		);{% end %}
 
 		$this->EE->db->insert('extensions', $data);			
-		{% elif hooks.__len__() > 1 %}
+		{% elif len(hooks) > 1 %}
 		$hooks = array({% for hook in hooks.items() %}
 			'{{ hook[0] }}'	=> '{{ hook[1] }}',{% end %}
 		);
-		
+
 		foreach ($hooks as $hook => $method)
 		{
 			$data = array(
@@ -90,7 +90,7 @@ class {{ ucfirst(package_short_name) }}_ext {
 
 			$this->EE->db->insert('extensions', $data);			
 		}{% else %}
-		// No hooks selected, add in your own hooks installation code here.{% end %}		
+		// No hooks selected, add in your own hooks installation code here.{% end %}
 	}	
 
 	// ----------------------------------------------------------------------{% for hook in hooks.items() %}
