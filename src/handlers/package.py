@@ -13,7 +13,7 @@ from zipfile import ZipFile, ZipInfo
 class PackageHandler(BaseHandler):
     
     def get(self):
-        self.render('packages/package_form.html', 
+        self.render('packags/package_form.html', 
                     form_error=self.blank_callback,
                     set_value=self.blank_callback)
     
@@ -86,7 +86,7 @@ class PackageHandler(BaseHandler):
         
         template_path = os.path.join(self.get_template_path(),
                                     'addon_templates/')
-                                    
+
         template_defaults = {
             'author': form.get_field('author'),
             'author_url': form.get_field('author_url'),

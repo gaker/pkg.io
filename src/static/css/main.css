@@ -103,6 +103,10 @@ footer a:visited {
 	margin-bottom:	-7px;
 }
 
+.error_image {
+	margin: 15px auto;
+}
+
 /* dark wrapper */
 #abyss {
 	background:		url(../images/inner_bg.jpg);

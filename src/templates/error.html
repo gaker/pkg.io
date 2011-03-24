@@ -7,7 +7,27 @@
 {% block content %}
 <section class="posts">
 	{% comment these should really be more interesting... %}
-	<p>{{ code }}</p>
-	<p>{{ message }}</p>
+	
+	{% if code == 404 %}
+		<h1>{{ _('Sorry') }}</h1>
+		<div style="text-align:center">
+			<img class="error_image" src="{{ static_url('images/error_images/404.jpg') }}" alt="{{ _('Sorry') }}" width="600">
+			<p>{{ _("Oh good grief, something went wrong and the page you requested can't be found.  I'll tell my daddy.") }}</p>
+		</div>
+	{% elif code == 500 %}
+		<h1>{{ _('Something Went Wrong') }}</h1>
+		<div style="text-align:center; margin-top:25px">
+			<p>{{ _("Oh snap.  Something weird happened. My people will deal with it.") }}</p>
+			<img class="error_image" src="{{ static_url('images/error_images/500.jpg') }}" alt="{{ _('Something Went Wrong') }}" width="335">
+		</div>
+		
+	
+	{% else %}
+		<p>{{ code }}</p>
+		
+		<img class="error_image" src="{{ static_url('images/error_images/general.jpg') }}" alt="{{ _('Something Went Wrong') }}" width="394">
+		
+		<p>{{ message }}</p>	
+	{% end %}
 </section>
 {% end %}
