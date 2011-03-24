@@ -236,6 +236,7 @@ class GetPackageHandler(BaseHandler):
                 
         self.set_header("Content-Type", "application/octet-stream")
         self.set_header("Content-Length", os.path.getsize(zippath))
-        self.set_header("Content-Disposition", "attachment; filename="+file_id+".zip")
+        self.set_header("Content-Disposition", 
+                        "attachment; filename=pkgio_package.zip")
         self.write(content)
         
