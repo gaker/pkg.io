@@ -160,9 +160,6 @@ class PackageHandler(BaseHandler):
             
             for hook in hooks:
                 final_hooks[hook] = form.get_field('extension_hook_{0}'.format(hook))
-
-            # print final_hooks
-            # pass
             
             build.add_extension({
                 'has_cp': select_cp[has_cp],
