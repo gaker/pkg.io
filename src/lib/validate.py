@@ -1,7 +1,9 @@
+
+from handlers import BaseHandler
 import re
 from tornado import locale
 
-class FormValidator(object):
+class FormValidator(BaseHandler):
         
     fields = {}
     field_rules = []
@@ -12,6 +14,8 @@ class FormValidator(object):
         
         self._validation_rules = False
         self._request_cls = cls
+        
+        self.user_locale = locale.get(self.get_user_locale())        
     
     def add_field(self, field_name, rule='', default=''):
         rules = rule.split('|')
@@ -64,8 +68,8 @@ class FormValidator(object):
             self._validation_rules = {
                 'required': re.compile('.+'),
                 'float': re.compile('\d+(\.\d+)?'),
-                'plain_string': re.compile('[a-zA-Z0-9 _-]'),   # @todo unicode chars?
-                'segment': re.compile('[a-z0-9_]+'),            # shortname needs to be a valid url segment, feel free to rename this
+                'plain_string': re.compile('[a-zA-Z0-9 _-]'), # @todo unicode chars?
+                'segment': re.compile('[a-z0-9_]+'), # shortname needs to be a valid url segment, feel free to rename this
                 'url': re.compile('\(?http://[-A-Za-z0-9+&@#/%?=~_()|!:,.;]*[-A-Za-z0-9+&@#/%=~_()|]') # hate urls - hate them - no guarantees (source: http://www.codinghorror.com/blog/2008/10/the-problem-with-urls.html)
             }
             
@@ -73,7 +77,7 @@ class FormValidator(object):
     
     def get_human_error(self, rule):
         
-        _ = locale.translate
+        _ = self.user_locale.translate
         
         errors = {
             'required': _(u'Required Field'),

@@ -11,30 +11,30 @@
 		<dl>
         	<dt><label for="package_name"><span>* </span>{{ _('Package Name') }}:</label></dt>
             <dd>
-				<input type="text" id="package_name" name="package_name" value="{{ set_value('package_name') }}" autofocus>
+				<input type="text" id="package_name" name="package_name" value="{{ escape(set_value('package_name')) }}" autofocus>
 				{{ form_error('package_name', '<p>{error}</p>') }}
 			</dd>
 			
 			<dt><label for="package_short_name"><span>* </span>{{ _('Package Short Name') }}: <br>{% comment <em>({{ _('alpha-numeric and underscores.  No Spaces') }})</em> %}</label></dt>
 			<dd>
-				<input type="text" id="package_short_name" name="package_short_name" value="{{ set_value('package_short_name') }}">
+				<input type="text" id="package_short_name" name="package_short_name" value="{{ escape(set_value('package_short_name')) }}">
 				{{ form_error('package_short_name', '<p>{error}</p>') }}
 			</dd>
 			
 			<dt><label for="author"><span>* </span>{{ _('Author Name') }}:</label></dt>
 			<dd>
-				<input type="text" name="author" id="author" value="{{ set_value('author') }}">
+				<input type="text" name="author" id="author" value="{{ escape(set_value('author')) }}">
 				{{ form_error('author', '<p>{error}</p>') }}
 			</dd>
 				
 			<dt><label for="author_url">{{ _('Author URL') }}:</label></dt>
-			<dd><input type="text" name="author_url" id="author_url" value="{{ set_value('author_url') }}"></dd>
+			<dd><input type="text" name="author_url" id="author_url" value="{{ escape(set_value('author_url')) }}"></dd>
 			
 			<dt><label for="version">{{ _('Version Number') }}:</label></dt>
-			<dd><input type="text" name="version" id="version" placeholder="1.0" value="{{ set_value('version') }}"></dd>
+			<dd><input type="text" name="version" id="version" placeholder="1.0" value="{{ escape(set_value('version')) }}"></dd>
 			
 			<dt><label for="docs_url">{{ _('Documentation URL') }}:</label></dt>
-			<dd><input type="text" name="docs_url" id="docs_url" value="{{ set_value('docs_url') }}"></dd>
+			<dd><input type="text" name="docs_url" id="docs_url" value="{{ escape(set_value('docs_url')) }}"></dd>
 			
 			<dt><label>{{ _('Package Contents') }}:</label></dt>
 			<dd id="choose_ur_pkg">
@@ -65,7 +65,7 @@
 				</select>
 			</dd>
 			
-			<dt><label for="accessory_description">{{ _('Accessory Description') }}:</label></dt>
+			<dt><label for="accessory_description"><span>* </span>{{ _('Accessory Description') }}:</label></dt>
 			<dd><input type="text" name="accessory_description" id="accessory_description"></dd>
 		</dl>
 		
