@@ -2,7 +2,7 @@
 /* --------------------------------------------------- */
 
 html, body, div, h1, h2, h3, img, fieldset, legend,
-article, aside, figure, footer, header, nav, section {
+article, aside, figure, footer, header, nav, section, ul, li {
 	margin:			0;
 	padding:		0;
 	border:			0;
@@ -24,7 +24,7 @@ article, aside, figure, footer, header, nav, section {
 html {
 	background:		#2B474A url(../images/bg.png);
 	color:			#ededed;
-	font:			11px/25px "Helvetica Neue", Arial, Helvetica, sans-serif;
+	font:			13px/25px "Helvetica Neue", Arial, Helvetica, sans-serif;
 	text-align:		center; /* ie */
 	text-rendering:	optimizelegibility;
 }
@@ -62,6 +62,11 @@ header {
 	padding:		20px 0 10px 8px;
 }
 
+header h1 {
+	width:			175px;
+/*	float:			left;*/
+}
+
 header h1 a {
 	background:		url(../images/logo.png) no-repeat;
 	display:		block;
@@ -74,18 +79,72 @@ header h2 {
 	font-size:		13px;
 }
 
+/* Navigation */
+
+nav ul{ margin: 25px 15px 0 0;padding:0; float: right;}
+
+nav a {
+	color: 				#fff;
+	text-shadow: 		#191005 1px 1px 0px;
+	font-size: 16px;
+}
+
+nav ul {
+	height:				2.5em;
+	max-width:			100%;
+	z-index: 			50;
+}
+
+nav ul li {
+	cursor:				pointer;
+	float:				left;
+	font-weight:		normal;
+	list-style-type:	none;
+	text-align:			center;
+}
+
+nav ul li a {
+	display:			block;
+	float:				left;
+	text-decoration:	none;
+	padding:			10px 15px;
+	z-index: 			30;
+	-moz-border-radius: 5px;
+	border-radius: 		5px;
+}
+nav ul li a:hover,
+nav ul li a.current {
+	text-decoration: none;
+	background: #21190d url(../images/container_bg.jpg) repeat-y 0 0;
+	color: #fff;
+
+	-moz-box-shadow:	0 5px 15px 0 #191005 inset,
+						0 1px 1px 0 #385D62;
+	-webkit-box-shadow: 0 5px 15px 0 #191005 inset,
+						0 1px 1px 0 #385D62;
+	box-shadow: 		0 5px 15px 0 #191005 inset,
+						0 1px 1px 0 #385D62;
+				
+	-webkit-border-radius: 	5px;
+	-moz-border-radius: 	5px;
+	border-radius: 			5px;
+	
+}
+
 /* footer */
 footer {
 	color:			#000;
+	font-size:		11px;
 	height:			80px;
 	padding:		0 5px;
 	text-shadow:	0 1px 0 rgba(51, 86, 91, 0.8);
 }
 
 footer p {
-	width:			45%;
 	float:			left;
 	line-height:	30px;
+	width:			45%;
+
 }
 
 footer a,
@@ -207,3 +266,48 @@ label.chk_lbl {
 
 #abyss {}
 	
+	
+/* Posts */
+
+article header p.posted {
+	font-size:			12px;
+	font-weight:		normal;
+	font-style: 		italic;
+}
+
+#main article header p.posted a {
+	font-size:			12px;
+	font-style:			normal;
+}
+
+/*section.posts {
+	padding:			0 20px 20px 20px;	
+}*/
+
+section.posts p {
+	font-size:			13px;
+	line-height: 		150%;
+}
+
+section article {
+	float:				left;
+	width:				500px;
+}
+
+section aside {
+	float:				right;
+	width:				220px;
+}
+
+section aside h1 {
+	font-size:			18px;
+	margin:				10px 0 0 0;
+}
+
+section aside ul {
+	margin-top:			5px;
+}
+
+section aside ul li {
+	margin-left:		14px;
+}
