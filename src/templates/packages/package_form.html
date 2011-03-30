@@ -12,29 +12,38 @@
         	<dt><label for="package_name"><span>* </span>{{ _('Package Name') }}:</label></dt>
             <dd>
 				<input type="text" id="package_name" name="package_name" value="{{ escape(set_value('package_name')) }}" autofocus>
-				{{ form_error('package_name', '<p>{error}</p>') }}
+				{{ form_error('package_name', '<span>{error}</span>') }}
 			</dd>
 			
 			<dt><label for="package_short_name"><span>* </span>{{ _('Package Short Name') }}: <br>{% comment <em>({{ _('alpha-numeric and underscores.  No Spaces') }})</em> %}</label></dt>
 			<dd>
 				<input type="text" id="package_short_name" name="package_short_name" value="{{ escape(set_value('package_short_name')) }}">
-				{{ form_error('package_short_name', '<p>{error}</p>') }}
+				{{ form_error('package_short_name', '<span>{error}</span>') }}
 			</dd>
 			
 			<dt><label for="author"><span>* </span>{{ _('Author Name') }}:</label></dt>
 			<dd>
 				<input type="text" name="author" id="author" value="{{ escape(set_value('author')) }}">
-				{{ form_error('author', '<p>{error}</p>') }}
+				{{ form_error('author', '<span>{error}</span>') }}
 			</dd>
 				
 			<dt><label for="author_url">{{ _('Author URL') }}:</label></dt>
-			<dd><input type="text" name="author_url" id="author_url" value="{{ escape(set_value('author_url')) }}"></dd>
+			<dd>
+				<input type="text" name="author_url" id="author_url" value="{{ escape(set_value('author_url')) }}">
+				{{ form_error('author_url', '<span>{error}</span>') }}
+			</dd>
 			
 			<dt><label for="version">{{ _('Version Number') }}:</label></dt>
-			<dd><input type="text" name="version" id="version" placeholder="1.0" value="{{ escape(set_value('version')) }}"></dd>
+			<dd>
+				<input type="text" name="version" id="version" placeholder="1.0" value="{{ escape(set_value('version')) }}">
+				{{ form_error('version', '<span>{error}</span>') }}
+			</dd>
 			
 			<dt><label for="docs_url">{{ _('Documentation URL') }}:</label></dt>
-			<dd><input type="text" name="docs_url" id="docs_url" value="{{ escape(set_value('docs_url')) }}"></dd>
+			<dd>
+				<input type="text" name="docs_url" id="docs_url" value="{{ escape(set_value('docs_url')) }}">
+				{{ form_error('docs_url', '<span>{error}</span>') }}
+			</dd>
 			
 			<dt><label>{{ _('Package Contents') }}:</label></dt>
 			<dd id="choose_ur_pkg">
@@ -66,16 +75,22 @@
 			</dd>
 			
 			<dt><label for="accessory_description"><span>* </span>{{ _('Accessory Description') }}:</label></dt>
-			<dd><input type="text" name="accessory_description" id="accessory_description"></dd>
+			<dd>
+				<input type="text" name="accessory_description" id="accessory_description" value="{{ escape(set_value('accessory_description')) }}">
+				{{ form_error('accessory_description', '<span>{error}</span>') }}
+			</dd>
 		</dl>
 		
 		{% for k in xrange(1, 4) %}
 		<dl id="accessory_{{ k }}">
 			<dt><span>* </span><label for="accessory_{{ k }}_title">{{ _('Section Title') }}:</label></dt>
-			<dd><input type="text" name="accessory_{{ k }}_title" id="accessory_{{ k }}_title"></dd>
+			<dd>
+				<input type="text" name="accessory_{{ k }}_title" id="accessory_{{ k }}_title" value="{{ escape(set_value('accessory_'+ str(k) +'_title')) }}">
+				{{ form_error('accessory_'+ str(k) +'_title', '<span>{error}</span>') }}
+			</dd>
 			
 			<dt><label for="accessory_{{ k }}_content">{{ _('Content') }}:</label></dt>
-			<dd><textarea name="accessory_{{ k }}_content" id="accessory_{{ k }}_content" rows="8" cols="40" placeholder="Insert any HTML or Javascript for this section"></textarea></dd>
+			<dd><textarea name="accessory_{{ k }}_content" id="accessory_{{ k }}_content" rows="8" cols="40" placeholder="Insert any HTML or Javascript for this section">{{ escape(set_value('accessory_'+ str(k) +'_content')) }}</textarea></dd>
 		</dl>
 		{% end %}
 	</fieldset>
@@ -93,99 +108,16 @@
 			</dd>
 			
 			<dt><span>* </span><label for="extension_description">{{ _('Extension Description') }}:</label></dt>
-			<dd><input type="text" name="extension_description" id="extension_description"></dd>
+			<dd>
+				<input type="text" name="extension_description" id="extension_description" value="{{ escape(set_value('extension_description')) }}">
+				{{ form_error('extension_description', '<span>{error}</span>') }}
+			</dd>
 			
 			<dt><label for="extension_hooks">{{ _('Extension Hooks') }}:</label></dt>
 			<dd class="wide" style="max-height: 200px; overflow-y: auto;">
-				<input type="checkbox" name="extension_hooks[]" id="channel_entries_query_result" value="channel_entries_query_result"><label for="channel_entries_query_result" class="chk_lbl">channel_entries_query_result</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="channel_entries_tagdata" value="channel_entries_tagdata"><label for="channel_entries_tagdata" class="chk_lbl">channel_entries_tagdata</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="channel_entries_row" value="channel_entries_row"><label for="channel_entries_row" class="chk_lbl">channel_entries_row</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="channel_entries_tagdata_end" value="channel_entries_tagdata_end"><label for="channel_entries_tagdata_end" class="chk_lbl">channel_entries_tagdata_end</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="channel_module_calendar_start" value="channel_module_calendar_start"><label for="channel_module_calendar_start" class="chk_lbl">channel_module_calendar_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="channel_module_categories_start" value="channel_module_categories_start"><label for="channel_module_categories_start" class="chk_lbl">channel_module_categories_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="channel_module_category_heading_start" value="channel_module_category_heading_start"><label for="channel_module_category_heading_start" class="chk_lbl">channel_module_category_heading_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="channel_module_create_pagination" value="channel_module_create_pagination"><label for="channel_module_create_pagination" class="chk_lbl">channel_module_create_pagination</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="channel_module_fetch_pagination_data" value="channel_module_fetch_pagination_data"><label for="channel_module_fetch_pagination_data" class="chk_lbl">channel_module_fetch_pagination_data</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="comment_entries_comment_format" value="comment_entries_comment_format"><label for="comment_entries_comment_format" class="chk_lbl">comment_entries_comment_format</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="comment_entries_tagdata" value="comment_entries_tagdata"><label for="comment_entries_tagdata" class="chk_lbl">comment_entries_tagdata</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="comment_form_end" value="comment_form_end"><label for="comment_form_end" class="chk_lbl">comment_form_end</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="comment_form_hidden_fields" value="comment_form_hidden_fields"><label for="comment_form_hidden_fields" class="chk_lbl">comment_form_hidden_fields</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="comment_form_tagdata" value="comment_form_tagdata"><label for="comment_form_tagdata" class="chk_lbl">comment_form_tagdata</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="comment_preview_comment_format" value="comment_preview_comment_format"><label for="comment_preview_comment_format" class="chk_lbl">comment_preview_comment_format</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="comment_preview_tagdata" value="comment_preview_tagdata"><label for="comment_preview_tagdata" class="chk_lbl">comment_preview_tagdata</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="cp_css_end" value="cp_css_end"><label for="cp_css_end" class="chk_lbl">cp_css_end</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="cp_js_end" value="cp_js_end"><label for="cp_js_end" class="chk_lbl">cp_js_end</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="cp_member_login" value="cp_member_login"><label for="cp_member_login" class="chk_lbl">cp_member_login</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="cp_member_logout" value="cp_member_logout"><label for="cp_member_logout class="chk_lbl"">cp_member_logout</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="cp_members_member_create" value="cp_members_member_create"><label for="cp_members_member_create" class="chk_lbl">cp_members_member_create</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="cp_members_member_create_start" value="cp_members_member_create_start"><label for="cp_members_member_create_start" class="chk_lbl">cp_members_member_create_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="cp_members_member_delete_end" value="cp_members_member_delete_end"><label for="cp_members_member_delete_end" class="chk_lbl">cp_members_member_delete_end</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="cp_members_validate_members" value="cp_members_validate_members"><label for="cp_members_validate_members" class="chk_lbl">cp_members_validate_members</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="create_captcha_start" value="create_captcha_start"><label for="create_captcha_start" class="chk_lbl">create_captcha_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="delete_comment_additional" value="delete_comment_additional"><label for="delete_comment_additional" class="chk_lbl">delete_comment_additional</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="delete_entries_loop" value="delete_entries_loop"><label for="delete_entries_loop" class="chk_lbl">delete_entries_loop</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="delete_entries_start" value="delete_entries_start"><label for="delete_entries_start" class="chk_lbl">delete_entries_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="entry_submission_end" value="entry_submission_end"><label for="entry_submission_end" class="chk_lbl">entry_submission_end</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="entry_submission_ready" value="entry_submission_ready"><label for="entry_submission_ready" class="chk_lbl">entry_submission_ready</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="entry_submission_start" value="entry_submission_start"><label for="entry_submission_start" class="chk_lbl">entry_submission_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="edit_template_start" value="edit_template_start"><label for="edit_template_start" class="chk_lbl">edit_template_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="edit_wiki_article_end" value="edit_wiki_article_end"><label for="edit_wiki_article_end" class="chk_lbl">edit_wiki_article_end</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="edit_wiki_article_form_end" value="edit_wiki_article_form_end"><label for="edit_wiki_article_form_end" class="chk_lbl">edit_wiki_article_form_end</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="edit_wiki_article_form_start" value="edit_wiki_article_form_start"><label for="edit_wiki_article_form_start" class="chk_lbl">edit_wiki_article_form_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="email_module_send_email_end" value="email_module_send_email_end"><label for="email_module_send_email_end" class="chk_lbl">email_module_send_email_end</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="email_module_tellafriend_override" value="email_module_tellafriend_override"><label for="email_module_tellafriend_override" class="chk_lbl">email_module_tellafriend_override</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="entry_submission_absolute_end" value="entry_submission_absolute_end"><label for="entry_submission_absolute_end" class="chk_lbl">entry_submission_absolute_end</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="entry_submission_redirect" value="entry_submission_redirect"><label for="entry_submission_redirect" class="chk_lbl">entry_submission_redirect</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="foreign_character_conversion_array" value="foreign_character_conversion_array"><label for="foreign_character_conversion_array" class="chk_lbl">foreign_character_conversion_array</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="form_declaration_modify_data" value="form_declaration_modify_data"><label for="form_declaration_modify_data" class="chk_lbl">form_declaration_modify_data</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="form_declaration_return" value="form_declaration_return"><label for="form_declaration_return" class="chk_lbl">form_declaration_return</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="forum_submission_form_start" value="forum_submission_form_start"><label for="forum_submission_form_start" class="chk_lbl">forum_submission_form_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="forum_submission_form_end" value="forum_submission_form_end"><label for="forum_submission_form_end" class="chk_lbl">forum_submission_form_end</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="forum_submission_page" value="forum_submission_page"><label for="forum_submission_page" class="chk_lbl">forum_submission_page</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="forum_submit_post_start" value="forum_submit_post_start"><label for="forum_submit_post_start" class="chk_lbl">forum_submit_post_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="forum_submit_post_end" value="forum_submit_post_end"><label for="forum_submit_post_end" class="chk_lbl">forum_submit_post_end</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="forum_threads_template" value="forum_threads_template"><label for="forum_threads_template" class="chk_lbl">forum_threads_template</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="forum_thread_rows_absolute_end" value="forum_thread_rows_absolute_end"><label for="forum_thread_rows_absolute_end" class="chk_lbl">forum_thread_rows_absolute_end</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="forum_thread_rows_loop_start" value="forum_thread_rows_loop_start"><label for="forum_thread_rows_loop_start" class="chk_lbl">forum_thread_rows_loop_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="forum_thread_rows_loop_end" value="forum_thread_rows_loop_end"><label for="forum_thread_rows_loop_end" class="chk_lbl">forum_thread_rows_loop_end</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="forum_thread_rows_start" value="forum_thread_rows_start"><label for="forum_thread_rows_start" class="chk_lbl">forum_thread_rows_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="forum_topics_absolute_end" value="forum_topics_absolute_end"><label for="forum_topics_absolute_end" class="chk_lbl">forum_topics_absolute_end</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="forum_topics_loop_start" value="forum_topics_loop_start"><label for="forum_topics_loop_start" class="chk_lbl">forum_topics_loop_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="forum_topics_loop_end" value="forum_topics_loop_end"><label for="forum_topics_loop_end" class="chk_lbl">forum_topics_loop_end</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="forum_topics_start" value="forum_topics_start"><label for="forum_topics_start" class="chk_lbl">forum_topics_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="insert_comment_end" value="insert_comment_end"><label for="insert_comment_end" class="chk_lbl">insert_comment_end</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="insert_comment_insert_array" value="insert_comment_insert_array"><label for="insert_comment_insert_array" class="chk_lbl">insert_comment_insert_array</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="insert_comment_preferences_sql" value="insert_comment_preferences_sql"><label for="insert_comment_preferences_sql" class="chk_lbl">insert_comment_preferences_sql</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="insert_comment_start" value="insert_comment_start"><label for="insert_comment_start" class="chk_lbl">insert_comment_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="login_authenticate_start" value="login_authenticate_start"><label for="login_authenticate_start" class="chk_lbl">login_authenticate_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="main_forum_table_rows_template" value="main_forum_table_rows_template"><label for="main_forum_table_rows_template" class="chk_lbl">main_forum_table_rows_template</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="member_edit_preferences" value="member_edit_preferences"><label for="member_edit_preferences" class="chk_lbl">member_edit_preferences</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="member_manager" value="member_manager"><label for="member_manager" class="chk_lbl">member_manager</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="member_member_login_multi" value="member_member_login_multi"><label for="member_member_login_multi" class="chk_lbl">member_member_login_multi</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="member_member_login_single" value="member_member_login_single"><label for="member_member_login_single" class="chk_lbl">member_member_login_single</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="member_member_login_start" value="member_member_login_start"><label for="member_member_login_start" class="chk_lbl">member_member_login_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="member_member_logout" value="member_member_logout"><label for="member_member_logout" class="chk_lbl">member_member_logout</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="member_member_register" value="member_member_register"><label for="member_member_register" class="chk_lbl">member_member_register</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="member_member_register_start" value="member_member_register_start"><label for="member_member_register_start" class="chk_lbl">member_member_register_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="member_register_validate_members" value="member_register_validate_members"><label for="member_register_validate_members" class="chk_lbl">member_register_validate_members</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="member_update_preferences" value="member_update_preferences"><label for="member_update_preferences" class="chk_lbl">member_update_preferences</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="simple_commerce_evaluate_ipn_response" value="simple_commerce_evaluate_ipn_response"><label for="simple_commerce_evaluate_ipn_response" class="chk_lbl">simple_commerce_evaluate_ipn_response</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="simple_commerce_perform_actions_end" value="simple_commerce_perform_actions_end"><label for="simple_commerce_perform_actions_end" class="chk_lbl">simple_commerce_perform_actions_end</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="simple_commerce_perform_actions_start" value="simple_commerce_perform_actions_start"><label for="simple_commerce_perform_actions_start" class="chk_lbl">simple_commerce_perform_actions_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="sessions_end" value="sessions_end"><label for="sessions_end" class="chk_lbl">sessions_end</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="sessions_start" value="sessions_start"><label for="sessions_start" class="chk_lbl">sessions_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="publish_form_channel_preferences" value="publish_form_channel_preferences"><label for="publish_form_channel_preferences" class="chk_lbl">publish_form_channel_preferences</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="publish_form_entry_data" value="publish_form_entry_data"><label for="publish_form_entry_data" class="chk_lbl">publish_form_entry_data</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="typography_parse_type_end" value="typography_parse_type_end"><label for="typography_parse_type_end" class="chk_lbl">typography_parse_type_end</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="typography_parse_type_start" value="typography_parse_type_start"><label for="typography_parse_type_start" class="chk_lbl">typography_parse_type_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="update_comment_additional" value="update_comment_additional"><label for="update_comment_additional" class="chk_lbl">update_comment_additional</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="update_multi_entries_loop" value="update_multi_entries_loop"><label for="update_multi_entries_loop" class="chk_lbl">update_multi_entries_loop</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="update_multi_entries_start" value="update_multi_entries_start"><label for="update_multi_entries_start" class="chk_lbl">update_multi_entries_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="update_template_end" value="update_template_end"><label for="update_template_end" class="chk_lbl">update_template_end</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="wiki_article_end" value="wiki_article_end"><label for="wiki_article_end" class="chk_lbl">wiki_article_end</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="wiki_article_start" value="wiki_article_start"><label for="wiki_article_start" class="chk_lbl">wiki_article_start</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="wiki_special_page" value="wiki_special_page"><label for="wiki_special_page" class="chk_lbl">wiki_special_page</label><br>
-				<input type="checkbox" name="extension_hooks[]" id="wiki_start" value="wiki_start"><label for="wiki_start" class="chk_lbl">wiki_start</label><br>
+				{% for hook in hooks %}
+				<input type="checkbox" name="extension_hooks[]" id="{{ hook }}" value="{{ hook }}" {{ set_value('extension_hooks[]', 'check', hook) }}><label for="{{ hook }}" class="chk_lbl">{{ hook }}</label><br>
+				{% end %}
 			</dd>
 		</dl>
 	</fieldset>
@@ -211,7 +143,7 @@
 			<dt><span>* </span><label for="module_description">{{ _('Module Description') }}</label></dt>
 			<dd>
 				<input type="text" name="module_description" id="module_description" value="{{ set_value('module_description') }}">
-				{{ form_error('module_description', '<p>{error}</p>') }}
+				{{ form_error('module_description', '<span>{error}</span>') }}
 			</dd>
 		</dl>
 	</fieldset>
@@ -235,6 +167,10 @@
 {% end %}
 
 {% block footer_js %}
+<script>
+	var PKG = PKG || {};
+	PKG.hook_mappings = {{ json_encode(mappings) }};
+</script>
 <script type="text/javascript" src="{{ static_url('js/package_builder.js') }}"></script>
 
 {% end %}

@@ -48,10 +48,11 @@
 			add: function(check_el) {
 				var idx = hook_checks.index(check_el),
 					value = check_el.value,
+					content = PKG.hook_mappings[value] || '',
 					prev, str = '';
 				
 				str = '<dt><label for="extension_hook_'+value+'">'+value+'</label></dt>' +
-					  '<dd><input type="text" name="extension_hook_'+value+'" id="extension_hook_'+value+'"></dd>';
+					  '<dd><input type="text" name="extension_hook_'+value+'" value="'+content+'" id="extension_hook_'+value+'"></dd>';
 				
 				// Add the original index to our hook input array and re-sort.
 				hook_inputs.push(idx);
@@ -102,6 +103,10 @@
 		if (this.checked === false) {
 			Hooks.remove(this);
 		} else {
+			Hooks.add(this);
+		}
+	}).each(function() {
+		if (this.value in PKG.hook_mappings) {
 			Hooks.add(this);
 		}
 	});

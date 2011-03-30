@@ -55,6 +55,20 @@ class BaseHandler(tornado.web.RequestHandler):
         else:
             raise tornado.web.HTTPError(404)
     
+    def get_argument(self, name, default=False, strip=True):
+        """COPYING THEIR DAMN METHOD TO BUGFIX! ARGH!"""
+        
+        args = self.get_arguments(name, strip=strip)
+        if not args:
+            if default is False:
+                raise HTTPError(404, "Missing argument %s" % name)
+            return default
+        
+        if name[-2:] == '[]':
+            return args
+        
+        return args[-1]
+    
     @tornado.web.addslash
     def get(self):
         return self._map()

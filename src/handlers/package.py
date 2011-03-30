@@ -13,9 +13,11 @@ from zipfile import ZipFile, ZipInfo
 class PackageHandler(BaseHandler):
     
     def get(self):
-        self.render('packags/package_form.html', 
+        self.render('packages/package_form.html', 
                     form_error=self.blank_callback,
-                    set_value=self.blank_callback)
+                    set_value=self.blank_callback,
+                    hooks=self.get_hooks(),
+                    mappings={})
     
     def post(self):
         ''' This is a productive method.'''
@@ -24,11 +26,12 @@ class PackageHandler(BaseHandler):
         self.lang_type = []
         
         form = FormValidator(self)
+        # all_hooks = self.get_hooks()
         
         # Basic Settings
         form.add_field('author', 'required|plain_string')
-        form.add_field('author_url', 'url')
-        form.add_field('docs_url', 'url')
+        form.add_field('author_url', 'prep_url|url')
+        form.add_field('docs_url', 'prep_url|url')
         form.add_field('package_name', 'required|plain_string')
         form.add_field('package_short_name', 'required|segment')
         form.add_field('version', 'float', '1.0')
@@ -50,7 +53,7 @@ class PackageHandler(BaseHandler):
                 accessory_sections = int(value)
                 
                 for k in xrange(1, int(value) + 1):
-                    form.add_field('accessory_%d_title' % k)
+                    form.add_field('accessory_%d_title' % k, 'required')
                     form.add_field('accessory_%d_content' % k)
         
         if form.get_field('pkg_plugin'):
@@ -61,22 +64,28 @@ class PackageHandler(BaseHandler):
             form.add_field('module_has_control_panel', '', '0')
             form.add_field('module_description', 'required')
         
+        hooks = self.get_hooks()
+        mappings = {}
+        
         if form.get_field('pkg_extension'):
             form.add_field('extension_has_settings', '', 0)
             form.add_field('extension_description', 'required')
-            form.add_field('extension_hooks[]', '', 0)
+            form.add_field('extension_hooks[]', '', [])
             
-            hooks = self.get_arguments('extension_hooks[]')
-            
-            for hook in hooks:
-                form.add_field('extension_hook_{0}'.format(hook))
+            checked_hooks = form.get_field('extension_hooks[]')
+            for hook_name in checked_hooks:
+                if hook_name in hooks:
+                    form.add_field('extension_hook_'+hook_name, '', '')
+                    mappings[hook_name] = form.get_field('extension_hook_'+hook_name)
         
         errors = form.validate()
         
         if errors is not True:
             self.render('packages/package_form.html', 
                         form_error=self.error_function(errors),
-                        set_value=form.get_field)
+                        set_value=form.get_field,
+                        hooks=hooks,
+                        mappings=mappings)
             return
         
         # WOOT start building
@@ -203,6 +212,19 @@ class PackageHandler(BaseHandler):
                 return template.format(error=errors[fieldname])
             return ''
         return show_error
+    
+    def get_hooks(self):
+        hooks = ["channel_entries_query_result", "channel_entries_tagdata", "channel_entries_row", "channel_entries_tagdata_end", "channel_module_calendar_start", "channel_module_categories_start", "channel_module_category_heading_start", "channel_module_create_pagination", "channel_module_fetch_pagination_data",
+                "comment_entries_comment_format", "comment_entries_tagdata", "comment_form_end", "comment_form_hidden_fields", "comment_form_tagdata", "comment_preview_comment_format", "comment_preview_tagdata", "cp_css_end", "cp_js_end", "cp_member_login", "cp_member_logout", "cp_members_member_create",
+                "cp_members_member_create_start", "cp_members_member_delete_end", "cp_members_validate_members", "create_captcha_start", "delete_comment_additional", "delete_entries_loop", "delete_entries_start", "entry_submission_end", "entry_submission_ready", "entry_submission_start", "edit_template_start",
+                "edit_wiki_article_end", "edit_wiki_article_form_end", "edit_wiki_article_form_start", "email_module_send_email_end", "email_module_tellafriend_override", "entry_submission_absolute_end", "entry_submission_redirect", "foreign_character_conversion_array", "form_declaration_modify_data",
+                "form_declaration_return", "forum_submission_form_start", "forum_submission_form_end", "forum_submission_page", "forum_submit_post_start", "forum_submit_post_end", "forum_threads_template", "forum_thread_rows_absolute_end", "forum_thread_rows_loop_start", "forum_thread_rows_loop_end",
+                "forum_thread_rows_start", "forum_topics_absolute_end", "forum_topics_loop_start", "forum_topics_loop_end", "forum_topics_start", "insert_comment_end", "insert_comment_insert_array", "insert_comment_preferences_sql", "insert_comment_start", "login_authenticate_start", "main_forum_table_rows_template",
+                "member_edit_preferences", "member_manager", "member_member_login_multi", "member_member_login_single", "member_member_login_start", "member_member_logout", "member_member_register", "member_member_register_start", "member_register_validate_members", "member_update_preferences", "simple_commerce_evaluate_ipn_response",
+                "simple_commerce_perform_actions_end", "simple_commerce_perform_actions_start", "sessions_end", "sessions_start", "publish_form_channel_preferences", "publish_form_entry_data", "typography_parse_type_end", "typography_parse_type_start", "update_comment_additional", "update_multi_entries_loop", "update_multi_entries_start",
+                "update_template_end", "wiki_article_end", "wiki_article_start", "wiki_special_page", "wiki_start"]
+        hooks.sort()
+        return hooks
 
 ## --------------------------------------------------------------------
 
