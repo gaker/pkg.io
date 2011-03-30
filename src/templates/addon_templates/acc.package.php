@@ -40,7 +40,7 @@ class {{ ucfirst(package_short_name) }}_acc {
 		$EE =& get_instance();
 		
 		{% for section in sections %}
-		$this->sections['{{ dequote(section['title']) }}'] = $EE->load->view('accessory_{{ section['short_title'] }}');
+		$this->sections['{{ dequote(section['title']) }}'] = $EE->load->view('accessory_{{ section['short_title'] }}', '', TRUE);
 		{% end %}
 	}
 	
