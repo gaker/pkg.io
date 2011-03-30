@@ -161,19 +161,15 @@ class PackageHandler(BaseHandler):
         if form.get_field('pkg_extension'):
             select_cp = ['n', 'y']
             has_cp = int(form.get_field('extension_has_settings'))
-            final_hooks = {}
             
             if has_cp == 1:
                 self.need_lang_file = True
                 self.lang_type.append('extension')
             
-            for hook in hooks:
-                final_hooks[hook] = form.get_field('extension_hook_{0}'.format(hook))
-            
             build.add_extension({
                 'has_cp': select_cp[has_cp],
                 'ext_description': form.get_field('extension_description'),
-                'hooks': final_hooks
+                'hooks': mappings
             })
         
         if self.need_lang_file is True:
