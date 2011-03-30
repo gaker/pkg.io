@@ -67,7 +67,7 @@
 		<dl>
 			<dt><label for="accessory_sections_num">{{ _('Accessory Sections') }}:</label></dt>
 			<dd>
-				<select name="accessory_sections_num" id="accessory_sections_num" size="1">
+				<select name="accessory_sections_num" id="accessory_sections_num" size="1" class="wide">
 					<option value="1" {{ set_value('accessory_sections_num', 'select', '1') }}>{{ _('One Column') }}</option>
 					<option value="2" {{ set_value('accessory_sections_num', 'select', '2') }}>{{ _('Two Columns') }}</option>
 					<option value="3" {{ set_value('accessory_sections_num', 'select', '3') }}>{{ _('Three Columns') }}</option>
@@ -101,7 +101,7 @@
 		<dl>
 			<dt><label for="extension_has_settings">{{ _('Has Control Panel Settings?') }}</label></dt>
 			<dd>
-				<select name="extension_has_settings" id="extension_has_settings">
+				<select name="extension_has_settings" id="extension_has_settings" size="1" class="wide">
 					<option value="0" {{ set_value('extension_has_settings', 'select', '0') }}>{{ _('No') }}</option>
 					<option value="1" {{ set_value('extension_has_settings', 'select', '1') }}>{{ _('Yes') }}</option>
 				</select>
