@@ -17,11 +17,13 @@ class PackageHandler(BaseHandler):
                     form_error=self.blank_callback,
                     set_value=self.blank_callback,
                     hooks=self.get_hooks(),
-                    mappings={})
+                    mappings={},
+                    packages_selected=True)
     
     def post(self):
         ''' This is a productive method.'''
         
+        self.build_package = False
         self.need_lang_file = False
         self.lang_type = []
         
@@ -45,6 +47,7 @@ class PackageHandler(BaseHandler):
         accessory_sections = 0
         
         if form.get_field('pkg_accessory'):
+            self.build_package = True
             form.add_field('accessory_description', 'required')
             form.add_field('accessory_sections_num')
             value = form.get_field('accessory_sections_num')
@@ -57,10 +60,12 @@ class PackageHandler(BaseHandler):
                     form.add_field('accessory_%d_content' % k)
         
         if form.get_field('pkg_plugin'):
+            self.build_package = True
             form.add_field('plugin_description', 'required')
             form.add_field('plugin_instructions', 'required')
         
         if form.get_field('pkg_module'):
+            self.build_package = True
             form.add_field('module_has_control_panel', '', '0')
             form.add_field('module_description', 'required')
         
@@ -68,6 +73,7 @@ class PackageHandler(BaseHandler):
         mappings = {}
         
         if form.get_field('pkg_extension'):
+            self.build_package = True
             form.add_field('extension_has_settings', '', 0)
             form.add_field('extension_description', 'required')
             form.add_field('extension_hooks[]', '', [])
@@ -79,15 +85,19 @@ class PackageHandler(BaseHandler):
                     mappings[hook_name] = form.get_field('extension_hook_'+hook_name)
         
         errors = form.validate()
+
+        if self.build_package is False and errors is True:
+            errors = {}
         
         if errors is not True:
             self.render('packages/package_form.html', 
                         form_error=self.error_function(errors),
                         set_value=form.get_field,
                         hooks=hooks,
-                        mappings=mappings)
+                        mappings=mappings,
+                        packages_selected=self.build_package)
             return
-        
+            
         # WOOT start building
         
         files = []

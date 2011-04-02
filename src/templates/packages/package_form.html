@@ -4,6 +4,10 @@
 
 {% block content %}
 
+{% if not packages_selected %}
+<p>{{ _("Hey silly, you forgot to select a package to make.") }}</p>
+{% end %}
+
 <form action="{{ request.path }}" method="post">
 	
 	<fieldset>
@@ -114,7 +118,7 @@
 			</dd>
 			
 			<dt><label for="extension_hooks">{{ _('Extension Hooks') }}:</label></dt>
-			<dd class="wide" style="max-height: 200px; overflow-y: auto;">
+			<dd class="wide" id="choose_some_hooks">
 				{% for hook in hooks %}
 				<input type="checkbox" name="extension_hooks[]" id="{{ hook }}" value="{{ hook }}" {{ set_value('extension_hooks[]', 'check', hook) }}><label for="{{ hook }}" class="chk_lbl">{{ hook }}</label><br>
 				{% end %}

@@ -260,6 +260,48 @@ label.chk_lbl {
 	min-width:			400px;
 }
 
+#choose_some_hooks {
+	max-height: 		200px; 
+	overflow-y: 		auto;
+}
+
+#choose_some_hooks::-webkit-scrollbar {
+	width:				10px;
+	height:				10px;
+	border-left:		solid 1 #000;
+}
+	
+#choose_some_hooks::-webkit-scrollbar-button:start:decrement{
+	display:			block;
+	height:				5px;
+}
+	
+#choose_some_hooks::-webkit-scrollbar-button:end:increment {
+	display:			block;
+	height:				5px;
+}
+	
+#choose_some_hooks::-webkit-scrollbar-button:vertical:increment {
+	background-color:	transparent;
+}
+	
+#choose_some_hooks::-webkit-scrollbar-track:enabled {
+	background-color:	rgba(113,112,107,0.1);
+	-webkit-border-radius:5px;
+}
+	
+#choose_some_hooks::-webkit-scrollbar-thumb:vertical {
+	height:				50px;
+	background-color:	rgba(9.8%, 6.3%, 2.0%, 1.000);
+	-webkit-border-radius:5px;
+}
+	
+#choose_some_hooks::-webkit-scrollbar-thumb:horizontal{
+	width:				50px;
+	background-color:	rgba(9.8%, 6.3%, 2.0%, 1.000);
+	-webkit-border-radius:5px;
+}
+
 /* Welcome to the Abyss */
 /* Pascal will take your coat. And burn it muahahah!
 /* --------------------------------------------------- */
