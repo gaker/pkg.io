@@ -144,7 +144,10 @@
 				</select>
 			</dd>
 			
-			<dt><span>* </span><label for="module_description">{{ _('Module Description') }}</label></dt>
+			<dt>
+				<span>* </span><label for="module_description">{{ _('Module Description') }}</label>
+				{{ form_error('module_description', '<span>{error}</span>') }}
+			</dt>
 			<dd>
 				<input type="text" name="module_description" id="module_description" value="{{ set_value('module_description') }}">
 				{{ form_error('module_description', '<span>{error}</span>') }}
@@ -156,7 +159,10 @@
 		<legend>{{ _('Plugin') }}</legend>
 		<dl>
 			<dt><span>* </span><label for="plugin_description">{{ _('Plugin Description') }}:</label></dt>
-			<dd><input type="text" name="plugin_description" id="plugin_description"></dd>
+			<dd>
+				<input type="text" name="plugin_description" id="plugin_description">
+				{{ form_error('plugin_description', '<span>{error}</span>') }}
+			</dd>
 			
 			<dt><label for="plugin_instructions">{{ _('Plugin Documentation') }}:</label></dt>
 			<dd><textarea name="plugin_instructions" id="plugin_instructions" rows="8" cols="40"></textarea></dd>
