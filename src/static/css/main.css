@@ -250,6 +250,12 @@ label {
 	font-weight:		bold;
 }
 
+/* Deal with an IE issue of checkboxes puking */
+
+dl #choose_some_hooks input {
+	zoom:				1;
+}
+
 /* Center checkbox labels - weird */
 label.chk_lbl {
 	vertical-align:		middle;
