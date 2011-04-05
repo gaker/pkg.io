@@ -26,7 +26,7 @@ html {
 	color:			#ededed;
 	font:			13px/25px "Helvetica Neue", Arial, Helvetica, sans-serif;
 	text-align:		center; /* ie */
-	text-rendering:	optimizelegibility;
+	text-rendering:	optimizeLegibility;
 }
 
 body {	
