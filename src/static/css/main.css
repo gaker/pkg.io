@@ -49,11 +49,6 @@ a, a:visited {
 	text-decoration: none;
 }
 
-a:hover {
-	
-}
-
-
 /* inner shell
 /* --------------------------------------------------- */
 
@@ -81,12 +76,16 @@ header h2 {
 
 /* Navigation */
 
-nav ul{ margin: 25px 15px 0 0;padding:0; float: right;}
+nav ul {
+	margin:				25px 15px 0 0;
+	padding:			0;
+	float:				right;
+}
 
 nav a {
 	color: 				#fff;
 	text-shadow: 		#191005 1px 1px 0px;
-	font-size: 16px;
+	font-size:			16px;
 }
 
 nav ul {
@@ -163,7 +162,7 @@ footer a:visited {
 }
 
 .error_image {
-	margin: 15px auto;
+	margin:			15px auto;
 }
 
 /* dark wrapper */
@@ -308,54 +307,79 @@ label.chk_lbl {
 	-webkit-border-radius:5px;
 }
 
-/* Welcome to the Abyss */
-/* Pascal will take your coat. And burn it muahahah!
+/* Main Site */
+/* My position is a very strange--a very strange one
 /* --------------------------------------------------- */
 
-#abyss {}
-	
-	
-/* Posts */
 
-article header p.posted {
+#abyss a,
+#abyss a:visited {
+	color:				#CD812A;
+	text-shadow:		none;
+}
+
+
+.archive dt {
+	text-align:			left;
+}
+
+.archive dd {
+	color: 				#6C8588;
+	text-shadow:		0 -1px 0 #000;
+}
+
+header h2 {
+	font-size:			17px;
+}
+
+header .post_info {
 	font-size:			12px;
 	font-weight:		normal;
 	font-style: 		italic;
 }
 
-#main article header p.posted a {
+header .post_info a {
 	font-size:			12px;
 	font-style:			normal;
 }
 
-/*section.posts {
-	padding:			0 20px 20px 20px;	
-}*/
-
-section.posts p {
-	font-size:			13px;
-	line-height: 		150%;
+aside header,
+article header {
+	padding-bottom:		0;
+	padding-left:		0;
 }
 
-section article {
+article a:hover {
+	color:				#E9C57F;
+}
+
+section {
+	padding-left:		8px;
+}
+
+section p {
+	font:				13px/25px Arial, Helvetica, sans-serif;
+	color:				#ddd;
+}
+
+article {
 	float:				left;
 	width:				500px;
 }
 
-section aside {
+aside {
 	float:				right;
 	width:				220px;
 }
 
-section aside h1 {
-	font-size:			18px;
+aside h2 {
 	margin:				10px 0 0 0;
 }
 
-section aside ul {
+aside ul {
 	margin-top:			5px;
 }
 
-section aside ul li {
+aside ul li {
 	margin-left:		14px;
 }
