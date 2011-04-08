@@ -18,7 +18,8 @@ class PackageHandler(BaseHandler):
                     set_value=self.blank_callback,
                     hooks=self.get_hooks(),
                     mappings={},
-                    packages_selected=True)
+                    packages_selected=True,
+                    package_built=self.get_argument('package_built', False))
     
     def post(self):
         ''' This is a productive method.'''
@@ -62,7 +63,7 @@ class PackageHandler(BaseHandler):
         if form.get_field('pkg_plugin'):
             self.build_package = True
             form.add_field('plugin_description', 'required')
-            form.add_field('plugin_instructions', 'required')
+            form.add_field('plugin_instructions', '')
         
         if form.get_field('pkg_module'):
             self.build_package = True
@@ -95,7 +96,8 @@ class PackageHandler(BaseHandler):
                         set_value=form.get_field,
                         hooks=hooks,
                         mappings=mappings,
-                        packages_selected=self.build_package)
+                        packages_selected=self.build_package,
+                        package_built=False)
             return
             
         # WOOT start building

@@ -56,8 +56,7 @@ class {{ ucfirst(package_short_name) }} {
 		ob_start();
 ?>
 
-{{ instructions }}
-
+{% if instructions %}{{ instructions }}{% else %} Since you did not provide instructions on the form, make sure to put plugin documentation here.{% end %}
 <?php
 		$buffer = ob_get_contents();
 		ob_end_clean();

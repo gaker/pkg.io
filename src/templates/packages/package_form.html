@@ -8,6 +8,11 @@
 <p>{{ _("Hey silly, you forgot to select a package to make.") }}</p>
 {% end %}
 
+{% if package_built %}
+<section class="message">
+	<p>{{ _('Thanks for downloading.  Stop back again!') }}</p>
+</section>
+{% end %}
 <form action="{{ request.path }}" method="post">
 	
 	<fieldset>
