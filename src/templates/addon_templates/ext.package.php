@@ -40,12 +40,32 @@ class {{ ucfirst(package_short_name) }}_ext {
 	 *
 	 * @param 	mixed	Settings array or empty string if none exist.
 	 */
-	public function __construct()
+	public function __construct($settings = '')
 	{
 		$this->EE =& get_instance();
-	}
+		$this->settings = $settings;
+	}{% if has_cp == 'y' %}
 	
 	// ----------------------------------------------------------------------
+	
+	/**
+	 * Settings Form
+	 *
+	 * If you wish for ExpressionEngine to automatically create your settings
+	 * page, work in this method.  If you wish to have fine-grained control
+	 * over your form, use the settings_form() and save_settings() methods 
+	 * instead, and delete this one.
+	 *
+	 * @see http://expressionengine.com/user_guide/development/extensions.html#settings
+	 */
+	public function settings()
+	{
+		return array(
+			
+		);
+	}
+	
+	{% end %}// ----------------------------------------------------------------------
 	
 	/**
 	 * Activate Extension
@@ -64,8 +84,8 @@ class {{ ucfirst(package_short_name) }}_ext {
 		{% if len(hooks) == 1 %}{% for hook in hooks.items() %}
 		$data = array(
 			'class'		=> __CLASS__,
-			'method'	=> {{ hook[1] }},
-			'hook'		=> {{ hook[0] }},
+			'method'	=> '{{ hook[1] }}',
+			'hook'		=> '{{ hook[0] }}',
 			'settings'	=> serialize($this->settings),
 			'version'	=> $this->version,
 			'enabled'	=> 'y'
