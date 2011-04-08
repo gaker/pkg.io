@@ -13,13 +13,21 @@ from zipfile import ZipFile, ZipInfo
 class PackageHandler(BaseHandler):
     
     def get(self):
+        
+        built = False
+        
+        try:
+            built = self.get_argument('package_built', False)
+        except:
+            pass
+            
         self.render('packages/package_form.html', 
                     form_error=self.blank_callback,
                     set_value=self.blank_callback,
                     hooks=self.get_hooks(),
                     mappings={},
                     packages_selected=True,
-                    package_built=self.get_argument('package_built', False))
+                    package_built=built)
     
     def post(self):
         ''' This is a productive method.'''
