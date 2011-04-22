@@ -76,7 +76,7 @@ class {{ ucfirst(package_short_name) }}_upd {
 	{
 		$mod_id = $this->EE->db->select('module_id')
 								->get_where('modules', array(
-									'module_name'	=> {{ ucfirst(package_short_name) }}
+									'module_name'	=> '{{ ucfirst(package_short_name) }}'
 								))->row('module_id');
 		
 		$this->EE->db->where('module_id', $mod_id)
