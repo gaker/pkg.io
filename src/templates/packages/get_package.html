@@ -14,13 +14,3 @@
 	<div style="display:none">{{ xsrf_form_html() }}</div>
 </form>
 {% end %}
-
-{% block footer_js %}
-<script type="text/javascript">
-$('form').submit(function() {
-	window.location = '/?package_built=true';
-	return false;
-});
-
-</script>
-{% end %}
