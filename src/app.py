@@ -1,15 +1,12 @@
 import urls
-
 import os
-
 import tornado.auth
 import tornado.escape
 import tornado.httpserver
 import tornado.ioloop
-import tornado.locale 
+import tornado.locale
 import tornado.options
 import tornado.web
-
 from tornado.options import define, options
 
 base_dir = os.path.dirname(os.path.abspath(__file__))
@@ -20,6 +17,7 @@ define("debug", default=True, help="run tornado in debug mode", type=bool)
 define("zips_dir", default=debug_zip_dir, help="zips directory", type=str)
 
 BASEPATH = os.path.abspath(os.path.dirname(__file__))
+
 
 class Application(tornado.web.Application):
     def __init__(self):
@@ -32,11 +30,12 @@ class Application(tornado.web.Application):
             cookie_secret="$@(*YFDKHjdsaf afslkajhsdfghkasjdgtais)/Vo=",
             login_url="/auth/login",
         )
-        
+
         if options.debug is not True:
             settings['static_url_prefix'] = 'http://static.pkg.io/'
-        
+
         tornado.web.Application.__init__(self, urls.url_list, **settings)
+
 
 def main():
     tornado.options.parse_command_line()
